@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>School Portal - Evergreen International School</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --portal-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        body {
+            background: var(--portal-bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+        }
+
+        .portal-wrapper {
+            width: 100%;
+            max-width: 480px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .portal-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .portal-header i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.3));
+        }
+
+        .portal-header h2 {
+            color: #fff !important;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .portal-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .portal-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- Improved Sliding Tab Bar --- */
+        .tab-nav-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 16px;
+            padding: 6px;
+            margin-bottom: 35px;
+            position: relative;
+            display: flex;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-nav-container .nav-btn {
+            flex: 1;
+            border: none;
+            background: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+            padding: 12px 0;
+            font-size: 0.95rem;
+            z-index: 2;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tab-nav-container .nav-btn.active {
+            color: #fff;
+        }
+
+        .tab-nav-container .glider {
+            position: absolute;
+            height: calc(100% - 12px);
+            width: calc(50% - 6px);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 12px;
+            top: 6px;
+            left: 6px;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(26, 86, 219, 0.3);
+        }
+
+        .tab-nav-container[data-active="parent"] .glider {
+            transform: translateX(100%);
+            background: linear-gradient(135deg, var(--accent) 0%, #d97706 100%);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .form-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-control-portal {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .form-control-portal:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary);
+            color: #fff;
+            box-shadow: 0 0 0 4px rgba(26, 86, 219, 0.15);
+            outline: none;
+        }
+
+        .form-control-portal::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-portal-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) !important;
+            border: none !important;
+            padding: 14px !important;
+            border-radius: 12px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.5px !important;
+            box-shadow: 0 10px 20px -5px rgba(26, 86, 219, 0.4) !important;
+        }
+
+        .btn-portal-accent {
+            background: linear-gradient(135deg, var(--accent) 0%, #d97706 100%) !important;
+            border: none !important;
+            padding: 14px !important;
+            border-radius: 12px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.5px !important;
+            box-shadow: 0 10px 20px -5px rgba(245, 158, 11, 0.4) !important;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-link:hover {
+            color: #fff;
+            transform: translateX(-5px);
+        }
+
+        .back-link i {
+            margin-right: 8px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Fixes */
+        @media (max-width: 576px) {
+            .portal-card {
+                padding: 30px 20px;
+            }
+            .back-link {
+                top: 20px;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Back Shortcut -->
+    <a href="index.html" class="back-link">
+        <i class="fa fa-arrow-left"></i> Back to Website
+    </a>
+
+    <!-- Spinner -->
+    <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center" style="z-index: 10000; background: #0f172a !important;">
+        <div class="spinner-grow text-accent" role="status"></div>
+    </div>
+
+    <div class="portal-wrapper">
+        <div class="portal-header">
+            <i class="fa fa-school"></i>
+            <h2>Evergreen Portal</h2>
+            <p>Authorized access only. Please sign in to proceed.</p>
+        </div>
+
+        <div class="portal-card">
+            <!-- Improved Tab Bar -->
+            <div class="tab-nav-container" id="tabContainer" data-active="student">
+                <button class="nav-btn active" id="btnStudent" onclick="switchTab('student')">
+                    <i class="fa fa-user-graduate"></i> Student
+                </button>
+                <button class="nav-btn" id="btnParent" onclick="switchTab('parent')">
+                    <i class="fa fa-user-friends"></i> Parent
+                </button>
+                <div class="glider"></div>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="studentForm" class="portal-form active">
+                <form>
+                    <div class="mb-4">
+                        <label class="form-label">Student ID / Registration No.</label>
+                        <input type="text" class="form-control-portal w-100" placeholder="e.g. EIS-2024-001">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control-portal w-100" placeholder="••••••••">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="remStudent">
+                            <label class="form-check-label small text-white-50" for="remStudent">Remember me</label>
+                        </div>
+                        <a href="#" class="small text-primary text-decoration-none">Forgot?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-portal-primary w-100">Sign In to Dashboard</button>
+                </form>
+            </div>
+
+            <div id="parentForm" class="portal-form d-none">
+                <form>
+                    <div class="mb-4">
+                        <label class="form-label">Parent ID / Email</label>
+                        <input type="email" class="form-control-portal w-100" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control-portal w-100" placeholder="••••••••">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="remParent">
+                            <label class="form-check-label small text-white-50" for="remParent">Remember me</label>
+                        </div>
+                        <a href="#" class="small text-accent text-decoration-none">Forgot?</a>
+                    </div>
+                    <button type="submit" class="btn btn-accent btn-portal-accent w-100">Sign In to Portal</button>
+                </form>
+            </div>
+
+            <div class="text-center mt-5">
+                <p class="small text-white-50">Having trouble? <a href="contact.html" class="text-white text-decoration-underline">Contact Support</a></p>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <p class="small text-white-50">&copy; 2026 Evergreen International School. All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Preloader script
+        $(window).on('load', function () {
+            $('#spinner').removeClass('show');
+            setTimeout(function() {
+                $('#spinner').addClass('d-none');
+            }, 500);
+        });
+
+        // Tab Switching Logic
+        function switchTab(type) {
+            const container = document.getElementById('tabContainer');
+            const studentBtn = document.getElementById('btnStudent');
+            const parentBtn = document.getElementById('btnParent');
+            const studentForm = document.getElementById('studentForm');
+            const parentForm = document.getElementById('parentForm');
+
+            container.setAttribute('data-active', type);
+            
+            if (type === 'student') {
+                studentBtn.classList.add('active');
+                parentBtn.classList.remove('active');
+                studentForm.classList.remove('d-none');
+                parentForm.classList.add('d-none');
+            } else {
+                parentBtn.classList.add('active');
+                studentBtn.classList.remove('active');
+                parentForm.classList.remove('d-none');
+                studentForm.classList.add('d-none');
+            }
+        }
+
+        // Auto-select based on Query Parameter
+        $(document).ready(function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const role = urlParams.get('role');
+            
+            if (role === 'parent') {
+                switchTab('parent');
+            } else {
+                switchTab('student');
+            }
+        });
+    </script>
+</body>
+
+</html>
