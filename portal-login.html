@@ -128,7 +128,7 @@
             box-shadow: 0 4px 15px rgba(26, 86, 219, 0.3);
         }
 
-        .tab-nav-container[data-active="parent"] .glider {
+        .tab-nav-container[data-active="teacher"] .glider {
             transform: translateX(100%);
             background: linear-gradient(135deg, var(--accent) 0%, #d97706 100%);
             box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
@@ -244,10 +244,10 @@
             <!-- Improved Tab Bar -->
             <div class="tab-nav-container" id="tabContainer" data-active="student">
                 <button class="nav-btn active" id="btnStudent" onclick="switchTab('student')">
-                    <i class="fa fa-user-graduate"></i> Student
+                    <i class="fa fa-user-graduate"></i> Student / Parent
                 </button>
-                <button class="nav-btn" id="btnParent" onclick="switchTab('parent')">
-                    <i class="fa fa-user-friends"></i> Parent
+                <button class="nav-btn" id="btnTeacher" onclick="switchTab('teacher')">
+                    <i class="fa fa-chalkboard-teacher"></i> Teacher's ERP
                 </button>
                 <div class="glider"></div>
             </div>
@@ -256,12 +256,12 @@
             <div id="studentForm" class="portal-form active">
                 <form>
                     <div class="mb-4">
-                        <label class="form-label">Student ID / Registration No.</label>
-                        <input type="text" class="form-control-portal w-100" placeholder="e.g. EIS-2024-001">
+                        <label class="form-label">Student / Parent Email</label>
+                        <input type="text" class="form-control-portal w-100" placeholder="e.g. student@school.com" value="student@school.com">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Password</label>
-                        <input type="password" class="form-control-portal w-100" placeholder="••••••••">
+                        <input type="password" class="form-control-portal w-100" placeholder="••••••••" value="student123">
                     </div>
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div class="form-check">
@@ -271,27 +271,36 @@
                         <a href="#" class="small text-primary text-decoration-none">Forgot?</a>
                     </div>
                     <button type="submit" class="btn btn-primary btn-portal-primary w-100">Sign In to Dashboard</button>
+                    <div class="mt-3 text-center">
+                        <p class="small text-white-30" style="font-size: 0.75rem;">
+                            Student: student@school.com / student123<br>
+                            Parent: parent@school.com / parent123
+                        </p>
+                    </div>
                 </form>
             </div>
 
-            <div id="parentForm" class="portal-form d-none">
+            <div id="teacherForm" class="portal-form d-none">
                 <form>
                     <div class="mb-4">
-                        <label class="form-label">Parent ID / Email</label>
-                        <input type="email" class="form-control-portal w-100" placeholder="name@example.com">
+                        <label class="form-label">Teacher ID / Email</label>
+                        <input type="email" class="form-control-portal w-100" placeholder="teacher@school.com" value="teacher@school.com">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Password</label>
-                        <input type="password" class="form-control-portal w-100" placeholder="••••••••">
+                        <input type="password" class="form-control-portal w-100" placeholder="••••••••" value="teacher123">
                     </div>
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="remParent">
-                            <label class="form-check-label small text-white-50" for="remParent">Remember me</label>
+                            <input class="form-check-input" type="checkbox" id="remTeacher">
+                            <label class="form-check-label small text-white-50" for="remTeacher">Remember me</label>
                         </div>
                         <a href="#" class="small text-accent text-decoration-none">Forgot?</a>
                     </div>
-                    <button type="submit" class="btn btn-accent btn-portal-accent w-100">Sign In to Portal</button>
+                    <button type="submit" class="btn btn-accent btn-portal-accent w-100">Sign In to Teacher Portal</button>
+                    <div class="mt-3 text-center">
+                        <p class="small text-white-30" style="font-size: 0.75rem;">Demo: teacher@school.com / teacher123</p>
+                    </div>
                 </form>
             </div>
 
@@ -322,21 +331,31 @@
         function switchTab(type) {
             const container = document.getElementById('tabContainer');
             const studentBtn = document.getElementById('btnStudent');
-            const parentBtn = document.getElementById('btnParent');
+            const teacherBtn = document.getElementById('btnTeacher');
             const studentForm = document.getElementById('studentForm');
-            const parentForm = document.getElementById('parentForm');
+            const teacherForm = document.getElementById('teacherForm');
 
+            // Force reflow/update
             container.setAttribute('data-active', type);
             
             if (type === 'student') {
                 studentBtn.classList.add('active');
-                parentBtn.classList.remove('active');
+                teacherBtn.classList.remove('active');
+                
+                // Use style.display directly for reliability if d-none/Bootstrap is finicky
+                studentForm.style.display = 'block';
+                teacherForm.style.display = 'none';
+                
                 studentForm.classList.remove('d-none');
-                parentForm.classList.add('d-none');
+                teacherForm.classList.add('d-none');
             } else {
-                parentBtn.classList.add('active');
+                teacherBtn.classList.add('active');
                 studentBtn.classList.remove('active');
-                parentForm.classList.remove('d-none');
+                
+                teacherForm.style.display = 'block';
+                studentForm.style.display = 'none';
+                
+                teacherForm.classList.remove('d-none');
                 studentForm.classList.add('d-none');
             }
         }
@@ -346,11 +365,27 @@
             const urlParams = new URLSearchParams(window.location.search);
             const role = urlParams.get('role');
             
-            if (role === 'parent') {
-                switchTab('parent');
+            if (role === 'teacher') {
+                switchTab('teacher');
             } else {
                 switchTab('student');
             }
+
+            // Form Submit Logic
+            $('form').on('submit', function(e) {
+                e.preventDefault();
+                const activeTab = document.getElementById('tabContainer').getAttribute('data-active');
+                
+                if (activeTab === 'student') {
+                    // Check if it's the student or parent email for demonstration
+                    const identifier = $(this).find('input[type="text"], input[type="email"]').val();
+                    const userRole = identifier.includes('parent') ? 'parent' : 'student';
+                    window.location.href = `student-dashboard.html?user=${userRole}`;
+                } else if (activeTab === 'teacher') {
+                    // For now, redirect to dashboard as well (we can build teacher dashboard later)
+                    window.location.href = `student-dashboard.html?user=teacher`;
+                }
+            });
         });
     </script>
 </body>

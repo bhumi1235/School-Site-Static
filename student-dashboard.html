@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Student Dashboard - Evergreen International School</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --sidebar-width: 280px;
+            --topbar-height: 80px;
+            --dashboard-bg: #f8fafc;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --sidebar-bg: #0f172a;
+        }
+
+        body {
+            background: var(--dashboard-bg);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--sidebar-bg);
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+            color: #fff;
+        }
+
+        .sidebar-header {
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h3 {
+            font-size: 1.25rem;
+            margin: 0;
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .nav-menu {
+            padding: 20px 0;
+            list-style: none;
+        }
+
+        .nav-item-dash {
+            padding: 2px 20px;
+        }
+
+        .nav-link-dash {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            gap: 15px;
+        }
+
+        .nav-link-dash:hover, .nav-link-dash.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .nav-link-dash.active {
+            background: var(--primary);
+            box-shadow: 0 4px 12px rgba(26, 86, 219, 0.3);
+        }
+
+        .nav-link-dash i {
+            font-size: 1.1rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            padding: 30px;
+            padding-top: calc(var(--topbar-height) + 30px);
+            transition: all 0.3s ease;
+        }
+
+        .top-navbar {
+            height: var(--topbar-height);
+            background: #fff;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: var(--sidebar-width);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            box-shadow: 0 1px 0 var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .search-box {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: #f1f5f9;
+            font-size: 0.9rem;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-info {
+            text-align: right;
+        }
+
+        .profile-info h6 {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .profile-info span {
+            font-size: 0.75rem;
+            color: var(--secondary);
+        }
+
+        .profile-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
+        /* Dashboard Cards */
+        .stat-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .icon-blue { background: #eff6ff; color: #3b82f6; }
+        .icon-green { background: #f0fdf4; color: #22c55e; }
+        .icon-orange { background: #fff7ed; color: #f97316; }
+        .icon-purple { background: #faf5ff; color: #a855f7; }
+
+        .welcome-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #06b6d4 100%);
+            border-radius: 24px;
+            padding: 40px;
+            color: #fff;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(26, 86, 219, 0.2);
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-img {
+            position: absolute;
+            right: 0;
+            bottom: -20px;
+            width: 250px;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        /* Quick Actions */
+        .action-btn {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .action-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #f8faff;
+            transform: scale(1.05);
+        }
+
+        .action-btn i {
+            font-size: 1.8rem;
+        }
+
+        /* Activity Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 4px rgba(26, 86, 219, 0.1);
+        }
+
+        .timeline-time {
+            font-size: 0.75rem;
+            color: var(--secondary);
+            margin-bottom: 2px;
+        }
+
+        .timeline-content {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 991px) {
+            .sidebar {
+                left: -var(--sidebar-width);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .top-navbar {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fa fa-school me-2"></i>Evergreen</h3>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item-dash">
+                <a href="#" class="nav-link-dash active">
+                    <i class="fa fa-home"></i> Home
+                </a>
+            </li>
+            <li class="nav-item-dash">
+                <a href="#" class="nav-link-dash">
+                    <i class="fa fa-calendar-check"></i> Attendance
+                </a>
+            </li>
+            <li class="nav-item-dash">
+                <a href="#" class="nav-link-dash">
+                    <i class="fa fa-book"></i> Homework
+                </a>
+            </li>
+            <li class="nav-item-dash">
+                <a href="#" class="nav-link-dash">
+                    <i class="fa fa-file-invoice-dollar"></i> Fee Details
+                </a>
+            </li>
+            <li class="nav-item-dash">
+                <a href="#" class="nav-link-dash">
+                    <i class="fa fa-clock"></i> Time Table
+                </a>
+            </li>
+            <li class="nav-item-dash">
+                <a href="#" class="nav-link-dash">
+                    <i class="fa fa-gear"></i> Settings
+                </a>
+            </li>
+            <li class="nav-item-dash mt-5">
+                <a href="portal-login.html" class="nav-link-dash text-danger">
+                    <i class="fa fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Top Navbar -->
+    <div class="top-navbar">
+        <div class="search-box">
+            <i class="fa fa-search"></i>
+            <input type="text" placeholder="Search for assignments, events...">
+        </div>
+        <div class="user-profile">
+            <div class="profile-info">
+                <h6>Arjun Mehta</h6>
+                <span>Grade 12-A • ID: 2024-101</span>
+            </div>
+            <img src="img/testimonial-2.webp" alt="Student Profile" class="profile-img">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <div class="welcome-content">
+                <h1 id="greeting">Good Morning, Arjun! 👋</h1>
+                <p class="mb-0">Welcome back to your dashboard. You have 3 assignments due today and your next class starts in 15 minutes.</p>
+            </div>
+            <i class="fa fa-graduation-cap welcome-img"></i>
+        </div>
+
+        <!-- Overview Stats -->
+        <div class="row g-4 mb-5">
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="icon-box icon-blue">
+                        <i class="fa fa-user-clock"></i>
+                    </div>
+                    <h6 class="text-muted small mb-1">Total Attendance</h6>
+                    <h3>94%</h3>
+                    <div class="progress mt-3" style="height: 6px;">
+                        <div class="progress-bar bg-primary" style="width: 94%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="icon-box icon-green">
+                        <i class="fa fa-tasks"></i>
+                    </div>
+                    <h6 class="text-muted small mb-1">Assignments Done</h6>
+                    <h3>12/15</h3>
+                    <div class="progress mt-3" style="height: 6px;">
+                        <div class="progress-bar bg-success" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="icon-box icon-orange">
+                        <i class="fa fa-award"></i>
+                    </div>
+                    <h6 class="text-muted small mb-1">Average Grade</h6>
+                    <h3>A- (8.5)</h3>
+                    <div class="progress mt-3" style="height: 6px;">
+                        <div class="progress-bar bg-warning" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="stat-card">
+                    <div class="icon-box icon-purple">
+                        <i class="fa fa-bell"></i>
+                    </div>
+                    <h6 class="text-muted small mb-1">Upcoming Exams</h6>
+                    <h3>02</h3>
+                    <small class="text-purple">Next: Physics (Mar 20)</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-5">
+            <!-- Left Side: Recent Activity & Quick Actions -->
+            <div class="col-lg-8">
+                <h5 class="mb-4">Quick Actions</h5>
+                <div class="row g-3 mb-5">
+                    <div class="col-sm-4 col-6">
+                        <div class="action-btn">
+                            <i class="fa fa-chart-line text-primary"></i>
+                            <span class="small font-weight-bold">View Grades</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-6">
+                        <div class="action-btn">
+                            <i class="fa fa-upload text-success"></i>
+                            <span class="small font-weight-bold">Submit Work</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-6">
+                        <div class="action-btn">
+                            <i class="fa fa-download text-info"></i>
+                            <span class="small font-weight-bold">Download Notes</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-6">
+                        <div class="action-btn">
+                            <i class="fa fa-envelope text-warning"></i>
+                            <span class="small font-weight-bold">Contact Teacher</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-6">
+                        <div class="action-btn">
+                            <i class="fa fa-calendar-alt text-danger"></i>
+                            <span class="small font-weight-bold">Event Schedule</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-6">
+                        <div class="action-btn">
+                            <i class="fa fa-file-alt text-secondary"></i>
+                            <span class="small font-weight-bold">Exam Dates</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h5 class="mb-4">Recent Activity</h5>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">Today, 09:30 AM</div>
+                            <div class="timeline-content">Submitted Mathematics assignment: "Calculus Basics"</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">Yesterday, 14:20 PM</div>
+                            <div class="timeline-content">Your English grade has been updated: **B+**</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">12 Mar, 10:15 AM</div>
+                            <div class="timeline-content">New study material uploaded in Science: "Cell Structure"</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">10 Mar, 08:00 AM</div>
+                            <div class="timeline-content">Fee receipt generated for March 2026.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Schedule & Events -->
+            <div class="col-lg-4">
+                <div class="stat-card mb-4">
+                    <h5 class="mb-4">Today's Schedule</h5>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="flex-shrink-0 bg-primary text-white rounded p-2 text-center" style="width: 50px;">
+                            <small class="d-block">10:00</small>
+                            <small class="d-block">AM</small>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-0">Mathematics</h6>
+                            <small class="text-muted">Room 204 • Dr. RK Sharma</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="flex-shrink-0 bg-light text-dark rounded p-2 text-center" style="width: 50px;">
+                            <small class="d-block">11:30</small>
+                            <small class="d-block">AM</small>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-0">English Literature</h6>
+                            <small class="text-muted">Room 102 • Ms. Priya Nair</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 bg-light text-dark rounded p-2 text-center" style="width: 50px;">
+                            <small class="d-block">01:00</small>
+                            <small class="d-block">PM</small>
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-0">Physics Lab</h6>
+                            <small class="text-muted">Lab 02 • Mr. Desai</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <h5 class="mb-4">Upcoming Events</h5>
+                    <div class="bg-light p-3 rounded mb-3">
+                        <h6 class="mb-1">Inter-School Sports Meet</h6>
+                        <small class="text-muted d-block mb-2"><i class="fa fa-clock me-1"></i>25 March 2026</small>
+                        <a href="#" class="btn btn-sm btn-outline-primary px-3">Details</a>
+                    </div>
+                    <div class="bg-light p-3 rounded">
+                        <h6 class="mb-1">Annual Science Exhibition</h6>
+                        <small class="text-muted d-block mb-2"><i class="fa fa-clock me-1"></i>05 April 2026</small>
+                        <a href="#" class="btn btn-sm btn-outline-primary px-3">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Dynamic greeting
+        const hour = new Date().getHours();
+        const greeting = document.getElementById('greeting');
+        let text = "Good Morning";
+        if (hour >= 12 && hour < 17) text = "Good Afternoon";
+        else if (hour >= 17) text = "Good Evening";
+        
+        // Simulating different user (Student/Parent) welcome
+        const urlParams = new URLSearchParams(window.location.search);
+        const userType = urlParams.get('user') || 'Student';
+        
+        greeting.innerHTML = `${text}, ${userType === 'parent' ? 'Mr. Mehta' : 'Arjun'}! 👋`;
+    </script>
+</body>
+
+</html>
