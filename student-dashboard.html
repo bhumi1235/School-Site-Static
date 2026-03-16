@@ -307,6 +307,18 @@
             font-weight: 500;
         }
 
+        /* Custom Grid for Calendar */
+        .row-cols-7 > * {
+            flex: 0 0 14.285714%;
+            width: 14.285714%;
+        }
+
+        .bg-success-soft { background-color: #f0fdf4; color: #16a34a; }
+        .bg-danger-soft { background-color: #fef2f2; color: #dc2626; }
+        .bg-warning-soft { background-color: #fffbeb; color: #d97706; }
+        .bg-info-soft { background-color: #f0f9ff; color: #0284c7; }
+        .bg-primary-soft { background-color: #eff6ff; color: #2563eb; }
+
         /* Mobile Responsive */
         @media (max-width: 991px) {
             .sidebar {
@@ -330,32 +342,32 @@
         </div>
         <ul class="nav-menu">
             <li class="nav-item-dash">
-                <a href="#" class="nav-link-dash active">
+                <a href="javascript:void(0)" class="nav-link-dash active" onclick="showSection('home', this)">
                     <i class="fa fa-home"></i> Home
                 </a>
             </li>
             <li class="nav-item-dash">
-                <a href="#" class="nav-link-dash">
-                    <i class="fa fa-calendar-check"></i> Attendance
+                <a href="javascript:void(0)" class="nav-link-dash" onclick="showSection('attendance', this)">
+                    <i class="fa fa-calendar-check"></i> <span class="sidebar-label-attendance">Attendance</span>
                 </a>
             </li>
             <li class="nav-item-dash">
-                <a href="#" class="nav-link-dash">
-                    <i class="fa fa-book"></i> Homework
+                <a href="javascript:void(0)" class="nav-link-dash" onclick="showSection('homework', this)">
+                    <i class="fa fa-book"></i> <span class="sidebar-label-homework">Homework</span>
                 </a>
             </li>
             <li class="nav-item-dash">
-                <a href="#" class="nav-link-dash">
-                    <i class="fa fa-file-invoice-dollar"></i> Fee Details
+                <a href="javascript:void(0)" class="nav-link-dash" onclick="showSection('fees', this)">
+                    <i class="fa fa-file-invoice-dollar"></i> <span class="sidebar-label-fees">Fee Details</span>
                 </a>
             </li>
             <li class="nav-item-dash">
-                <a href="#" class="nav-link-dash">
+                <a href="javascript:void(0)" class="nav-link-dash" onclick="showSection('timetable', this)">
                     <i class="fa fa-clock"></i> Time Table
                 </a>
             </li>
             <li class="nav-item-dash">
-                <a href="#" class="nav-link-dash">
+                <a href="javascript:void(0)" class="nav-link-dash" onclick="showSection('settings', this)">
                     <i class="fa fa-gear"></i> Settings
                 </a>
             </li>
@@ -375,189 +387,285 @@
         </div>
         <div class="user-profile">
             <div class="profile-info">
-                <h6>Arjun Mehta</h6>
-                <span>Grade 12-A • ID: 2024-101</span>
+                <h6 id="user-display-name">Arjun Mehta</h6>
+                <span id="user-display-role">Grade 12-A • ID: 2024-101</span>
             </div>
-            <img src="img/testimonial-2.webp" alt="Student Profile" class="profile-img">
+            <img src="img/testimonial-2.webp" alt="Profile" class="profile-img" id="user-display-img">
         </div>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-        <!-- Welcome Section -->
-        <div class="welcome-section">
-            <div class="welcome-content">
-                <h1 id="greeting">Good Morning, Arjun! 👋</h1>
-                <p class="mb-0">Welcome back to your dashboard. You have 3 assignments due today and your next class starts in 15 minutes.</p>
+        <!-- Home Section -->
+        <div id="home-section" class="dashboard-section">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <div class="welcome-content">
+                    <h1 id="greeting">Good Morning, Arjun! 👋</h1>
+                    <p class="mb-0" id="welcome-message">Welcome back to your dashboard. You have 3 assignments due today and your next class starts in 15 minutes.</p>
+                </div>
+                <i class="fa fa-graduation-cap welcome-img"></i>
             </div>
-            <i class="fa fa-graduation-cap welcome-img"></i>
+
+            <!-- Overview Stats -->
+            <div class="row g-4 mb-5">
+                <div class="col-xl-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="icon-box icon-blue">
+                            <i class="fa fa-user-clock"></i>
+                        </div>
+                        <h6 class="text-muted small mb-1 stat-label-attendance">Total Attendance</h6>
+                        <h3 id="stat-attendance-val">94%</h3>
+                        <div class="progress mt-3" style="height: 6px;">
+                            <div class="progress-bar bg-primary" id="stat-attendance-bar" style="width: 94%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="icon-box icon-green">
+                            <i class="fa fa-tasks"></i>
+                        </div>
+                        <h6 class="text-muted small mb-1 stat-label-homework">Assignments Done</h6>
+                        <h3 id="stat-homework-val">12/15</h3>
+                        <div class="progress mt-3" style="height: 6px;">
+                            <div class="progress-bar bg-success" id="stat-homework-bar" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="icon-box icon-orange">
+                            <i class="fa fa-award"></i>
+                        </div>
+                        <h6 class="text-muted small mb-1 stat-label-grade">Average Grade</h6>
+                        <h3 id="stat-grade-val">A- (8.5)</h3>
+                        <div class="progress mt-3" style="height: 6px;">
+                            <div class="progress-bar bg-warning" id="stat-grade-bar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="icon-box icon-purple">
+                            <i class="fa fa-bell"></i>
+                        </div>
+                        <h6 class="text-muted small mb-1">Upcoming Exams</h6>
+                        <h3 id="stat-exams-val">02</h3>
+                        <small class="text-purple" id="stat-exams-detail">Next: Physics (Mar 20)</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-5">
+                <!-- Left Side: Recent Activity & Quick Actions -->
+                <div class="col-lg-8">
+                    <h5 class="mb-4">Quick Actions</h5>
+                    <div class="row g-3 mb-5" id="quick-actions-container">
+                        <!-- Actions will be populated by JS -->
+                    </div>
+
+                    <div class="stat-card">
+                        <h5 class="mb-4">Recent Activity</h5>
+                        <div class="timeline" id="activity-timeline">
+                            <!-- Activities will be populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Schedule & Events -->
+                <div class="col-lg-4">
+                    <div class="stat-card mb-4">
+                        <h5 class="mb-4">Today's Schedule</h5>
+                        <div id="schedule-container">
+                            <!-- Schedule items -->
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <h5 class="mb-4">Upcoming Events</h5>
+                        <div id="events-container">
+                            <!-- Event items -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Overview Stats -->
-        <div class="row g-4 mb-5">
-            <div class="col-xl-3 col-md-6">
-                <div class="stat-card">
-                    <div class="icon-box icon-blue">
-                        <i class="fa fa-user-clock"></i>
-                    </div>
-                    <h6 class="text-muted small mb-1">Total Attendance</h6>
-                    <h3>94%</h3>
-                    <div class="progress mt-3" style="height: 6px;">
-                        <div class="progress-bar bg-primary" style="width: 94%"></div>
-                    </div>
+        <!-- Attendance Section -->
+        <div id="attendance-section" class="dashboard-section d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 id="attendance-title">Attendance records</h2>
+                <div id="attendance-actions">
+                    <!-- Dynamic actions like 'Request Leave' -->
                 </div>
             </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="stat-card">
-                    <div class="icon-box icon-green">
-                        <i class="fa fa-tasks"></i>
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="stat-card mb-4">
+                        <div id="attendance-main-view">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="mb-0" id="current-month-display">March 2026</h5>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-white border" onclick="changeMonth(-1)"><i class="fa fa-chevron-left"></i></button>
+                                    <button class="btn btn-sm btn-white border" onclick="changeMonth(1)"><i class="fa fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                            <div id="calendar-container">
+                                <!-- Calendar Grid Populated by JS -->
+                            </div>
+                        </div>
                     </div>
-                    <h6 class="text-muted small mb-1">Assignments Done</h6>
-                    <h3>12/15</h3>
-                    <div class="progress mt-3" style="height: 6px;">
-                        <div class="progress-bar bg-success" style="width: 80%"></div>
+
+                    <div class="stat-card">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="mb-0">Upcoming Holidays & Vacations</h5>
+                            <a href="#" class="btn btn-link btn-sm p-0 text-decoration-none">Full Academic Calendar</a>
+                        </div>
+                        <div id="holidays-list" class="row g-3">
+                            <!-- Populated by JS as grid items -->
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="stat-card">
-                    <div class="icon-box icon-orange">
-                        <i class="fa fa-award"></i>
+                <div class="col-lg-4">
+                    <div id="attendance-side-content">
+                        <!-- Summary Card (populated by JS) -->
                     </div>
-                    <h6 class="text-muted small mb-1">Average Grade</h6>
-                    <h3>A- (8.5)</h3>
-                    <div class="progress mt-3" style="height: 6px;">
-                        <div class="progress-bar bg-warning" style="width: 85%"></div>
+                    <div class="stat-card mt-4">
+                        <h5>Academic Progress</h5>
+                        <div class="mt-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="small text-muted">Classes Attended</span>
+                                <span class="fw-bold" id="classes-attended-val">182/200</span>
+                            </div>
+                            <div class="progress mb-3" style="height: 6px;">
+                                <div class="progress-bar bg-success" id="classes-attended-bar" style="width: 91%"></div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="small text-muted text-danger fw-bold">Classes Left</span>
+                                <span class="badge bg-danger" id="classes-left-val">18 Days</span>
+                            </div>
+                            <small class="text-muted d-block mt-2" style="font-size: 11px;">*Estimated classes until Final Exams (Apr 10)</small>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="stat-card">
-                    <div class="icon-box icon-purple">
-                        <i class="fa fa-bell"></i>
-                    </div>
-                    <h6 class="text-muted small mb-1">Upcoming Exams</h6>
-                    <h3>02</h3>
-                    <small class="text-purple">Next: Physics (Mar 20)</small>
                 </div>
             </div>
         </div>
 
-        <div class="row g-5">
-            <!-- Left Side: Recent Activity & Quick Actions -->
-            <div class="col-lg-8">
-                <h5 class="mb-4">Quick Actions</h5>
-                <div class="row g-3 mb-5">
-                    <div class="col-sm-4 col-6">
-                        <div class="action-btn">
-                            <i class="fa fa-chart-line text-primary"></i>
-                            <span class="small font-weight-bold">View Grades</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-6">
-                        <div class="action-btn">
-                            <i class="fa fa-upload text-success"></i>
-                            <span class="small font-weight-bold">Submit Work</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-6">
-                        <div class="action-btn">
-                            <i class="fa fa-download text-info"></i>
-                            <span class="small font-weight-bold">Download Notes</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-6">
-                        <div class="action-btn">
-                            <i class="fa fa-envelope text-warning"></i>
-                            <span class="small font-weight-bold">Contact Teacher</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-6">
-                        <div class="action-btn">
-                            <i class="fa fa-calendar-alt text-danger"></i>
-                            <span class="small font-weight-bold">Event Schedule</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-6">
-                        <div class="action-btn">
-                            <i class="fa fa-file-alt text-secondary"></i>
-                            <span class="small font-weight-bold">Exam Dates</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <h5 class="mb-4">Recent Activity</h5>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-time">Today, 09:30 AM</div>
-                            <div class="timeline-content">Submitted Mathematics assignment: "Calculus Basics"</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">Yesterday, 14:20 PM</div>
-                            <div class="timeline-content">Your English grade has been updated: **B+**</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">12 Mar, 10:15 AM</div>
-                            <div class="timeline-content">New study material uploaded in Science: "Cell Structure"</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-time">10 Mar, 08:00 AM</div>
-                            <div class="timeline-content">Fee receipt generated for March 2026.</div>
-                        </div>
-                    </div>
+        <!-- Homework Section -->
+        <div id="homework-section" class="dashboard-section d-none">
+            <h2 class="mb-4" id="homework-title">Assignments & Homework</h2>
+            <div class="stat-card">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr id="homework-table-header">
+                                <!-- Populated by JS -->
+                            </tr>
+                        </thead>
+                        <tbody id="homework-table-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
 
-            <!-- Right Side: Schedule & Events -->
-            <div class="col-lg-4">
-                <div class="stat-card mb-4">
-                    <h5 class="mb-4">Today's Schedule</h5>
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="flex-shrink-0 bg-primary text-white rounded p-2 text-center" style="width: 50px;">
-                            <small class="d-block">10:00</small>
-                            <small class="d-block">AM</small>
-                        </div>
-                        <div class="ms-3">
-                            <h6 class="mb-0">Mathematics</h6>
-                            <small class="text-muted">Room 204 • Dr. RK Sharma</small>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="flex-shrink-0 bg-light text-dark rounded p-2 text-center" style="width: 50px;">
-                            <small class="d-block">11:30</small>
-                            <small class="d-block">AM</small>
-                        </div>
-                        <div class="ms-3">
-                            <h6 class="mb-0">English Literature</h6>
-                            <small class="text-muted">Room 102 • Ms. Priya Nair</small>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <div class="flex-shrink-0 bg-light text-dark rounded p-2 text-center" style="width: 50px;">
-                            <small class="d-block">01:00</small>
-                            <small class="d-block">PM</small>
-                        </div>
-                        <div class="ms-3">
-                            <h6 class="mb-0">Physics Lab</h6>
-                            <small class="text-muted">Lab 02 • Mr. Desai</small>
+        <!-- Fees Section -->
+        <div id="fees-section" class="dashboard-section d-none">
+            <h2 class="mb-4">Fee Management</h2>
+            <div id="fees-container">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Timetable Section -->
+        <div id="timetable-section" class="dashboard-section d-none">
+            <h2 class="mb-4">Weekly Time Table</h2>
+            <div class="stat-card">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center align-middle">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th>Period</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>09:00 - 10:00</td>
+                                <td>Math</td>
+                                <td>English</td>
+                                <td>Physics</td>
+                                <td>Math</td>
+                                <td>Chemistry</td>
+                                <td>PE</td>
+                            </tr>
+                            <tr>
+                                <td>10:00 - 11:00</td>
+                                <td>Physics</td>
+                                <td>Math</td>
+                                <td>English</td>
+                                <td>Chemistry</td>
+                                <td>Math</td>
+                                <td>History</td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="bg-light small">Short Break (11:00 - 11:15)</td>
+                            </tr>
+                            <tr>
+                                <td>11:15 - 12:15</td>
+                                <td>Chemistry</td>
+                                <td>Physics</td>
+                                <td>Math</td>
+                                <td>PE</td>
+                                <td>English</td>
+                                <td>Physics</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div id="settings-section" class="dashboard-section d-none">
+            <h2 class="mb-4">Portal Settings</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stat-card p-0 overflow-hidden">
+                        <div class="list-group list-group-flush settings-tabs">
+                            <a href="javascript:void(0)" class="list-group-item list-group-item-action active p-3" onclick="switchSettingsTab('profile', this)">
+                                <i class="fa fa-user me-2"></i> Profile Info
+                            </a>
+                            <a href="javascript:void(0)" class="list-group-item list-group-item-action p-3" onclick="switchSettingsTab('notifications', this)">
+                                <i class="fa fa-bell me-2"></i> Notifications
+                            </a>
+                            <a href="javascript:void(0)" class="list-group-item list-group-item-action p-3" onclick="switchSettingsTab('security', this)">
+                                <i class="fa fa-shield-alt me-2"></i> Security
+                            </a>
+                            <a href="javascript:void(0)" class="list-group-item list-group-item-action p-3" onclick="switchSettingsTab('preferences', this)">
+                                <i class="fa fa-sliders-h me-2"></i> Preferences
+                            </a>
                         </div>
                     </div>
                 </div>
-
-                <div class="stat-card">
-                    <h5 class="mb-4">Upcoming Events</h5>
-                    <div class="bg-light p-3 rounded mb-3">
-                        <h6 class="mb-1">Inter-School Sports Meet</h6>
-                        <small class="text-muted d-block mb-2"><i class="fa fa-clock me-1"></i>25 March 2026</small>
-                        <a href="#" class="btn btn-sm btn-outline-primary px-3">Details</a>
-                    </div>
-                    <div class="bg-light p-3 rounded">
-                        <h6 class="mb-1">Annual Science Exhibition</h6>
-                        <small class="text-muted d-block mb-2"><i class="fa fa-clock me-1"></i>05 April 2026</small>
-                        <a href="#" class="btn btn-sm btn-outline-primary px-3">Register</a>
-                    </div>
+                <div id="settings-content-container" class="col-md-9">
+                    <!-- Populated by JS -->
                 </div>
+            </div>
+        </div>
+
+        <!-- Generic placeholder for other sections -->
+        <div id="generic-section" class="dashboard-section d-none">
+            <h2 class="section-title mb-4">Section Name</h2>
+            <div class="stat-card">
+                <p>This content is currently being developed for the Evergreen Portal.</p>
             </div>
         </div>
     </div>
@@ -567,18 +675,586 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // Dynamic greeting
-        const hour = new Date().getHours();
-        const greeting = document.getElementById('greeting');
-        let text = "Good Morning";
-        if (hour >= 12 && hour < 17) text = "Good Afternoon";
-        else if (hour >= 17) text = "Good Evening";
-        
-        // Simulating different user (Student/Parent) welcome
-        const urlParams = new URLSearchParams(window.location.search);
-        const userType = urlParams.get('user') || 'Student';
-        
-        greeting.innerHTML = `${text}, ${userType === 'parent' ? 'Mr. Mehta' : 'Arjun'}! 👋`;
+        // Section Switching Logic
+        function showSection(sectionId, element) {
+            // Updated sidebar active state
+            document.querySelectorAll('.nav-link-dash').forEach(link => link.classList.remove('active'));
+            if (element) {
+                element.classList.add('active');
+            } else {
+                // Default to home if no element provided (e.g., initial load)
+                document.querySelector(`.nav-link-dash[onclick*="${sectionId}"]`).classList.add('active');
+            }
+
+            // Hide all sections
+            document.querySelectorAll('.dashboard-section').forEach(section => section.classList.add('d-none'));
+            
+            // Show target section
+            const targetSection = document.getElementById(`${sectionId}-section`) || document.getElementById('generic-section');
+            targetSection.classList.remove('d-none');
+
+            // If using generic section, update title
+            if (!document.getElementById(`${sectionId}-section`)) {
+                const title = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
+                targetSection.querySelector('.section-title').innerText = title;
+            }
+        }
+
+        // Data for dynamic population
+        const dashboardData = {
+            student: {
+                name: "Arjun Mehta",
+                role: "Grade 12-A • ID: 2024-101",
+                img: "img/testimonial-2.webp",
+                greetingName: "Arjun",
+                message: "You have 3 assignments due today and your next class starts in 15 minutes.",
+                sidebar: { attendance: "Attendance", homework: "Homework", fees: "Fee Details" },
+                stats: { attendance: "Total Attendance", homework: "Assignments Done", grade: "Average Grade" },
+                actions: [
+                    { icon: "fa-chart-line", color: "text-primary", label: "View My Grades" },
+                    { icon: "fa-upload", color: "text-success", label: "Submit Work" },
+                    { icon: "fa-download", color: "text-info", label: "Download Notes" },
+                    { icon: "fa-envelope", color: "text-warning", label: "Contact Teacher" },
+                    { icon: "fa-calendar-alt", color: "text-danger", label: "Event Schedule" },
+                    { icon: "fa-file-alt", color: "text-secondary", label: "Exam Dates" }
+                ],
+                attendance: {
+                    title: "Attendance Overview",
+                    actions: `<button class="btn btn-primary btn-sm rounded-pill"><i class="fa fa-envelope me-2"></i>Request Leave</button>`,
+                    currentMonth: 2, // March (0-indexed for simplicity with an array of 12 months starting Apr)
+                    academicYear: [
+                        { name: "April 2025", days: 30, present: 22, absent: 0, late: 0, holidays: [14], startDay: 1 }, // Tue
+                        { name: "May 2025", days: 31, present: 15, absent: 0, late: 2, holidays: [1, 2, 3], startDay: 3 }, // Thu
+                        { name: "June 2025", days: 30, present: 0, absent: 0, late: 0, holidays: Array.from({length: 30}, (_, i) => i + 1), startDay: 6 }, // Sun
+                        { name: "July 2025", days: 31, present: 24, absent: 1, late: 1, holidays: [], startDay: 1 }, // Tue
+                        { name: "August 2025", days: 31, present: 21, absent: 2, late: 0, holidays: [15], startDay: 4 }, // Fri
+                        { name: "September 2025", days: 30, present: 23, absent: 0, late: 1, holidays: [5, 19], startDay: 0 }, // Mon
+                        { name: "October 2025", days: 31, present: 20, absent: 1, late: 2, holidays: [2, 24], startDay: 2 }, // Wed
+                        { name: "November 2025", days: 30, present: 18, absent: 0, late: 0, holidays: [1, 2, 15], startDay: 5 }, // Sat
+                        { name: "December 2025", days: 31, present: 21, absent: 1, late: 1, holidays: [25], startDay: 0 }, // Mon
+                        { name: "January 2026", days: 31, present: 22, absent: 0, late: 1, holidays: [1, 26], startDay: 3 }, // Thu
+                        { name: "February 2026", days: 28, present: 20, absent: 0, late: 0, holidays: [], startDay: 6 }, // Sun
+                        { name: "March 2026", days: 31, present: 16, absent: 0, late: 0, holidays: [23, 24], startDay: 6 } // Sun
+                    ],
+                    holidaysList: [
+                        { date: "24 Mar", name: "Holi Festival", type: "Gazetted", color: "bg-warning-soft" },
+                        { date: "10 Apr", name: "Good Friday", type: "Gazetted", color: "bg-info-soft" },
+                        { date: "14 Apr", name: "Ambedkar Jayanti", type: "Gazetted", color: "bg-info-soft" },
+                        { date: "01 May - 15 Jun", name: "Summer Vacation", type: "Break", color: "bg-success-soft" },
+                        { date: "24 Dec - 05 Jan", name: "Winter Vacation", type: "Break", color: "bg-primary-soft" }
+                    ],
+                    stats: {
+                        attended: 182,
+                        total: 200,
+                        left: 18
+                    },
+                    side: `
+                        <div class="stat-card bg-primary text-white mb-4">
+                            <h6 class="opacity-75">Yearly Attendance</h6>
+                            <h2 class="mb-0">94.8%</h2>
+                            <div class="progress bg-white-50 mt-3" style="height: 4px;">
+                                <div class="progress-bar bg-white" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <h5>Attendance Legend</h5>
+                            <div class="d-flex flex-column gap-2 mt-3">
+                                <div class="d-flex align-items-center small"><span class="badge bg-success me-2" style="width:12px; height:12px;">&nbsp;</span> Present</div>
+                                <div class="d-flex align-items-center small"><span class="badge bg-danger me-2" style="width:12px; height:12px;">&nbsp;</span> Absent</div>
+                                <div class="d-flex align-items-center small"><span class="badge bg-warning me-2" style="width:12px; height:12px;">&nbsp;</span> Late</div>
+                                <div class="d-flex align-items-center small"><span class="badge bg-light text-dark me-2" style="width:12px; height:12px;">&nbsp;</span> Holiday/Weekend</div>
+                            </div>
+                        </div>
+                    `
+                },
+                homework: {
+                    header: `<th>Subject</th><th>Assignment</th><th>Due Date</th><th>Action</th>`,
+                    body: [
+                        { sub: "Math", task: "Calculus Excercise 4.2", due: "16 Mar", action: `<button class="btn btn-sm btn-primary">Submit</button>` },
+                        { sub: "Physics", task: "Optics Lab Report", due: "18 Mar", action: `<button class="btn btn-sm btn-outline-primary">Open</button>` },
+                        { sub: "English", task: "Essay: Modern Poetry", due: "20 Mar", action: `<button class="btn btn-sm btn-outline-secondary" disabled>Done</button>` }
+                    ]
+                },
+                fees: `
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="stat-card border-top border-primary border-4">
+                                <h6 class="text-muted small">Outstanding Balance</h6>
+                                <h3 class="text-primary">₹0.00</h3>
+                                <p class="text-success small mb-0"><i class="fa fa-check-circle me-1"></i>All clear!</p>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="stat-card">
+                                <h5>Recent Payments</h5>
+                                <div class="list-group list-group-flush">
+                                    <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                        <div><h6>March Quarter Fees</h6><small class="text-muted">10 Mar 2026</small></div>
+                                        <div class="text-end"><h6>₹12,450</h6><span class="badge bg-success">Paid</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                timeline: [
+                    { time: "Today, 09:30 AM", content: 'Submitted Mathematics assignment: "Calculus Basics"' },
+                    { time: "Yesterday, 14:20 PM", content: 'Your English grade has been updated: **B+**' },
+                    { time: "12 Mar, 10:15 AM", content: 'New study material uploaded in Science: "Cell Structure"' }
+                ],
+                settings: {
+                    profile: `
+                        <div class="stat-card">
+                            <h5 class="mb-4">Profile Information</h5>
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-muted">Full Name</label>
+                                        <input type="text" class="form-control" value="Arjun Mehta">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-muted">Roll Number</label>
+                                        <input type="text" class="form-control" value="2024-101" readonly>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-muted">Email Address</label>
+                                        <input type="email" class="form-control" value="arjun.mehta@example.com">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-muted">Phone Number</label>
+                                        <input type="text" class="form-control" value="+91 98765 43210">
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <button type="submit" class="btn btn-primary px-4">Update Profile</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    `,
+                    notifications: `
+                        <div class="stat-card">
+                            <h5 class="mb-4">Notification Preferences</h5>
+                            <div class="list-group list-group-flush">
+                                <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <div><h6>Push Notifications</h6><small class="text-muted">Receive alerts on your mobile device</small></div>
+                                    <div class="form-check form-switch"><input class="form-check-switch" type="checkbox" checked></div>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <div><h6>Email Alerts</h6><small class="text-muted">Receive weekly progress reports</small></div>
+                                    <div class="form-check form-switch"><input class="form-check-switch" type="checkbox" checked></div>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <div><h6>SMS Notifications</h6><small class="text-muted">Urgent school announcements</small></div>
+                                    <div class="form-check form-switch"><input class="form-check-switch" type="checkbox"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    security: `
+                        <div class="stat-card">
+                            <h5 class="mb-4">Change Password</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label small text-muted">Current Password</label>
+                                    <input type="password" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small text-muted">New Password</label>
+                                    <input type="password" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small text-muted">Confirm New Password</label>
+                                    <input type="password" class="form-control">
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-3">Reset Password</button>
+                            </form>
+                        </div>
+                    `,
+                    preferences: `
+                        <div class="stat-card">
+                            <h5 class="mb-4">App Preferences</h5>
+                            <div class="mb-4">
+                                <label class="form-label small text-muted">Display Language</label>
+                                <select class="form-select">
+                                    <option selected>English (US)</option>
+                                    <option>Hindi</option>
+                                    <option>Spanish</option>
+                                </select>
+                            </div>
+                        </div>
+                    `
+                }
+            },
+            parent: {
+                name: "Mr. Rajesh Mehta",
+                role: "Parent of Arjun Mehta (12-A)",
+                img: "img/testimonial-3.webp",
+                greetingName: "Mr. Mehta",
+                message: "Arjun's attendance is excellent (94%). You have 1 pending fee payment for March.",
+                sidebar: { attendance: "Child's Attendance", homework: "Child's Homework", fees: "Pay Fees" },
+                stats: { attendance: "Arjun's Attendance", homework: "Work Completed", grade: "Arjun's Average" },
+                actions: [
+                    { icon: "fa-file-invoice-dollar", color: "text-danger", label: "Pay Fees Now" },
+                    { icon: "fa-chart-bar", color: "text-primary", label: "Report Card" },
+                    { icon: "fa-user-clock", color: "text-success", label: "Attendance Log" },
+                    { icon: "fa-envelope", color: "text-warning", label: "Message Teacher" },
+                    { icon: "fa-calendar-check", color: "text-info", label: "PTM Schedule" },
+                    { icon: "fa-bullhorn", color: "text-secondary", label: "School Notices" }
+                ],
+                attendance: {
+                    title: "Child's Yearly Attendance",
+                    actions: `<button class="btn btn-outline-primary btn-sm rounded-pill"><i class="fa fa-download me-2"></i>Export Report</button>`,
+                    currentMonth: 11,
+                    academicYear: [
+                        { name: "April 2025", days: 30, present: 22, absent: 0, late: 0, holidays: [14], startDay: 1 },
+                        { name: "May 2025", days: 31, present: 15, absent: 0, late: 2, holidays: [1, 2, 3], startDay: 3 },
+                        { name: "June 2025", days: 30, present: 0, absent: 0, late: 0, holidays: Array.from({length: 30}, (_, i) => i + 1), startDay: 6 },
+                        { name: "July 2025", days: 31, present: 24, absent: 1, late: 1, holidays: [], startDay: 1 },
+                        { name: "August 2025", days: 31, present: 21, absent: 2, late: 0, holidays: [15], startDay: 4 },
+                        { name: "September 2025", days: 30, present: 23, absent: 0, late: 1, holidays: [5, 19], startDay: 0 },
+                        { name: "October 2025", days: 31, present: 20, absent: 1, late: 2, holidays: [2, 24], startDay: 2 },
+                        { name: "November 2025", days: 30, present: 18, absent: 0, late: 0, holidays: [1, 2, 15], startDay: 5 },
+                        { name: "December 2025", days: 31, present: 21, absent: 1, late: 1, holidays: [25], startDay: 0 },
+                        { name: "January 2026", days: 31, present: 22, absent: 0, late: 1, holidays: [1, 26], startDay: 3 },
+                        { name: "February 2026", days: 28, present: 20, absent: 0, late: 0, holidays: [], startDay: 6 },
+                        { name: "March 2026", days: 31, present: 16, absent: 0, late: 0, holidays: [23, 24], startDay: 6 }
+                    ],
+                    holidaysList: [
+                        { date: "24 Mar", name: "Holi Festival", type: "Gazetted", color: "bg-warning-soft" },
+                        { date: "10 Apr", name: "Good Friday", type: "Gazetted", color: "bg-info-soft" },
+                        { date: "14 Apr", name: "Ambedkar Jayanti", type: "Gazetted", color: "bg-info-soft" },
+                        { date: "01 May - 15 Jun", name: "Summer Vacation", type: "Break", color: "bg-success-soft" },
+                        { date: "24 Dec - 05 Jan", name: "Winter Vacation", type: "Break", color: "bg-primary-soft" }
+                    ],
+                    stats: {
+                        attended: 182,
+                        total: 200,
+                        left: 18
+                    },
+                    side: `
+                        <div class="stat-card bg-info text-white mb-4">
+                            <h6 class="opacity-75">Yearly Average</h6>
+                            <h2 class="mb-0">94.5%</h2>
+                        </div>
+                        <div class="stat-card mb-4">
+                            <h5>Teacher's Remarks</h5>
+                            <div class="mt-3">
+                                <p class="small text-muted mb-2">"Arjun is punctual and shows great interest in classes. No concerns regarding attendance."</p>
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="small fw-bold">Recent Streak</span>
+                                    <span class="badge bg-success">12 Days</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="small fw-bold">Late Entries</span>
+                                    <span class="badge bg-warning">04 Total</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <h5>Attendance Legend</h5>
+                            <div class="d-flex flex-column gap-2 mt-3">
+                                <div class="d-flex align-items-center small"><span class="badge bg-success me-2" style="width:12px; height:12px;">&nbsp;</span> Present</div>
+                                <div class="d-flex align-items-center small"><span class="badge bg-danger me-2" style="width:12px; height:12px;">&nbsp;</span> Absent</div>
+                                <div class="d-flex align-items-center small"><span class="badge bg-warning me-2" style="width:12px; height:12px;">&nbsp;</span> Late</div>
+                                <div class="d-flex align-items-center small"><span class="badge bg-light text-dark me-2" style="width:12px; height:12px;">&nbsp;</span> Holiday/Weekend</div>
+                            </div>
+                        </div>
+                    `
+                },
+                homework: {
+                    header: `<th>Assignment</th><th>Subject</th><th>Status</th><th>Teacher Remark</th>`,
+                    body: [
+                        { task: "Calculus Excercise 4.2", sub: "Math", status: `<span class="badge bg-warning text-dark">Pending</span>`, remark: "Due by today" },
+                        { task: "Optics Lab Report", sub: "Physics", status: `<span class="badge bg-info">Started</span>`, remark: "Help with diagrams needed" },
+                        { task: "Modern Poetry Essay", sub: "English", status: `<span class="badge bg-success">Completed</span>`, remark: "Excellent work!" }
+                    ]
+                },
+                fees: `
+                    <div class="stat-card border-top border-danger border-4 mb-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-muted small">Pending Payments</h6>
+                                <h3 class="text-danger">₹4,200.00</h3>
+                                <p class="text-muted small mb-0">Due Date: 20 March 2026</p>
+                            </div>
+                            <button class="btn btn-danger px-4">Pay Now <i class="fa fa-arrow-right ms-2"></i></button>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h5>Payment History</h5>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Status</th><th>Receipt</th></tr></thead>
+                                <tbody>
+                                    <tr><td>10 Jan 2026</td><td>Uniform & Books</td><td>₹8,500</td><td><span class="badge bg-success">Paid</span></td><td><a href="#"><i class="fa fa-download"></i></a></td></tr>
+                                    <tr><td>05 Jan 2026</td><td>Admission Fee</td><td>₹25,000</td><td><span class="badge bg-success">Paid</span></td><td><a href="#"><i class="fa fa-download"></i></a></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `,
+                timeline: [
+                    { time: "Today, 10:00 AM", content: 'Arjun checked in to school.' },
+                    { time: "Yesterday, 04:00 PM", content: 'Mathematics teacher added a remark: "Great progress!"' },
+                    { time: "10 Mar, 08:00 AM", content: 'Fee receipt generated for February 2026.' }
+                ],
+                settings: {
+                    profile: `
+                        <div class="stat-card">
+                            <h5 class="mb-4">Parent Profile</h5>
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-muted">Father's Name</label>
+                                        <input type="text" class="form-control" value="Rajesh Mehta">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-muted">Occupation</label>
+                                        <input type="text" class="form-control" value="Business Consultant">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-muted">Email</label>
+                                        <input type="email" class="form-control" value="rajesh.mehta@example.com">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-muted">Registered Phone</label>
+                                        <input type="text" class="form-control" value="+91 99999 12345">
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <button type="submit" class="btn btn-primary px-4">Save Profile</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    `,
+                    notifications: `
+                        <div class="stat-card">
+                            <h5 class="mb-4">Parental Alerts</h5>
+                            <p>Configure which alerts you receive about Arjun's progress.</p>
+                            <div class="list-group list-group-flush">
+                                <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <div><h6>Attendance Alerts</h6><small class="text-muted">SMS if Arjun is absent/late</small></div>
+                                    <div class="form-check form-switch"><input class="form-check-switch" type="checkbox" checked></div>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <div><h6>Grade Releases</h6><small class="text-muted">Instant alert when report card is out</small></div>
+                                    <div class="form-check form-switch"><input class="form-check-switch" type="checkbox" checked></div>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <div><h6>Fee Reminders</h6><small class="text-muted">7 days before due date</small></div>
+                                    <div class="form-check form-switch"><input class="form-check-switch" type="checkbox" checked></div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    security: `
+                        <div class="stat-card">
+                            <h5 class="mb-4">Security Settings</h5>
+                            <div class="mb-3">
+                                <label class="form-label small text-muted">Login PIN</label>
+                                <input type="password" class="form-control" placeholder="****">
+                                <small class="text-info mt-1 d-block"><i class="fa fa-info-circle me-1"></i>Used for fee payments and sensitive docs.</small>
+                            </div>
+                            <button class="btn btn-outline-primary mt-3">Reset Parent PIN</button>
+                        </div>
+                    `,
+                    preferences: `
+                        <div class="stat-card">
+                            <h5 class="mb-4">Interface Preferences</h5>
+                            <div class="mb-4">
+                                <label class="form-label small text-muted">Primary Contact Mode</label>
+                                <select class="form-select">
+                                    <option selected>WhatsApp</option>
+                                    <option>Email</option>
+                                    <option>SMS</option>
+                                </select>
+                            </div>
+                        </div>
+                    `
+                }
+            }
+        };
+
+        // Initialize Dashboard
+        $(document).ready(function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userType = urlParams.get('user') || 'student';
+            const data = dashboardData[userType] || dashboardData.student;
+
+            // ... (previous static updates) ...
+            $('#user-display-name').text(data.name);
+            $('#user-display-role').text(data.role);
+            $('#user-display-img').attr('src', data.img);
+            const hour = new Date().getHours();
+            let greetText = "Good Morning";
+            if (hour >= 12 && hour < 17) greetText = "Good Afternoon";
+            else if (hour >= 17) greetText = "Good Evening";
+            $('#greeting').html(`${greetText}, ${data.greetingName}! 👋`);
+            $('#welcome-message').text(data.message);
+            $('.sidebar-label-attendance').text(data.sidebar.attendance);
+            $('.sidebar-label-homework').text(data.sidebar.homework);
+            $('.sidebar-label-fees').text(data.sidebar.fees);
+            $('.stat-label-attendance').text(data.stats.attendance);
+            $('.stat-label-homework').text(data.stats.homework);
+            $('.stat-label-grade').text(data.stats.grade);
+
+            // Populate Section Contents
+            $('#attendance-title').text(data.attendance.title);
+            $('#attendance-actions').html(data.attendance.actions || '');
+            $('#attendance-side-content').html(data.attendance.side || '');
+            
+            // Attendance Specific Logic
+            let activeIdx = data.attendance.currentMonth || 11;
+            
+            window.renderAttendanceCalendar = function(idx) {
+                const month = data.attendance.academicYear[idx];
+                $('#current-month-display').text(month.name);
+                
+                let calendarHtml = `
+                    <div class="row row-cols-7 g-1 text-center small fw-bold text-muted mb-3">
+                        <div class="col">MON</div><div class="col">TUE</div><div class="col">WED</div><div class="col">THU</div><div class="col">FRI</div><div class="col">SAT</div><div class="col">SUN</div>
+                    </div>
+                    <div class="row row-cols-7 g-1 text-center">
+                `;
+                
+                // Add empty slots for month start alignment
+                for (let s = 0; s < month.startDay; s++) {
+                    calendarHtml += `<div class="col p-3 border-0 bg-transparent" style="visibility: hidden;">&nbsp;</div>`;
+                }
+                
+                for (let i = 1; i <= month.days; i++) {
+                    let statusClass = 'bg-white';
+                    if (month.holidays.includes(i)) statusClass = 'bg-light text-muted';
+                    else if (i <= (idx === 11 ? 16 : month.days)) {
+                        // Randomly assign present/absent for mock feel, except today
+                        if (idx === 11 && i === 16) statusClass = 'bg-primary text-white shadow-sm';
+                        else statusClass = Math.random() > 0.1 ? 'bg-success-soft text-success' : 'bg-danger-soft text-danger';
+                    }
+                    
+                    calendarHtml += `<div class="col p-3 border-0 rounded-3 ${statusClass}">${i}</div>`;
+                }
+                calendarHtml += `</div>`;
+                $('#calendar-container').html(calendarHtml);
+            };
+
+            window.changeMonth = function(dir) {
+                activeIdx += dir;
+                if (activeIdx < 0) activeIdx = 0;
+                if (activeIdx > 11) activeIdx = 11;
+                renderAttendanceCalendar(activeIdx);
+            };
+
+            // Initialize Attendance
+            if (data.attendance.academicYear) {
+                renderAttendanceCalendar(activeIdx);
+                
+                // Holidays List
+                const holidaysHtml = data.attendance.holidaysList.map(h => `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-3 border rounded-3 h-100 ${h.color || 'bg-light'}">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <span class="badge bg-white text-dark border-0 shadow-sm small">${h.date}</span>
+                                <small class="text-muted" style="font-size: 10px;">${h.type}</small>
+                            </div>
+                            <h6 class="mb-0 fw-bold">${h.name}</h6>
+                        </div>
+                    </div>
+                `).join('');
+                $('#holidays-list').html(holidaysHtml);
+
+                // Progress Info
+                $('#classes-attended-val').text(`${data.attendance.stats.attended}/${data.attendance.stats.total}`);
+                const pct = (data.attendance.stats.attended / data.attendance.stats.total) * 100;
+                $('#classes-attended-bar').css('width', pct + '%');
+                $('#classes-left-val').text(`${data.attendance.stats.left} Classes`);
+            }
+
+            // Settings Helper
+            window.switchSettingsTab = function(tabId, element) {
+                $('.settings-tabs a').removeClass('active');
+                $(element).addClass('active');
+                $('#settings-content-container').html(data.settings[tabId]);
+            };
+
+            // Default settings tab
+            $('#settings-content-container').html(data.settings.profile);
+
+            $('#homework-table-header').html(data.homework.header);
+            const homeworkHtml = data.homework.body.map(item => `
+                <tr>
+                    ${Object.values(item).map(val => `<td>${val}</td>`).join('')}
+                </tr>
+            `).join('');
+            $('#homework-table-body').html(homeworkHtml);
+
+            $('#fees-container').html(data.fees);
+
+            // Populate Shared Components
+            const actionsHtml = data.actions.map(action => `
+                <div class="col-sm-4 col-6">
+                    <div class="action-btn">
+                        <i class="fa ${action.icon} ${action.color}"></i>
+                        <span class="small font-weight-bold">${action.label}</span>
+                    </div>
+                </div>
+            `).join('');
+            $('#quick-actions-container').html(actionsHtml);
+
+            const timelineHtml = data.timeline.map(item => `
+                <div class="timeline-item">
+                    <div class="timeline-time">${item.time}</div>
+                    <div class="timeline-content">${item.content}</div>
+                </div>
+            `).join('');
+            $('#activity-timeline').html(timelineHtml);
+
+            // Populate Home Section Shared Components (Schedule & Events)
+            const scheduleHtml = `
+                <div class="d-flex align-items-center mb-3">
+                    <div class="flex-shrink-0 bg-primary text-white rounded p-2 text-center" style="width: 50px;">
+                        <small class="d-block">10:00</small><small class="d-block">AM</small>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">Mathematics</h6>
+                        <small class="text-muted">Room 204 • Dr. RK Sharma</small>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                    <div class="flex-shrink-0 bg-light text-dark rounded p-2 text-center" style="width: 50px;">
+                        <small class="d-block">11:30</small><small class="d-block">AM</small>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">English Literature</h6>
+                        <small class="text-muted">Room 102 • Ms. Priya Nair</small>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0 bg-light text-dark rounded p-2 text-center" style="width: 50px;">
+                        <small class="d-block">01:00</small><small class="d-block">PM</small>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">Physics Lab</h6>
+                        <small class="text-muted">Lab 02 • Mr. Desai</small>
+                    </div>
+                </div>
+            `;
+            $('#schedule-container').html(scheduleHtml);
+
+            const eventsHtml = `
+                <div class="bg-light p-3 rounded mb-3">
+                    <h6 class="mb-1">Inter-School Sports Meet</h6>
+                    <small class="text-muted d-block mb-2"><i class="fa fa-clock me-1"></i>25 March 2026</small>
+                    <a href="#" class="btn btn-sm btn-outline-primary px-3">Details</a>
+                </div>
+                <div class="bg-light p-3 rounded">
+                    <h6 class="mb-1">Annual Science Exhibition</h6>
+                    <small class="text-muted d-block mb-2"><i class="fa fa-clock me-1"></i>05 April 2026</small>
+                    <a href="#" class="btn btn-sm btn-outline-primary px-3">Register</a>
+                </div>
+            `;
+            $('#events-container').html(eventsHtml);
+        });
     </script>
 </body>
 
