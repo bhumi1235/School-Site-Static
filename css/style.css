@@ -1,4 +1,4 @@
-﻿/* ========================================
+/* ========================================
    Evergreen International School - Premium School CSS
    ======================================== */
 
@@ -1103,4 +1103,40 @@ h6.text-primary.text-uppercase::after {
 
 #mission .fa-bullseye {
     color: var(--accent) !important;
+}
+
+/* ========== IMAGE LOADING ANIMATIONS ========== */
+.image-reveal {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Base fade for all images to prevent "blinking" */
+img {
+    transition: opacity 0.6s ease;
+}
+
+/* Auto-reveal animation for key visual elements */
+.stat-card img, .team-item img, .courses-item img, .welcome-section img {
+    animation: smoothImageEntrance 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes smoothImageEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
 }

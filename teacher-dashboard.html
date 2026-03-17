@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Teacher Dashboard - Evergreen International School</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --sidebar-width: 280px;
+            --topbar-height: 80px;
+            --dashboard-bg: #f8fafc;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --sidebar-bg: #0f172a;
+            --teacher-accent: #d97706;
+        }
+
+        body {
+            background: var(--dashboard-bg);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--sidebar-bg);
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+            color: #fff;
+        }
+
+        .sidebar-header {
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h3 {
+            font-size: 1.25rem;
+            margin: 0;
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .nav-menu {
+            padding: 20px 0;
+            list-style: none;
+        }
+
+        .nav-item-dash {
+            padding: 2px 20px;
+        }
+
+        .nav-link-dash {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            gap: 15px;
+        }
+
+        .nav-link-dash:hover, .nav-link-dash.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .nav-link-dash.active {
+            background: var(--teacher-accent);
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+        }
+
+        .nav-link-dash i {
+            font-size: 1.1rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            padding: 30px;
+            padding-top: calc(var(--topbar-height) + 30px);
+            transition: all 0.3s ease;
+        }
+
+        .top-navbar {
+            height: var(--topbar-height);
+            background: #fff;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: var(--sidebar-width);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            box-shadow: 0 1px 0 var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .search-box {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: #f1f5f9;
+            font-size: 0.9rem;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-info {
+            text-align: right;
+        }
+
+        .profile-info h6 {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .profile-info span {
+            font-size: 0.75rem;
+            color: var(--secondary);
+        }
+
+        .profile-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--teacher-accent);
+        }
+
+        /* Dashboard Cards */
+        .stat-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .icon-blue { background: #eff6ff; color: #3b82f6; }
+        .icon-green { background: #f0fdf4; color: #22c55e; }
+        .icon-orange { background: #fff7ed; color: #f97316; }
+        .icon-purple { background: #faf5ff; color: #a855f7; }
+
+        .welcome-section {
+            background: linear-gradient(135deg, var(--teacher-accent) 0%, #f59e0b 100%);
+            border-radius: 24px;
+            padding: 40px;
+            color: #fff;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(217, 119, 6, 0.2);
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-img {
+            position: absolute;
+            right: 0;
+            bottom: -20px;
+            width: 250px;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        /* Quick Actions */
+        .action-btn {
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .action-btn:hover {
+            border-color: var(--teacher-accent);
+            color: var(--teacher-accent);
+            background: #fffbf0;
+            transform: scale(1.05);
+        }
+
+        .action-btn i {
+            font-size: 1.8rem;
+        }
+
+        /* Activity Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--teacher-accent);
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.1);
+        }
+
+        .timeline-time {
+            font-size: 0.75rem;
+            color: var(--secondary);
+            margin-bottom: 2px;
+        }
+
+        .timeline-content {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Schedule Items */
+        .schedule-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .schedule-time {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--teacher-accent);
+            width: 80px;
+        }
+
+        .schedule-details h6 {
+            margin: 0;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .schedule-details span {
+            font-size: 0.75rem;
+            color: var(--secondary);
+        }
+
+        /* Task List */
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .task-info h6 {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+
+        .task-info span {
+            font-size: 0.75rem;
+            color: var(--secondary);
+        }
+
+        .bg-success-soft { background-color: #f0fdf4; color: #16a34a; }
+        .bg-danger-soft { background-color: #fef2f2; color: #dc2626; }
+        .bg-warning-soft { background-color: #fffbeb; color: #d97706; }
+        .bg-info-soft { background-color: #f0f9ff; color: #0284c7; }
+        .bg-primary-soft { background-color: #eff6ff; color: #2563eb; }
+
+        /* Mobile Responsive */
+        @media (max-width: 991px) {
+            .sidebar {
+                left: -var(--sidebar-width);
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .top-navbar {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fa fa-school me-2"></i>Evergreen</h3>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item-dash">
+                <a href="javascript:void(0)" class="nav-link-dash active" onclick="showSection('home', this)">
+                    <i class="fa fa-home"></i> Home
+                </a>
+            </li>
+            <li class="nav-item-dash">
+                <a href="javascript:void(0)" class="nav-link-dash" onclick="showSection('classes', this)">
+                    <i class="fa fa-chalkboard"></i> My Classes
+                </a>
+            </li>
+            <li class="nav-item-dash">
+                <a href="javascript:void(0)" class="nav-link-dash" onclick="showSection('students', this)">
+                    <i class="fa fa-users"></i> Students
+                </a>
+            </li>
+            <li class="nav-item-dash">
+                <a href="javascript:void(0)" class="nav-link-dash" onclick="showSection('settings', this)">
+                    <i class="fa fa-gear"></i> Settings
+                </a>
+            </li>
+            <li class="nav-item-dash mt-5">
+                <a href="teacher-portal.html" class="nav-link-dash text-danger">
+                    <i class="fa fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Top Navbar -->
+    <div class="top-navbar">
+        <div class="search-box">
+            <i class="fa fa-search"></i>
+            <input type="text" placeholder="Search students, classes, files...">
+        </div>
+        <div class="user-profile">
+            <div class="profile-info">
+                <h6 id="user-display-name">Dr. Rajiv Sharma</h6>
+                <span id="user-display-role">Senior Faculty • ID: T2024-001</span>
+            </div>
+            <img src="img/team-1.webp" alt="Profile" class="profile-img" id="user-display-img">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Home Section -->
+        <div id="home-section" class="dashboard-section">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <div class="welcome-content">
+                    <h1 id="greeting">Good Morning, Dr. Sharma! 👋</h1>
+                    <p class="mb-0" id="welcome-message">You have 4 classes today. The first one starts with Class 12-A in 10 minutes.</p>
+                </div>
+                <i class="fa fa-chalkboard-teacher welcome-img"></i>
+            </div>
+
+            <div class="row g-5">
+                <!-- Left Side: Pending Tasks & Quick Actions -->
+                <div class="col-lg-8">
+                    <h5 class="mb-4">Quick Actions</h5>
+                    <div class="row g-3 mb-5" id="quick-actions-container">
+                        <div class="col-4 col-md-2">
+                            <div class="action-btn" onclick="handleQuickAction('markAttendance')">
+                                <i class="fa fa-clipboard-check text-success"></i>
+                                <span class="small fw-bold">Attendance</span>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2">
+                            <div class="action-btn" onclick="handleQuickAction('gradeAssignments')">
+                                <i class="fa fa-pen-nib text-primary"></i>
+                                <span class="small fw-bold">Grade</span>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2">
+                            <div class="action-btn" onclick="handleQuickAction('createAssignment')">
+                                <i class="fa fa-plus-circle text-orange"></i>
+                                <span class="small fw-bold">Assignment</span>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2">
+                            <div class="action-btn" onclick="handleQuickAction('viewStudents')">
+                                <i class="fa fa-users text-info"></i>
+                                <span class="small fw-bold">Students</span>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2">
+                            <div class="action-btn" onclick="handleQuickAction('lessonPlan')">
+                                <i class="fa fa-book-open text-purple"></i>
+                                <span class="small fw-bold">Lesson Plan</span>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-2">
+                            <div class="action-btn" onclick="handleQuickAction('viewReports')">
+                                <i class="fa fa-chart-pie text-danger"></i>
+                                <span class="small fw-bold">Reports</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card mb-4">
+                        <h5 class="mb-4">Pending Tasks</h5>
+                        <div class="task-list">
+                            <div class="task-item">
+                                <div class="task-info">
+                                    <h6>Mark Attendance - Class 12-A</h6>
+                                    <span class="text-danger small"><i class="fa fa-clock me-1"></i>Due now</span>
+                                </div>
+                                <button class="btn btn-sm btn-primary-soft" onclick="handleQuickAction('markAttendance')">Mark</button>
+                            </div>
+                            <div class="task-item">
+                                <div class="task-info">
+                                    <h6>Grade "Quantum Physics" Submissions</h6>
+                                    <span class="text-muted small">15 pending submissions</span>
+                                </div>
+                                <button class="btn btn-sm btn-primary-soft" onclick="handleQuickAction('gradeAssignments')">Open</button>
+                            </div>
+                            <div class="task-item border-0">
+                                <div class="task-info">
+                                    <h6>Update Lesson Plan for Next Week</h6>
+                                    <span class="text-muted small">Due by Friday</span>
+                                </div>
+                                <button class="btn btn-sm btn-primary-soft" onclick="handleQuickAction('lessonPlan')">Update</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <h5 class="mb-4">Recent Activities</h5>
+                        <div class="timeline" id="activity-timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-time">10 minutes ago</div>
+                                <div class="timeline-content">Arjun Mehta submitted "Wave Optics Assignment"</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-time">1 hour ago</div>
+                                <div class="timeline-content">Attendance report for Class 12-B generated</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-time">Yesterday</div>
+                                <div class="timeline-content">New circular from Admin regarding Winter Vacation dates</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Schedule -->
+                <div class="col-lg-4">
+                    <div class="stat-card mb-4">
+                        <h5 class="mb-4">Today's Schedule</h5>
+                        <div class="schedule-list">
+                            <div class="schedule-item">
+                                <div class="schedule-time">09:00 AM</div>
+                                <div class="schedule-details">
+                                    <h6>Class 12-A</h6>
+                                    <span>Subject: Physics (Lecture)</span>
+                                </div>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="schedule-time">10:15 AM</div>
+                                <div class="schedule-details">
+                                    <h6>Class 11-B</h6>
+                                    <span>Subject: Chemistry (Lab)</span>
+                                </div>
+                            </div>
+                            <div class="schedule-item">
+                                <div class="schedule-time">12:30 PM</div>
+                                <div class="schedule-details">
+                                    <h6>Staff Meeting</h6>
+                                    <span>Conference Room A</span>
+                                </div>
+                            </div>
+                            <div class="schedule-item border-0">
+                                <div class="schedule-time">02:00 PM</div>
+                                <div class="schedule-details">
+                                    <h6>Class 12-C</h6>
+                                    <span>Subject: Advanced Mechanics</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <h5 class="mb-4">Quick Stats</h5>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="p-3 bg-primary-soft rounded text-center">
+                                    <h4 class="mb-0">98%</h4>
+                                    <span class="small">Attendance</span>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-3 bg-success-soft rounded text-center">
+                                    <h4 class="mb-0">8.4</h4>
+                                    <span class="small">Score (Avg)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Classes Section -->
+        <div id="classes-section" class="dashboard-section d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">My Assigned Classes</h2>
+                <div class="btn-group btn-group-sm p-1 bg-white border rounded-pill shadow-sm">
+                    <button class="btn btn-primary rounded-pill px-3" onclick="filterClasses('all', this)">All</button>
+                    <button class="btn btn-outline-primary border-0 rounded-pill px-3" onclick="filterClasses('active', this)">Active</button>
+                    <button class="btn btn-outline-primary border-0 rounded-pill px-3" onclick="filterClasses('upcoming', this)">Upcoming</button>
+                    <button class="btn btn-outline-primary border-0 rounded-pill px-3" onclick="filterClasses('completed', this)">Completed</button>
+                </div>
+            </div>
+            <div class="row g-4" id="classes-grid">
+                <div class="col-md-4 class-item active">
+                    <div class="stat-card border-top border-primary border-4">
+                        <h5>Class 12-A</h5>
+                        <p class="text-muted small">Physics & Applied Mechanics</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="badge bg-primary-soft">42 Students</span>
+                            <button class="btn btn-sm btn-outline-primary">View Class</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 class-item active">
+                    <div class="stat-card border-top border-success border-4">
+                        <h5>Class 11-B</h5>
+                        <p class="text-muted small">Quantum Chemistry</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="badge bg-success-soft">38 Students</span>
+                            <button class="btn btn-sm btn-outline-success">View Class</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 class-item upcoming">
+                    <div class="stat-card border-top border-warning border-4">
+                        <h5>Class 12-C</h5>
+                        <p class="text-muted small">Thermodynamics</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="badge bg-warning-soft">40 Students</span>
+                            <button class="btn btn-sm btn-outline-warning">View Class</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="students-section" class="dashboard-section d-none">
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="stat-card text-center py-3">
+                        <h6 class="text-muted small mb-1">Total Students</h6>
+                        <h4 class="mb-0 fw-bold">120</h4>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card text-center py-3">
+                        <h6 class="text-muted small mb-1">Average Performance</h6>
+                        <h4 class="mb-0 fw-bold text-primary">A (8.8)</h4>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card text-center py-3">
+                        <h6 class="text-muted small mb-1">Average Attendance</h6>
+                        <h4 class="mb-0 fw-bold text-success">92%</h4>
+                    </div>
+                </div>
+            </div>
+            <h2 class="mb-4">Student Directory</h2>
+            <div class="stat-card">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Assigned Class</th>
+                                <th>Roll No</th>
+                                <th>Score & Attendance</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><div class="d-flex align-items-center"><img src="img/testimonial-2.webp" class="rounded-circle me-2" style="width:30px"> Arjun Mehta</div></td>
+                                <td>Class 12-A</td>
+                                <td>24101</td>
+                                <td><span class="badge bg-primary-soft me-2">A+ (9.4)</span> <span class="text-success small fw-bold">94% Attd</span></td>
+                                <td><button class="btn btn-sm btn-outline-primary">Profile</button></td>
+                            </tr>
+                            <tr>
+                                <td><div class="d-flex align-items-center"><img src="img/testimonial-1.webp" class="rounded-circle me-2" style="width:30px"> Rekha Kapoor</div></td>
+                                <td>Class 12-A</td>
+                                <td>24105</td>
+                                <td><span class="badge bg-primary-soft me-2">A (8.8)</span> <span class="text-warning small fw-bold">88% Attd</span></td>
+                                <td><button class="btn btn-sm btn-outline-primary">Profile</button></td>
+                            </tr>
+                            <tr>
+                                <td><div class="d-flex align-items-center"><img src="img/team-2.webp" class="rounded-circle me-2" style="width:30px"> Siddharth Roy</div></td>
+                                <td>Class 12-A</td>
+                                <td>24109</td>
+                                <td><span class="badge bg-info-soft me-2">B (7.5)</span> <span class="text-info small fw-bold">82% Attd</span></td>
+                                <td><button class="btn btn-sm btn-outline-primary">Profile</button></td>
+                            </tr>
+                            <tr>
+                                <td><div class="d-flex align-items-center"><img src="img/team-3.webp" class="rounded-circle me-2" style="width:30px"> Priya Singh</div></td>
+                                <td>Class 12-A</td>
+                                <td>24112</td>
+                                <td><span class="badge bg-warning-soft me-2">C (6.2)</span> <span class="text-warning small fw-bold">75% Attd</span></td>
+                                <td><button class="btn btn-sm btn-outline-primary">Profile</button></td>
+                            </tr>
+                            <tr>
+                                <td><div class="d-flex align-items-center"><img src="img/team-4.webp" class="rounded-circle me-2" style="width:30px"> Kabir Malhotra</div></td>
+                                <td>Class 12-A</td>
+                                <td>24115</td>
+                                <td><span class="badge bg-danger-soft me-2">D (5.0)</span> <span class="text-danger small fw-bold">68% Attd</span></td>
+                                <td><button class="btn btn-sm btn-outline-primary">Profile</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="settings-section" class="dashboard-section d-none">
+            <h2 class="mb-4">Portal Settings</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stat-card p-0 overflow-hidden">
+                        <div class="list-group list-group-flush">
+                            <a href="#" class="list-group-item list-group-item-action active p-3">
+                                <i class="fa fa-user me-2"></i> Teacher Profile
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action p-3">
+                                <i class="fa fa-bell me-2"></i> Notification Controls
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action p-3">
+                                <i class="fa fa-shield-alt me-2"></i> Security & PIN
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="stat-card">
+                        <h5 class="mb-4">Profile Information</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small text-muted">Full Name</label>
+                                <input type="text" class="form-control rounded-3" value="Dr. Rajiv Sharma">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small text-muted">Department</label>
+                                <input type="text" class="form-control rounded-3" value="Physics & Mathematical Sciences" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small text-muted">Email Address</label>
+                                <input type="email" class="form-control rounded-3" value="rajiv.sharma@evergreen.edu">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small text-muted">Phone Number</label>
+                                <input type="tel" class="form-control rounded-3" value="+91 98765 43210">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small text-muted">Experience</label>
+                                <input type="text" class="form-control rounded-3" value="12 Years" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small text-muted">Specialization</label>
+                                <input type="text" class="form-control rounded-3" value="Quantum Mechanics & Applied Optics" readonly>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mt-4 rounded-pill px-4" onclick="alert('Profile updated successfully!')">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Action Modals -->
+    <div class="modal fade" id="actionModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow" style="border-radius: 20px;">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="modalTitle">Quick Action</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <div id="modalIcon" class="mb-3" style="font-size: 3rem;"></div>
+                    <p id="modalMessage" class="text-muted"></p>
+                    <div id="modalContent"></div>
+                </div>
+                <div class="modal-footer border-0 pt-0 justify-content-center">
+                    <button type="button" class="btn btn-primary-soft rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function showSection(sectionId, element) {
+            document.querySelectorAll('.nav-link-dash').forEach(link => link.classList.remove('active'));
+            if (element) element.classList.add('active');
+            
+            document.querySelectorAll('.dashboard-section').forEach(section => section.classList.add('d-none'));
+            document.getElementById(`${sectionId}-section`).classList.remove('d-none');
+        }
+
+        window.filterClasses = function(filter, element) {
+            // Update button styles
+            const btnGroup = element.parentElement;
+            btnGroup.querySelectorAll('button').forEach(btn => {
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-outline-primary', 'border-0');
+            });
+            element.classList.remove('btn-outline-primary', 'border-0');
+            element.classList.add('btn-primary');
+
+            // Filter items
+            const items = document.querySelectorAll('.class-item');
+            items.forEach(item => {
+                if (filter === 'all' || item.classList.contains(filter)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Shared Quick Action Handler
+        const actionConfigs = {
+            markAttendance: {
+                title: "Register Attendance",
+                icon: '<i class="fa fa-clipboard-check text-success"></i>',
+                message: "15 submissions pending in Class 12-A.",
+                content: `
+                    <div class="list-group list-group-flush text-start mb-3" style="max-height: 200px; overflow-y: auto;">
+                        <div class="list-group-item d-flex justify-content-between align-items-center py-2">
+                            <span class="small">Arjun Mehta</span>
+                            <div class="btn-group btn-group-sm">
+                                <input type="radio" class="btn-check" name="att1" id="p1" checked><label class="btn btn-outline-success" for="p1">P</label>
+                                <input type="radio" class="btn-check" name="att1" id="a1"><label class="btn btn-outline-danger" for="a1">A</label>
+                            </div>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center py-2">
+                            <span class="small">Rekha Kapoor</span>
+                            <div class="btn-group btn-group-sm">
+                                <input type="radio" class="btn-check" name="att2" id="p2" checked><label class="btn btn-outline-success" for="p2">P</label>
+                                <input type="radio" class="btn-check" name="att2" id="a2"><label class="btn btn-outline-danger" for="a2">A</label>
+                            </div>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center py-2">
+                            <span class="small">Siddharth Roy</span>
+                            <div class="btn-group btn-group-sm">
+                                <input type="radio" class="btn-check" name="att3" id="p3" checked><label class="btn btn-outline-success" for="p3">P</label>
+                                <input type="radio" class="btn-check" name="att3" id="a3"><label class="btn btn-outline-danger" for="a3">A</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-success w-100 rounded-pill" onclick="this.innerHTML='<i class=\'fa fa-check\'></i> Submitted'; setTimeout(()=>alert('Attendance submitted successfully!'), 500)">Submit Register</button>
+                `
+            },
+            gradeAssignments: {
+                title: "Grading Center",
+                icon: '<i class="fa fa-pen-nib text-primary"></i>',
+                message: "15 pending submissions in Quantum Physics.",
+                content: `
+                    <div class="text-start mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2 p-2 border rounded">
+                            <span class="small">Arjun_Mehta_Optics.pdf</span>
+                            <input type="number" class="form-control form-control-sm w-25" placeholder="Grd">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2 p-2 border rounded">
+                            <span class="small">Rekha_Kapoor_Lab.pdf</span>
+                            <input type="number" class="form-control form-control-sm w-25" placeholder="Grd">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary w-100 rounded-pill" onclick="alert('Grades pushed to student portals!')">Publish All Grades</button>
+                `
+            },
+            createAssignment: {
+                title: "Assignment Builder",
+                icon: '<i class="fa fa-plus-circle text-orange"></i>',
+                message: "Create a new learning task.",
+                content: `
+                    <div class="text-start mb-3">
+                        <input type="text" class="form-control mb-2 rounded-3" placeholder="Assignment Title">
+                        <textarea class="form-control mb-2 rounded-3" placeholder="Instructions..."></textarea>
+                        <div class="row g-2">
+                            <div class="col-6"><input type="date" class="form-control rounded-3" value="2026-03-25"></div>
+                            <div class="col-6"><input type="number" class="form-control rounded-3" placeholder="Max Pts"></div>
+                        </div>
+                    </div>
+                    <button class="btn btn-warning text-white w-100 rounded-pill" onclick="alert('Assignment created successfully!')">Create & Notify Class</button>
+                `
+            },
+            viewStudents: {
+                title: "Student Management",
+                icon: '<i class="fa fa-users text-info"></i>',
+                message: "Search and manage student profiles.",
+                content: `
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control rounded-start-pill" placeholder="Search by name or ID">
+                        <button class="btn btn-info text-white rounded-end-pill"><i class="fa fa-search"></i></button>
+                    </div>
+                    <button class="btn btn-outline-info w-100 rounded-pill small" onclick="showSection('students')">Open Detailed Directory</button>
+                `
+            },
+            lessonPlan: {
+                title: "Lesson Planning",
+                icon: '<i class="fa fa-book-open text-purple"></i>',
+                message: "Design and track your curriculum.",
+                content: `
+                    <div class="text-start mb-4 p-3 bg-light rounded-3">
+                        <h6 class="fw-bold mb-3 border-bottom pb-2">Create New Plan</h6>
+                        <div class="row g-2">
+                            <div class="col-12"><input type="text" class="form-control rounded-3" placeholder="Lesson Topic (e.g. Wave Optics)"></div>
+                            <div class="col-12"><textarea class="form-control rounded-3" placeholder="Brief Description..." rows="2"></textarea></div>
+                            <div class="col-md-6">
+                                <select class="form-select rounded-3">
+                                    <option selected disabled>Select Subject</option>
+                                    <option>Physics</option>
+                                    <option>Mechanics</option>
+                                    <option>Lab Work</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-select rounded-3">
+                                    <option selected disabled>Select Class</option>
+                                    <option>Class 12-A</option>
+                                    <option>Class 11-B</option>
+                                    <option>Class 12-C</option>
+                                </select>
+                            </div>
+                            <div class="col-12"><input type="date" class="form-control rounded-3" value="2026-03-24"></div>
+                        </div>
+                        <button class="btn btn-purple text-white w-100 mt-3 rounded-pill" onclick="alert('Lesson plan added to your schedule!')">Add to Lesson Plan</button>
+                    </div>
+                    <div class="text-start">
+                        <h6 class="fw-bold mb-3">Planned Lessons</h6>
+                        <div class="list-group list-group-flush border rounded-3">
+                            <div class="list-group-item py-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="small fw-bold">Reflection & Refraction</span>
+                                    <span class="badge bg-success-soft small">Class 12-A</span>
+                                </div>
+                                <small class="text-muted">Mar 15, 2026 • Physics</small>
+                            </div>
+                            <div class="list-group-item py-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="small fw-bold">Huygens Principle</span>
+                                    <span class="badge bg-success-soft small">Class 12-A</span>
+                                </div>
+                                <small class="text-muted">Mar 17, 2026 • Physics</small>
+                            </div>
+                            <div class="list-group-item py-2 opacity-75">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="small fw-bold">Interference Patterns</span>
+                                    <span class="badge bg-warning-soft small">Class 11-B</span>
+                                </div>
+                                <small class="text-muted">Upcoming • Lab Work</small>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            viewReports: {
+                title: "Student Performance Reports",
+                icon: '<i class="fa fa-chart-pie text-danger"></i>',
+                message: "Cumulative reports for Class 12-A.",
+                content: `
+                    <div class="list-group list-group-flush text-start mb-3" style="max-height: 300px; overflow-y: auto;">
+                        <div class="list-group-item d-flex justify-content-between align-items-center py-2">
+                            <div>
+                                <span class="fw-bold small d-block">Arjun Mehta</span>
+                                <small class="text-muted">Attendance: 94% | Result: A+</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger px-2 py-0"><i class="fa fa-download scale-75"></i></button>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center py-2">
+                            <div>
+                                <span class="fw-bold small d-block">Rekha Kapoor</span>
+                                <small class="text-muted">Attendance: 88% | Result: A</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger px-2 py-0"><i class="fa fa-download scale-75"></i></button>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center py-2">
+                            <div>
+                                <span class="fw-bold small d-block">Siddharth Roy</span>
+                                <small class="text-muted">Attendance: 82% | Result: B</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger px-2 py-0"><i class="fa fa-download scale-75"></i></button>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center py-2">
+                            <div>
+                                <span class="fw-bold small d-block">Priya Singh</span>
+                                <small class="text-muted">Attendance: 75% | Result: C</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger px-2 py-0"><i class="fa fa-download scale-75"></i></button>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center py-2">
+                            <div>
+                                <span class="fw-bold small d-block">Kabir Malhotra</span>
+                                <small class="text-muted">Attendance: 68% | Result: D</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger px-2 py-0"><i class="fa fa-download scale-75"></i></button>
+                        </div>
+                    </div>
+                    <button class="btn btn-danger w-100 rounded-pill" onclick="alert('Generating bulk class report...')">Download Full Class Analytics</button>
+                `
+            }
+        };
+
+        window.handleQuickAction = function(type) {
+            const config = actionConfigs[type];
+            if (!config) return;
+
+            $('#modalTitle').text(config.title);
+            $('#modalIcon').html(config.icon);
+            $('#modalMessage').text(config.message);
+            $('#modalContent').html(config.content);
+            
+            const modal = new bootstrap.Modal(document.getElementById('actionModal'));
+            modal.show();
+        };
+
+        // Handle URL Params for initial load
+        $(document).ready(function() {
+            const hour = new Date().getHours();
+            let greeting = "Good Morning";
+            if (hour >= 12 && hour < 17) greeting = "Good Afternoon";
+            else if (hour >= 17) greeting = "Good Evening";
+            $('#greeting').html(`${greeting}, Dr. Sharma! 👋`);
+        });
+    </script>
+</body>
+
+</html>

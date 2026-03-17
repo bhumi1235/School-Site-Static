@@ -388,7 +388,7 @@
         <div class="user-profile">
             <div class="profile-info">
                 <h6 id="user-display-name">Arjun Mehta</h6>
-                <span id="user-display-role">Grade 12-A • ID: 2024-101</span>
+                <span id="user-display-role">Class 12-A • ID: 2024-101</span>
             </div>
             <img src="img/testimonial-2.webp" alt="Profile" class="profile-img" id="user-display-img">
         </div>
@@ -438,8 +438,8 @@
                         <div class="icon-box icon-orange">
                             <i class="fa fa-award"></i>
                         </div>
-                        <h6 class="text-muted small mb-1 stat-label-grade">Average Grade</h6>
-                        <h3 id="stat-grade-val">A- (8.5)</h3>
+                        <h6 class="text-muted small mb-1 stat-label-grade">Overall Score</h6>
+                        <h3 id="stat-grade-val">A+ (9.2)</h3>
                         <div class="progress mt-3" style="height: 6px;">
                             <div class="progress-bar bg-warning" id="stat-grade-bar" style="width: 85%"></div>
                         </div>
@@ -633,7 +633,6 @@
             </div>
         </div>
 
-        <!-- Settings Section -->
         <div id="settings-section" class="dashboard-section d-none">
             <h2 class="mb-4">Portal Settings</h2>
             <div class="row g-4">
@@ -657,6 +656,26 @@
                 </div>
                 <div id="settings-content-container" class="col-md-9">
                     <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Action Modal -->
+        <div class="modal fade" id="actionModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow" style="border-radius: 20px;">
+                    <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title fw-bold" id="modalTitle">Quick Action</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body text-center py-4">
+                        <div id="modalIcon" class="mb-3" style="font-size: 3rem;"></div>
+                        <p id="modalMessage" class="text-muted"></p>
+                        <div id="modalContent"></div>
+                    </div>
+                    <div class="modal-footer border-0 pt-0 justify-content-center">
+                        <button type="button" class="btn btn-primary-soft rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -704,12 +723,12 @@
         const dashboardData = {
             student: {
                 name: "Arjun Mehta",
-                role: "Grade 12-A • ID: 2024-101",
+                role: "Class 12-A • ID: 2024-101",
                 img: "img/testimonial-2.webp",
                 greetingName: "Arjun",
                 message: "You have 3 assignments due today and your next class starts in 15 minutes.",
                 sidebar: { attendance: "Attendance", homework: "Homework", fees: "Fee Details" },
-                stats: { attendance: "Total Attendance", homework: "Assignments Done", grade: "Average Grade" },
+                stats: { attendance: "Total Attendance", homework: "Assignments Done", grade: "Overall Score" },
                 actions: [
                     { icon: "fa-chart-line", color: "text-primary", label: "View My Grades" },
                     { icon: "fa-upload", color: "text-success", label: "Submit Work" },
@@ -723,7 +742,7 @@
                     actions: `<button class="btn btn-primary btn-sm rounded-pill"><i class="fa fa-envelope me-2"></i>Request Leave</button>`,
                     currentMonth: 2, // March (0-indexed for simplicity with an array of 12 months starting Apr)
                     academicYear: [
-                        { name: "April 2025", days: 30, present: 22, absent: 0, late: 0, holidays: [14], startDay: 1 }, // Tue
+                        { name: "April 2025", days: 30, present: 22, absent: 0, late: 0, holidays: [14], startDay: 1 }, // TueClass 12-A
                         { name: "May 2025", days: 31, present: 15, absent: 0, late: 2, holidays: [1, 2, 3], startDay: 3 }, // Thu
                         { name: "June 2025", days: 30, present: 0, absent: 0, late: 0, holidays: Array.from({length: 30}, (_, i) => i + 1), startDay: 6 }, // Sun
                         { name: "July 2025", days: 31, present: 24, absent: 1, late: 1, holidays: [], startDay: 1 }, // Tue
@@ -1105,7 +1124,12 @@
             $('#attendance-side-content').html(data.attendance.side || '');
             
             // Attendance Specific Logic
-            let activeIdx = data.attendance.currentMonth || 11;
+            // Calculate academic month index (0 = April, 11 = March)
+            const today = new Date();
+            let activeIdx = (today.getMonth() - 3 + 12) % 12;
+            
+            // Limit to academic year scope if necessary, but here we just use the calculated index
+            if (activeIdx < 0 || activeIdx > 11) activeIdx = 11; // Fallback to March
             
             window.renderAttendanceCalendar = function(idx) {
                 const month = data.attendance.academicYear[idx];
@@ -1126,9 +1150,9 @@
                 for (let i = 1; i <= month.days; i++) {
                     let statusClass = 'bg-white';
                     if (month.holidays.includes(i)) statusClass = 'bg-light text-muted';
-                    else if (i <= (idx === 11 ? 16 : month.days)) {
+                    else if (i <= (idx === activeIdx ? today.getDate() : month.days)) {
                         // Randomly assign present/absent for mock feel, except today
-                        if (idx === 11 && i === 16) statusClass = 'bg-primary text-white shadow-sm';
+                        if (idx === activeIdx && i === today.getDate()) statusClass = 'bg-primary text-white shadow-sm';
                         else statusClass = Math.random() > 0.1 ? 'bg-success-soft text-success' : 'bg-danger-soft text-danger';
                     }
                     
@@ -1190,10 +1214,139 @@
 
             $('#fees-container').html(data.fees);
 
+            // Shared Quick Action Handler Config
+            const studentActionConfigs = {
+                'View My Grades': {
+                    title: "Detailed Academic Report",
+                    icon: '<i class="fa fa-chart-line text-primary"></i>',
+                    message: "Performance breakdown for Semester 2.",
+                    content: `
+                        <div class="row g-2 mb-3">
+                            <div class="col-6"><div class="p-2 border rounded small bg-light">Math: <b>A+</b></div></div>
+                            <div class="col-6"><div class="p-2 border rounded small bg-light">Physics: <b>A</b></div></div>
+                            <div class="col-6"><div class="p-2 border rounded small bg-light">English: <b>B+</b></div></div>
+                            <div class="col-6"><div class="p-2 border rounded small bg-light">Chemistry: <b>A</b></div></div>
+                        </div>
+                        <div class="alert alert-success py-2 small mb-0"><i class="fa fa-info-circle me-1"></i>You are in the top 5% of your class!</div>
+                        <button class="btn btn-primary w-100 rounded-pill mt-3" onclick="alert('Downloading PDF...')">Download Full Progress Report</button>
+                    `
+                },
+                'Submit Work': {
+                    title: "Active Assignments",
+                    icon: '<i class="fa fa-upload text-success"></i>',
+                    message: "Submit your work for verification.",
+                    content: `
+                        <div class="text-start mb-3">
+                            <label class="small text-muted mb-1">Select Assignment</label>
+                            <select class="form-select rounded-3">
+                                <option>Calculus Exercise 4.2</option>
+                                <option>Optics Lab Report</option>
+                                <option>Modern Poetry Essay</option>
+                            </select>
+                        </div>
+                        <div class="border-dashed p-4 rounded-3 text-center bg-light mb-3" style="border: 2px dashed #cbd5e1;">
+                            <i class="fa fa-cloud-upload-alt text-muted mb-2" style="font-size: 2rem;"></i>
+                            <p class="small mb-0">Drag and drop files or <b>click to browse</b></p>
+                            <input type="file" class="d-none" id="fileUpload">
+                        </div>
+                        <button class="btn btn-success w-100 rounded-pill" onclick="this.innerHTML='<i class=\'fa fa-spinner fa-spin\'></i> Uploading...'; setTimeout(()=>alert('Assignment submitted successfully!'), 1500)">Submit Assignment</button>
+                    `
+                },
+                'Download Notes': {
+                    title: "Resource Library",
+                    icon: '<i class="fa fa-download text-info"></i>',
+                    message: "Study materials shared by your teachers.",
+                    content: `
+                        <div class="list-group list-group-flush text-start mb-3">
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <div><h6 class="mb-0 small">Physics Notes - Optics</h6><small class="text-muted">PDF • 2.4 MB</small></div>
+                                <button class="btn btn-sm btn-info-soft"><i class="fa fa-download"></i></button>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <div><h6 class="mb-0 small">Math Cheat Sheet</h6><small class="text-muted">PDF • 1.1 MB</small></div>
+                                <button class="btn btn-sm btn-info-soft"><i class="fa fa-download"></i></button>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-info w-100 rounded-pill small">Go to Content Library</button>
+                    `
+                },
+                'Contact Teacher': {
+                    title: "Consultation Request",
+                    icon: '<i class="fa fa-envelope text-warning"></i>',
+                    message: "Drop a message or request a 1-on-1 session.",
+                    content: `
+                        <div class="text-start mb-3">
+                            <label class="small text-muted mb-1">Send to:</label>
+                            <select class="form-select rounded-3 mb-2">
+                                <option>Dr. Rajiv Sharma (Physics)</option>
+                                <option>Prof. Verma (Maths)</option>
+                                <option>Ms. Sen (English)</option>
+                            </select>
+                            <textarea class="form-control rounded-3" rows="3" placeholder="I have a doubt regarding..."></textarea>
+                        </div>
+                        <button class="btn btn-warning text-white w-100 rounded-pill" onclick="alert('Message sent to the teacher!')">Send Message</button>
+                    `
+                },
+                'Event Schedule': {
+                    title: "Upcoming Campus Events",
+                    icon: '<i class="fa fa-calendar-alt text-danger"></i>',
+                    message: "Stay updated with school activities.",
+                    content: `
+                        <div class="text-start mb-3">
+                            <div class="d-flex mb-2 align-items-center p-2 border-start border-4 border-danger rounded bg-light">
+                                <div class="ms-1">
+                                    <h6 class="mb-0 small">Annual Sports Meet</h6>
+                                    <small class="text-muted">25-27 March • Main Ground</small>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-2 align-items-center p-2 border-start border-4 border-primary rounded bg-light">
+                                <div class="ms-1">
+                                    <h6 class="mb-0 small">Science Exhibition</h6>
+                                    <small class="text-muted">05 April • Auditorium</small>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-danger-soft w-100 rounded-pill small">View Full Calendar</button>
+                    `
+                },
+                'Exam Dates': {
+                    title: "Exam Time Table",
+                    icon: '<i class="fa fa-file-alt text-secondary"></i>',
+                    message: "Final Term Examinations - April 2026",
+                    content: `
+                        <div class="table-responsive">
+                            <table class="table table-sm small">
+                                <thead class="table-light"><tr><th>Date</th><th>Subject</th><th>Session</th></tr></thead>
+                                <tbody>
+                                    <tr><td>10 Apr</td><td>Physics</td><td>FN</td></tr>
+                                    <tr><td>12 Apr</td><td>Chemistry</td><td>FN</td></tr>
+                                    <tr><td>15 Apr</td><td>Biology</td><td>FN</td></tr>
+                                    <tr><td>18 Apr</td><td>Mathematics</td><td>FN</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="btn btn-secondary w-100 rounded-pill mt-2">Get Hall Ticket</button>
+                    `
+                }
+            };
+
+            window.handleQuickAction = function(label) {
+                const config = studentActionConfigs[label];
+                if (!config) return;
+
+                $('#modalTitle').text(config.title);
+                $('#modalIcon').html(config.icon);
+                $('#modalMessage').text(config.message);
+                $('#modalContent').html(config.content);
+                
+                const modal = new bootstrap.Modal(document.getElementById('actionModal'));
+                modal.show();
+            };
+
             // Populate Shared Components
             const actionsHtml = data.actions.map(action => `
                 <div class="col-sm-4 col-6">
-                    <div class="action-btn">
+                    <div class="action-btn" onclick="handleQuickAction('${action.label}')">
                         <i class="fa ${action.icon} ${action.color}"></i>
                         <span class="small font-weight-bold">${action.label}</span>
                     </div>
