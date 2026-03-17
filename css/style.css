@@ -1,5 +1,5 @@
 /* ========================================
-   Evergreen International School - Premium School CSS
+   Global School - Premium School CSS
    ======================================== */
 
 /* --- Google Font Import --- */
@@ -23,6 +23,15 @@
     --radius: 12px;
     --radius-lg: 20px;
     --transition: .35s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* --- Custom Border Utilities --- */
+.border-accent {
+    border-color: var(--accent) !important;
+}
+
+.border-primary {
+    border-color: var(--primary) !important;
 }
 
 /* --- Base Reset & Typography --- */

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Teacher Dashboard - Evergreen International School</title>
+    <title>Teacher Dashboard - Global School</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     
     <!-- Favicon -->
@@ -384,7 +384,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
-            <h3><i class="fa fa-school me-2"></i>Evergreen</h3>
+            <h3><i class="fa fa-school me-2"></i>Global</h3>
         </div>
         <ul class="nav-menu">
             <li class="nav-item-dash">
@@ -424,7 +424,7 @@
         <div class="user-profile">
             <div class="profile-info">
                 <h6 id="user-display-name">Dr. Rajiv Sharma</h6>
-                <span id="user-display-role">Senior Faculty • ID: T2024-001</span>
+                <span id="user-display-role">Senior Faculty â€¢ ID: T2024-001</span>
             </div>
             <img src="img/team-1.webp" alt="Profile" class="profile-img" id="user-display-img">
         </div>
@@ -437,7 +437,7 @@
             <!-- Welcome Section -->
             <div class="welcome-section">
                 <div class="welcome-content">
-                    <h1 id="greeting">Good Morning, Dr. Sharma! 👋</h1>
+                    <h1 id="greeting">Good Morning, Dr. Sharma! ðŸ‘‹</h1>
                     <p class="mb-0" id="welcome-message">You have 4 classes today. The first one starts with Class 12-A in 10 minutes.</p>
                 </div>
                 <i class="fa fa-chalkboard-teacher welcome-img"></i>
@@ -742,11 +742,11 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small text-muted">Email Address</label>
-                                <input type="email" class="form-control rounded-3" value="rajiv.sharma@evergreen.edu">
+                                <input type="email" class="form-control rounded-3" value="rajiv.sharma@Global.edu">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small text-muted">Phone Number</label>
-                                <input type="tel" class="form-control rounded-3" value="+91 98765 43210">
+                                <input type="tel" class="form-control rounded-3" value="+971 2 123 4567">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small text-muted">Experience</label>
@@ -935,21 +935,21 @@
                                     <span class="small fw-bold">Reflection & Refraction</span>
                                     <span class="badge bg-success-soft small">Class 12-A</span>
                                 </div>
-                                <small class="text-muted">Mar 15, 2026 • Physics</small>
+                                <small class="text-muted">Mar 15, 2026 â€¢ Physics</small>
                             </div>
                             <div class="list-group-item py-2">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="small fw-bold">Huygens Principle</span>
                                     <span class="badge bg-success-soft small">Class 12-A</span>
                                 </div>
-                                <small class="text-muted">Mar 17, 2026 • Physics</small>
+                                <small class="text-muted">Mar 17, 2026 â€¢ Physics</small>
                             </div>
                             <div class="list-group-item py-2 opacity-75">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="small fw-bold">Interference Patterns</span>
                                     <span class="badge bg-warning-soft small">Class 11-B</span>
                                 </div>
-                                <small class="text-muted">Upcoming • Lab Work</small>
+                                <small class="text-muted">Upcoming â€¢ Lab Work</small>
                             </div>
                         </div>
                     </div>
@@ -1019,11 +1019,14 @@
         $(document).ready(function() {
             const hour = new Date().getHours();
             let greeting = "Good Morning";
-            if (hour >= 12 && hour < 17) greeting = "Good Afternoon";
-            else if (hour >= 17) greeting = "Good Evening";
-            $('#greeting').html(`${greeting}, Dr. Sharma! 👋`);
+            if (hour>= 12 && hour < 17) greeting = "Good Afternoon";
+            else if (hour>= 17) greeting = "Good Evening";
+            $('#greeting').html(`${greeting}, Dr. Sharma! ðŸ‘‹`);
         });
     </script>
 </body>
 
 </html>
+
+
+

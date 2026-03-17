@@ -50,5 +50,22 @@
     });
 
     
+    
 })(jQuery);
+
+// Global function for copy to clipboard
+function copyToClipboard(text, element) {
+    navigator.clipboard.writeText(text).then(function() {
+        const originalClass = element.className;
+        const originalStyle = element.style.cssText;
+        element.className = "fa fa-check text-success ms-2";
+        setTimeout(function() {
+            element.className = originalClass;
+            element.style.cssText = originalStyle;
+        }, 2000);
+    }, function(err) {
+        console.error('Could not copy text: ', err);
+    });
+}
+
 

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Academics - Evergreen International School</title>
+    <title>Academics - Global School</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -48,7 +48,7 @@
             <div class="col-lg-7 px-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center me-4">
                     <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                    <small>456 Education Street, City Center</small>
+                    <small>Sheikh Zayed Street, Abu Dhabi, UAE</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center">
                     <small class="far fa-clock text-primary me-2"></small>
@@ -58,7 +58,8 @@
             <div class="col-lg-5 px-5 text-end">
                 <div class="h-100 d-inline-flex align-items-center me-4">
                     <small class="fa fa-phone-alt text-primary me-2"></small>
-                    <small>+91 98765 43210</small>
+                    <a href="contact.html" class="text-light"><small>+971 2 123 4567</small></a>
+                    <i class="fa fa-copy text-primary ms-2" style="cursor: pointer; font-size: 0.85rem;" onclick="copyToClipboard('+971 2 123 4567', this)" title="Copy Number"></i>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center mx-n2">
                     <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
@@ -76,49 +77,25 @@
 
 
 
-    <!-- Navbar Start -->
+            <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 px-4 px-lg-5">
         <a href="index.html" class="navbar-brand d-flex align-items-center">
-            <h2 class="m-0 text-primary"><i class="fa fa-school me-3"></i>Evergreen International</h2>
+            <h2 class="m-0 text-primary"><i class="fa fa-school me-3"></i>Global School</h2>
         </a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-4 py-lg-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+
+                <a href="about.html" class="nav-item nav-link">About Us</a>
+
+                <a href="infrastructure.html" class="nav-item nav-link">Infrastructure</a>
+
+                <!-- Academics -->
                 <div class="nav-item dropdown">
-                    <a href="index.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Home</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="leadership.html#founder" class="dropdown-item">Founder</a>
-                        <a href="leadership.html#chairman" class="dropdown-item">Chairman</a>
-                        <a href="leadership.html#principal" class="dropdown-item">Principal</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a href="about.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About Us</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="about.html#background" class="dropdown-item">Background</a>
-                        <a href="about.html#aim" class="dropdown-item">Aim</a>
-                        <a href="about.html#vision" class="dropdown-item">Vision & Mission</a>
-                        <a href="about.html#motto" class="dropdown-item">Motto</a>
-                        <a href="team.html" class="dropdown-item">Faculty</a>
-                        <a href="disclosure.html" class="dropdown-item">Disclosure</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a href="infrastructure.html" class="nav-link dropdown-toggle"
-                        data-bs-toggle="dropdown">Infrastructure</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="infrastructure.html#building" class="dropdown-item">Building</a>
-                        <a href="infrastructure.html#classrooms" class="dropdown-item">Classrooms</a>
-                        <a href="infrastructure.html#smart-classes" class="dropdown-item">Smart Classes</a>
-                        <a href="infrastructure.html#labs" class="dropdown-item">Labs</a>
-                        <a href="infrastructure.html#auditorium" class="dropdown-item">Auditorium</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a href="academics.html" class="nav-link dropdown-toggle active"
-                        data-bs-toggle="dropdown">Academics</a>
+                    <a href="academics.html" class="nav-link dropdown-toggle active" >Academics</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="academics.html#curriculum" class="dropdown-item">Curriculum</a>
                         <a href="academics.html#learning" class="dropdown-item">Learning Method</a>
@@ -127,9 +104,11 @@
                         <a href="academics.html#pti" class="dropdown-item">PTI</a>
                     </div>
                 </div>
+
+                <!-- Beyond Academics -->
                 <div class="nav-item dropdown">
-                    <a href="beyond-academics.html" class="nav-link dropdown-toggle"
-                        data-bs-toggle="dropdown">Beyond</a>
+                    <a href="beyond-academics.html" class="nav-link dropdown-toggle" 
+                        >Beyond</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="beyond-academics.html#sports" class="dropdown-item">Sports</a>
                         <a href="beyond-academics.html#clubs" class="dropdown-item">Clubs</a>
@@ -137,10 +116,12 @@
                         <a href="beyond-academics.html#workshops" class="dropdown-item">Workshops</a>
                     </div>
                 </div>
+
                 <a href="showcase.html" class="nav-item nav-link">Showcase</a>
                 <a href="news.html" class="nav-item nav-link">News & Events</a>
+                                <!-- Rules -->
                 <div class="nav-item dropdown">
-                    <a href="rules.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Rules</a>
+                    <a href="rules.html" class="nav-link dropdown-toggle" >Rules</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="rules.html#school-rules" class="dropdown-item">School Rules</a>
                         <a href="rules.html#fee-rules" class="dropdown-item">Fee Rules</a>
@@ -148,17 +129,11 @@
                         <a href="rules.html#code-conduct" class="dropdown-item">Code of Conduct</a>
                     </div>
                 </div>
+                <a href="gallery.html" class="nav-item nav-link">Gallery</a>
+
+                <!-- Contact -->
                 <div class="nav-item dropdown">
-                    <a href="gallery.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Gallery</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="gallery.html#photos" class="dropdown-item">Photos</a>
-                        <a href="gallery.html#videos" class="dropdown-item">Videos</a>
-                        <a href="gallery.html#media" class="dropdown-item">Media</a>
-                        <a href="gallery.html#kids-corner" class="dropdown-item">Kids Corner</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a href="contact.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Contact</a>
+                    <a href="contact.html" class="nav-link dropdown-toggle"  >Contact</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="contact.html#info" class="dropdown-item">Contact Info</a>
                         <a href="contact.html#enquiry" class="dropdown-item">Enquiry</a>
@@ -178,13 +153,6 @@
     <div class="container-fluid page-header py-6 my-6 mt-0 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center">
             <h1 class="display-4 text-white animated slideInDown mb-4">Academics</h1>
-            <nav aria-label="breadcrumb animated slideInDown">
-                <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-primary active" aria-current="page">Academics</li>
-                </ol>
-            </nav>
         </div>
     </div>
     <!-- Page Header End -->
@@ -196,19 +164,41 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="text-primary text-uppercase mb-2">Academic Roadmap</h6>
-                    <h1 class="display-6 mb-4">Our Curriculum</h1>
-                    <p>We follow a globally-aligned curriculum that balances core academics with life skills. Our
-                        framework is designed to spark curiosity and foster a deep understanding of subjects.</p>
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-book text-primary me-2"></i>Interdisciplinary Approach</li>
-                        <li><i class="fa fa-globe text-primary me-2"></i>Global Standards</li>
-                    </ul>
+                    <h1 class="display-6 mb-4">A Holistic & Future-Ready Curriculum</h1>
+                    <p class="mb-4">At Global School, our curriculum is engineered to transcend traditional rote learning. We provide a rigorous academic foundation integrated with 21st-century competencies. Our framework is meticulously aligned with global standards, ensuring that every student is prepared for the challenges of higher education and professional life.</p>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-6">
+                            <h5 class="mb-3"><i class="fa fa-book-open text-primary me-2"></i>Core Sciences</h5>
+                            <p class="small text-muted">Advanced Physics, Chemistry, and Biology modules with integrated laboratory research from early secondary levels.</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h5 class="mb-3"><i class="fa fa-calculator text-primary me-2"></i>Mathematics</h5>
+                            <p class="small text-muted">Focus on logical reasoning, statistical analysis, and computational thinking across all grade levels.</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h5 class="mb-3"><i class="fa fa-language text-primary me-2"></i>Humanities</h5>
+                            <p class="small text-muted">A deep dive into Global History, Literature, and Social Sciences to foster empathy and cultural awareness.</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h5 class="mb-3"><i class="fa fa-code text-primary me-2"></i>Specialized Track</h5>
+                            <p class="small text-muted">Optional specialized modules in AI & Robotics, Data Science, and Environmental Sustainability.</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="p-5 bg-light rounded text-center">
-                        <i class="fa fa-graduation-cap fa-4x text-primary mb-4"></i>
-                        <h4>Dual Pathway System</h4>
-                        <p>Flexible learning tracks for Primary and Secondary education levels.</p>
+                    <div class="p-5 bg-white shadow rounded border-top border-primary border-5 text-center">
+                        <div class="d-flex align-items-center justify-content-center mb-4">
+                            <i class="fa fa-graduation-cap fa-3x text-primary me-4"></i>
+                            <h3 class="m-0 text-start">The Global Advantage</h3>
+                        </div>
+                        <p class="mb-4">Our "Dual Pathway" system allows senior students to choose between a research-heavy academic track or a skill-based vocational track, tailoring their education to their career aspirations.</p>
+                        <ul class="list-unstyled mb-0 text-start">
+                            <li class="mb-2"><i class="fa fa-check text-primary me-2"></i>Accredited International Standard Material</li>
+                            <li class="mb-2"><i class="fa fa-check text-primary me-2"></i>Bilingual Proficiency Programs</li>
+                            <li class="mb-2"><i class="fa fa-check text-primary me-2"></i>Integrated STEAM Education</li>
+                            <li><i class="fa fa-check text-primary me-2"></i>Preparation for Competitive Global Exams</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -217,28 +207,34 @@
 
     <div class="container-xxl py-6 bg-light" id="learning">
         <div class="container text-center">
-            <h6 class="text-primary text-uppercase mb-2">Teaching Excellence</h6>
-            <h1 class="display-6 mb-5">Learning Methodologies</h1>
+            <h6 class="text-primary text-uppercase mb-2">Pedagogical Excellence</h6>
+            <h1 class="display-6 mb-5">Advanced Learning Methodologies</h1>
             <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="bg-white p-4 shadow-sm border-bottom border-primary border-5 rounded">
-                        <i class="fa fa-project-diagram fa-2x text-primary mb-3"></i>
-                        <h5>Project-Based</h5>
-                        <p class="small">Students learn by doing through real-world challenges.</p>
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="bg-white p-5 shadow-sm border-bottom border-primary border-5 rounded h-100">
+                        <div class="mb-4">
+                            <i class="fa fa-project-diagram fa-3x text-primary"></i>
+                        </div>
+                        <h4 class="mb-3">Project-Based Learning</h4>
+                        <p>We believe that concepts are best understood when applied. Our students engage in "Term Projects" where they solve real-world problems—ranging from urban planning models to renewable energy prototypes—integrating knowledge from multiple subjects.</p>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="bg-white p-4 shadow-sm border-bottom border-accent border-5 rounded">
-                        <i class="fa fa-chalkboard fa-2x text-accent mb-3"></i>
-                        <h5>Inquiry-Based</h5>
-                        <p class="small">Fostering curiosity through questioning and research.</p>
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="bg-white p-5 shadow-sm border-bottom border-accent border-5 rounded h-100">
+                        <div class="mb-4">
+                            <i class="fa fa-search fa-3x text-accent"></i>
+                        </div>
+                        <h4 class="mb-3">Inquiry-Based Learning</h4>
+                        <p>Our classrooms are hubs of curiosity. Rather than simply delivering lectures, teachers pose stimulating questions that trigger student-led research. This method develops critical thinking, information literacy, and independent study habits.</p>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="bg-white p-4 shadow-sm border-bottom border-primary border-5 rounded">
-                        <i class="fa fa-users fa-2x text-primary mb-3"></i>
-                        <h5>Collaborative</h5>
-                        <p class="small">Peer-to-peer learning to build social and team skills.</p>
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="bg-white p-5 shadow-sm border-bottom border-primary border-5 rounded h-100">
+                        <div class="mb-4">
+                            <i class="fa fa-users-cog fa-3x text-primary"></i>
+                        </div>
+                        <h4 class="mb-3">Collaborative Synergy</h4>
+                        <p>Modern success is built on teamwork. Our "Synergy Sprints" encourage students to work in diverse groups, teaching them how to delegate, debate constructively, and achieve shared objectives while respecting varied perspectives.</p>
                     </div>
                 </div>
             </div>
@@ -249,13 +245,30 @@
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <img class="img-fluid rounded shadow" src="img/about-2.webp" alt="Assessment">
+                    <div class="position-relative">
+                        <img class="img-fluid rounded shadow" src="img/about-2.webp" alt="Assessment">
+                        <div class="position-absolute top-50 start-50 translate-middle">
+                            <div class="bg-primary text-white p-4 rounded-circle shadow-lg" style="width: 150px; height: 150px; display: flex; align-items: center; justify-content: center; text-align: center;">
+                                <div>
+                                    <h2 class="text-white m-0">100%</h2>
+                                    <small>Growth Focus</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <h6 class="text-primary text-uppercase mb-2">Progress Tracking</h6>
-                    <h1 class="display-6 mb-4">Assessment Framework</h1>
-                    <p>Our assessment is continuous and comprehensive, focusing on growth rather than just grades. We
-                        use balanced metrics of formative and summative metrics.</p>
+                    <h6 class="text-primary text-uppercase mb-2">Continuous Growth</h6>
+                    <h1 class="display-6 mb-4">A Multi-Dimensional Assessment Framework</h1>
+                    <p class="mb-4">Evaluation at Global School moves away from the anxiety of "High Stakes Testing." We utilize a Continuous and Comprehensive Evaluation (CCE) system that monitors a student's progress across academic and non-academic domains throughout the year.</p>
+                    <div class="bg-light p-4 rounded mb-4 shadow-sm border-start border-primary border-5">
+                        <h5 class="text-primary"><i class="fa fa-chart-line me-3"></i>Formative Assessments (FA)</h5>
+                        <p class="mb-0 small text-muted">Weekly quizzes, oral presentations, lab experiments, and portfolio reviews that allow for immediate feedback and correction.</p>
+                    </div>
+                    <div class="bg-light p-4 rounded shadow-sm border-start border-accent border-5">
+                        <h5 class="text-accent"><i class="fa fa-clipboard-check me-3"></i>Summative Assessments (SA)</h5>
+                        <p class="mb-0 small text-muted">End-of-term evaluations that measure depth of conceptual understanding and the ability to apply logic in complex scenarios.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -265,16 +278,45 @@
         <div class="container">
             <div class="row g-5 align-items-center flex-row-reverse">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="text-primary text-uppercase mb-2">Digital Literacy</h6>
-                    <h1 class="display-6 mb-4">IT & E-learning</h1>
-                    <p>We integrate technology into every facet of learning. From online assignments to coding
-                        workshops, we prepare students for a digital-first future.</p>
+                    <h6 class="text-primary text-uppercase mb-2">Technological Integration</h6>
+                    <h1 class="display-6 mb-4">IT, STEM & E-learning Ecosystem</h1>
+                    <p class="mb-4">We are a "Digital Discovery" campus where technology is a catalyst, not just a tool. Our students are equipped with the digital literacy required to navigate and lead in a technology-driven world.</p>
+                    <div class="row g-4">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <i class="fa fa-wifi fa-2x text-primary me-3"></i>
+                                <span>High-speed Smart Campus</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <i class="fa fa-vr-cardboard fa-2x text-primary me-3"></i>
+                                <span>Immersive Labs</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <i class="fa fa-shield-alt fa-2x text-primary me-3"></i>
+                                <span>Cyber-Safety Ethics</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <i class="fa fa-cloud-upload-alt fa-2x text-primary me-3"></i>
+                                <span>LMS Resource Hub</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="p-5 bg-dark text-white rounded shadow text-center">
-                        <i class="fa fa-laptop-code fa-4x text-primary mb-3"></i>
-                        <h3>24/7 Portal Access</h3>
-                        <p>Resources, assignments, and results accessible anytime.</p>
+                    <div class="p-5 bg-dark text-white rounded shadow-lg text-center position-relative overflow-hidden">
+                        <div class="position-absolute top-0 end-0 p-3">
+                            <i class="fa fa-microchip fa-5x text-white-50" style="opacity: 0.1;"></i>
+                        </div>
+                        <i class="fa fa-laptop-code fa-5x text-primary mb-4"></i>
+                        <h2 class="text-white mb-3">Global Digital Portal</h2>
+                        <p class="mb-4 text-light">A unified Learning Management System (LMS) where students access curated resources, digital libraries, and interactive coding sandboxes 24/7.</p>
+                        <a href="student-dashboard.html" class="btn btn-primary py-3 px-5">Explore PDF Resources</a>
                     </div>
                 </div>
             </div>
@@ -283,10 +325,27 @@
 
     <div class="container-xxl py-6" id="pti">
         <div class="container text-center">
-            <h6 class="text-primary text-uppercase mb-2">Community</h6>
-            <h1 class="display-6 mb-4">Parent-Teacher Interaction (PTI)</h1>
-            <p class="mx-auto" style="max-width: 700px;">We believe in a three-way partnership between students,
-                teachers, and parents. Monthly PTI sessions ensure we are aligned in our goal of student success.</p>
+            <h6 class="text-primary text-uppercase mb-2">Collaborative Ecosystem</h6>
+            <h1 class="display-6 mb-4">Parent-Teacher Partnership</h1>
+            <p class="mx-auto fs-5 mb-5" style="max-width: 800px;">We believe in a three-way partnership where students flourish. Our interactive sessions go beyond grade reporting; we co-create growth roadmaps for every child through data-driven insights and personal observation.</p>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="bg-light p-4 rounded d-flex align-items-center justify-content-around flex-wrap">
+                        <div class="text-center p-3">
+                            <h2 class="text-primary mb-0">Monthly</h2>
+                            <small>Townhalls</small>
+                        </div>
+                        <div class="text-center p-3">
+                            <h2 class="text-primary mb-0">Weekly</h2>
+                            <small>Newsletter</small>
+                        </div>
+                        <div class="text-center p-3">
+                            <h2 class="text-primary mb-0">On-Demand</h2>
+                            <small>Counseling</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Academics End -->
@@ -298,11 +357,10 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Get In Touch</h4>
-                    <h2 class="text-primary mb-4"><i class="fa fa-book text-white me-2"></i>Evergreen International
-                        School</h2>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>456 Education Street, City Center</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 98765 43210</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@evergreen.edu</p>
+                    <h2 class="text-primary mb-4"><i class="fa fa-book text-white me-2"></i>Global School</h2>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Sheikh Zayed Street, Abu Dhabi, UAE</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+971 2 123 4567</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@Global.edu</p>
                 </div>
                 <!-- ... Footer content repeated ... -->
                 <div class="col-lg-3 col-md-6">
@@ -331,3 +389,10 @@
 </body>
 
 </html>
+
+
+
+
+
+
+

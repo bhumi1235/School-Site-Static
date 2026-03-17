@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Evergreen International School - Shaping Future Leaders</title>
+    <title>Global School - Shaping Future Leaders</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Evergreen International School, School, Education, Primary, Secondary" name="keywords">
+    <meta content="Global School, School, Education, Primary, Secondary" name="keywords">
     <meta
-        content="Evergreen International School - Providing holistic education from Primary to Senior Secondary with modern infrastructure."
+        content="Global School - Providing holistic education from Primary to Senior Secondary with modern infrastructure."
         name="description">
 
     <!-- Favicon -->
@@ -33,6 +33,67 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- Custom Style for Leadership Glider -->
+    <style>
+        .leadership-nav-container {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 50px;
+            padding: 6px;
+            display: flex;
+            position: relative;
+            max-width: 450px;
+            margin: 0 auto;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .leadership-btn {
+            flex: 1;
+            border: none;
+            background: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 800;
+            color: #64748b;
+            z-index: 2;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .leadership-btn.active {
+            color: #fff;
+        }
+
+        .leadership-glider {
+            position: absolute;
+            height: calc(100% - 12px);
+            width: calc(33.33% - 8px);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 50px;
+            top: 6px;
+            left: 6px;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+            box-shadow: 0 4px 12px rgba(26, 86, 219, 0.25);
+        }
+
+        .leadership-nav-container[data-active="chairman"] .leadership-glider {
+            transform: translateX(calc(100% + 4px));
+        }
+
+        .leadership-nav-container[data-active="principal"] .leadership-glider {
+            transform: translateX(calc(200% + 8px));
+        }
+
+        /* Hover effect on buttons */
+        .leadership-btn:not(.active):hover {
+            color: var(--primary);
+        }
+    </style>
 </head>
 
 <body>
@@ -50,7 +111,7 @@
             <div class="col-lg-7 px-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center me-4">
                     <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                    <small>456 Education Street, City Center</small>
+                    <small>Sheikh Zayed Street, Abu Dhabi, UAE</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center">
                     <small class="far fa-clock text-primary me-2"></small>
@@ -60,7 +121,8 @@
             <div class="col-lg-5 px-5 text-end">
                 <div class="h-100 d-inline-flex align-items-center me-4">
                     <small class="fa fa-phone-alt text-primary me-2"></small>
-                    <small>+91 98765 43210</small>
+                    <a href="contact.html" class="text-light"><small>+971 2 123 4567</small></a>
+                    <i class="fa fa-copy text-primary ms-2" style="cursor: pointer; font-size: 0.85rem;" onclick="copyToClipboard('+971 2 123 4567', this)" title="Copy Number"></i>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center mx-n2">
                     <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
@@ -78,55 +140,25 @@
 
 
 
-    <!-- Navbar Start -->
+            <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 px-4 px-lg-5">
         <a href="index.html" class="navbar-brand d-flex align-items-center">
-            <h2 class="m-0 text-primary"><i class="fa fa-school me-3"></i>Evergreen International</h2>
+            <h2 class="m-0 text-primary"><i class="fa fa-school me-3"></i>Global School</h2>
         </a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-4 py-lg-0">
-                <!-- Home & Leadership -->
-                <div class="nav-item dropdown">
-                    <a href="index.html" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Home</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="leadership.html#founder" class="dropdown-item">Founder</a>
-                        <a href="leadership.html#chairman" class="dropdown-item">Chairman</a>
-                        <a href="leadership.html#principal" class="dropdown-item">Principal</a>
-                    </div>
-                </div>
+                <a href="index.html" class="nav-item nav-link active">Home</a>
 
-                <!-- About Us -->
-                <div class="nav-item dropdown">
-                    <a href="about.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About Us</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="about.html#background" class="dropdown-item">Background</a>
-                        <a href="about.html#aim" class="dropdown-item">Aim</a>
-                        <a href="about.html#vision" class="dropdown-item">Vision & Mission</a>
-                        <a href="about.html#motto" class="dropdown-item">Motto</a>
-                        <a href="team.html" class="dropdown-item">Faculty</a>
-                        <a href="disclosure.html" class="dropdown-item">Disclosure</a>
-                    </div>
-                </div>
+                <a href="about.html" class="nav-item nav-link">About Us</a>
 
-                <!-- Infrastructure -->
-                <div class="nav-item dropdown">
-                    <a href="infrastructure.html" class="nav-link dropdown-toggle"
-                        data-bs-toggle="dropdown">Infrastructure</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="infrastructure.html#building" class="dropdown-item">Building</a>
-                        <a href="infrastructure.html#classrooms" class="dropdown-item">Classrooms</a>
-                        <a href="infrastructure.html#smart-classes" class="dropdown-item">Smart Classes</a>
-                        <a href="infrastructure.html#labs" class="dropdown-item">Labs</a>
-                        <a href="infrastructure.html#auditorium" class="dropdown-item">Auditorium</a>
-                    </div>
-                </div>
+                <a href="infrastructure.html" class="nav-item nav-link">Infrastructure</a>
 
                 <!-- Academics -->
                 <div class="nav-item dropdown">
-                    <a href="academics.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Academics</a>
+                    <a href="academics.html" class="nav-link dropdown-toggle"  >Academics</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="academics.html#curriculum" class="dropdown-item">Curriculum</a>
                         <a href="academics.html#learning" class="dropdown-item">Learning Method</a>
@@ -138,8 +170,8 @@
 
                 <!-- Beyond Academics -->
                 <div class="nav-item dropdown">
-                    <a href="beyond-academics.html" class="nav-link dropdown-toggle"
-                        data-bs-toggle="dropdown">Beyond</a>
+                    <a href="beyond-academics.html" class="nav-link dropdown-toggle" 
+                        >Beyond</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="beyond-academics.html#sports" class="dropdown-item">Sports</a>
                         <a href="beyond-academics.html#clubs" class="dropdown-item">Clubs</a>
@@ -150,10 +182,9 @@
 
                 <a href="showcase.html" class="nav-item nav-link">Showcase</a>
                 <a href="news.html" class="nav-item nav-link">News & Events</a>
-
-                <!-- Rules -->
+                                <!-- Rules -->
                 <div class="nav-item dropdown">
-                    <a href="rules.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Rules</a>
+                    <a href="rules.html" class="nav-link dropdown-toggle" >Rules</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="rules.html#school-rules" class="dropdown-item">School Rules</a>
                         <a href="rules.html#fee-rules" class="dropdown-item">Fee Rules</a>
@@ -161,21 +192,11 @@
                         <a href="rules.html#code-conduct" class="dropdown-item">Code of Conduct</a>
                     </div>
                 </div>
-
-                <!-- Gallery -->
-                <div class="nav-item dropdown">
-                    <a href="gallery.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Gallery</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="gallery.html#photos" class="dropdown-item">Photos</a>
-                        <a href="gallery.html#videos" class="dropdown-item">Videos</a>
-                        <a href="gallery.html#media" class="dropdown-item">Media</a>
-                        <a href="gallery.html#kids-corner" class="dropdown-item">Kids Corner</a>
-                    </div>
-                </div>
+                <a href="gallery.html" class="nav-item nav-link">Gallery</a>
 
                 <!-- Contact -->
                 <div class="nav-item dropdown">
-                    <a href="contact.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Contact</a>
+                    <a href="contact.html" class="nav-link dropdown-toggle"  >Contact</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="contact.html#info" class="dropdown-item">Contact Info</a>
                         <a href="contact.html#enquiry" class="dropdown-item">Enquiry</a>
@@ -316,7 +337,7 @@
                     <div class="h-100">
                         <h6 class="text-primary text-uppercase mb-2">Our Mission Overview</h6>
                         <h1 class="display-6 mb-4">A Visionary Approach to Holistic Education</h1>
-                        <p>At Evergreen International School, we stand at the intersection of tradition and innovation.
+                        <p>At Global School, we stand at the intersection of tradition and innovation.
                             Our mission is to nurture resilient, globally-minded lifelong learners who lead with
                             integrity. We believe that true education goes beyond textbooks, fostering character and
                             critical thinking.</p>
@@ -338,7 +359,80 @@
             </div>
         </div>
     </div>
-    <!-- About End -->
+    <!-- Leadership Toggle Section Start -->
+    <div class="container-xxl py-6">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <h6 class="text-primary text-uppercase mb-2">Our Leadership</h6>
+                <h1 class="display-6 mb-4">Meet the Visionaries Behind Global School</h1>
+            </div>
+            
+            <!-- Leadership Toggle Navigation -->
+            <div class="leadership-nav-wrapper mb-5 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="leadership-nav-container" id="leadershipToggle" data-active="founder">
+                    <button class="leadership-btn active" onclick="switchLeadership('founder', this)">Founder</button>
+                    <button class="leadership-btn" onclick="switchLeadership('chairman', this)">Chairman</button>
+                    <button class="leadership-btn" onclick="switchLeadership('principal', this)">Principal</button>
+                    <div class="leadership-glider"></div>
+                </div>
+            </div>
+
+            <!-- Leadership Content Tabs -->
+            <div class="tab-content wow fadeInUp" data-wow-delay="0.5s">
+                <!-- Founder Tab -->
+                <div class="tab-pane fade show active" id="founder-tab">
+                    <div class="row g-5 align-items-center">
+                        <div class="col-lg-5">
+                            <img class="img-fluid rounded shadow-lg" src="img/person_principal_formal.webp" alt="Founder">
+                        </div>
+                        <div class="col-lg-7">
+                            <h6 class="text-primary text-uppercase mb-2">The Visionary</h6>
+                            <h1 class="display-6 mb-4">Message from Our Founder</h1>
+                            <p class="fst-italic fs-5 text-dark border-start border-4 border-primary ps-4 mb-4">"Education is not just about filling a bucket, but about lighting a fire."</p>
+                            <p>My journey with Global School began with a simple dream: to create an institution where every child finds their purpose. We don't just teach; we inspire excellence and integrity.</p>
+                            <h5 class="mt-4 mb-0">Shri. R.K. Oberoi</h5>
+                            <span class="text-primary">Founder & Patron</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chairman Tab -->
+                <div class="tab-pane fade" id="chairman-tab">
+                    <div class="row g-5 align-items-center flex-row-reverse">
+                        <div class="col-lg-5">
+                            <img class="img-fluid rounded shadow-lg" src="img/team-2.webp" alt="Chairman">
+                        </div>
+                        <div class="col-lg-7">
+                            <h6 class="text-primary text-uppercase mb-2">Governance & Excellence</h6>
+                            <h1 class="display-6 mb-4">Chairman's Perspective</h1>
+                            <p>Our commitment is to provide world-class infrastructure and a nurturing environment. We are constantly evolving to meet the demands of the 21st century while keeping our traditional values intact.</p>
+                            <h5 class="mt-4 mb-0">Mrs. Anjali Mehta</h5>
+                            <span class="text-primary">Chairman</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Principal Tab -->
+                <div class="tab-pane fade" id="principal-tab">
+                    <div class="row g-5 align-items-center">
+                        <div class="col-lg-5">
+                            <img class="img-fluid rounded shadow-lg" src="img/person_principal_formal.webp" alt="Principal">
+                        </div>
+                        <div class="col-lg-7">
+                            <h6 class="text-primary text-uppercase mb-2">Academic Leadership</h6>
+                            <h1 class="display-6 mb-4">From the Principal's Desk</h1>
+                            <p>Welcome to a community of learners. As Principal, I ensure that our academic framework remains robust and our students remain curious. We strive for a balance of academics, sports, and arts.</p>
+                            <h5 class="mt-4 mb-0">Dr. Sameer Gupta</h5>
+                            <span class="text-primary">Principal (Ph.D Education)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Leadership Toggle Section End -->
+
+
 
 
     <!-- Stats Bar Start -->
@@ -645,7 +739,7 @@
                                     <i class="fa fa-quote-left fa-2x text-primary"></i>
                                 </div>
                             </div>
-                            <p class="fs-4">Evergreen International School has transformed my child's learning journey.
+                            <p class="fs-4">Global School has transformed my child's learning journey.
                                 The faculty is
                                 incredibly dedicated, and the environment fosters curiosity and critical thinking.</p>
                             <hr class="w-25 mx-auto">
@@ -694,11 +788,10 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-4">Get In Touch</h4>
-                    <h2 class="text-primary mb-4"><i class="fa fa-book text-white me-2"></i>Evergreen International
-                        School</h2>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>456 Education Street, City Center</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 98765 43210</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@evergreen.edu</p>
+                    <h2 class="text-primary mb-4"><i class="fa fa-book text-white me-2"></i>Global School</h2>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Sheikh Zayed Street, Abu Dhabi, UAE</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+971 2 123 4567</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@Global.edu</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-light mb-4">Quick Links</h4>
@@ -736,10 +829,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a href="#">Evergreen International School</a>, All Right Reserved.
+                    &copy; <a href="#">Global School</a>, All Right Reserved.
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    Designed By <a href="#">Evergreen International School Team</a>
+                    Designed By <a href="#">Global School Team</a>
                 </div>
             </div>
         </div>
@@ -761,6 +854,42 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        function switchLeadership(type, btn) {
+            const container = document.getElementById('leadershipToggle');
+            const buttons = container.querySelectorAll('.leadership-btn');
+            
+            // Update data-active for glider movement
+            container.setAttribute('data-active', type);
+            
+            // Update active button class
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Trigger Bootstrap Tab switching
+            const tabId = `#${type}-tab`;
+            const tabTrigger = new bootstrap.Tab(document.querySelector(`[data-bs-target="${tabId}"]`) || document.querySelector(`button[data-bs-target="${tabId}"]`));
+            
+            // Fallback if the original triggers are gone or different structure
+            // Since I removed the old triggers, I should target the panes directly if needed
+            // But Bootstrap Tabs can still work if I keep the tab-pane IDs
+            const pane = document.querySelector(tabId);
+            if (pane) {
+                const allPanes = document.querySelectorAll('.tab-pane');
+                allPanes.forEach(p => {
+                    p.classList.remove('show', 'active');
+                });
+                pane.classList.add('show', 'active');
+            }
+        }
+    </script>
 </body>
 
 </html>
+
+
+
+
+
+
