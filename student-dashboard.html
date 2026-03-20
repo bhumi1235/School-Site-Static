@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -135,11 +135,19 @@
 
         .search-box input {
             width: 100%;
-            padding: 10px 15px 10px 40px;
+            padding: 12px 15px 12px 45px;
             border-radius: 50px;
             border: 1px solid var(--border);
-            background: #f1f5f9;
+            background: #f8fafc;
             font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            background: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(26, 86, 219, 0.1);
+            outline: none;
         }
 
         .search-box i {
@@ -177,6 +185,67 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--primary);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Profile Dropdown */
+        .profile-dropdown {
+            position: absolute;
+            top: calc(var(--topbar-height) - 10px);
+            right: 30px;
+            width: 280px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: none;
+            z-index: 1001;
+            border: 1px solid rgba(0,0,0,0.05);
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .profile-dropdown.show {
+            display: block;
+        }
+
+        .dropdown-header {
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f1f5f9;
+            margin-bottom: 15px;
+        }
+
+        .dropdown-header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .dropdown-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            color: #64748b;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-link:hover {
+            background: #f1f5f9;
+            color: var(--primary);
         }
 
         /* Dashboard Cards */
@@ -212,12 +281,24 @@
         .welcome-section {
             background: linear-gradient(135deg, var(--primary) 0%, #06b6d4 100%);
             border-radius: 24px;
-            padding: 40px;
+            padding: 45px;
             color: #fff;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(26, 86, 219, 0.2);
+            box-shadow: 0 10px 25px -5px rgba(26, 86, 219, 0.3);
+            transition: all 0.3s ease;
+            animation: welcomeFadeIn 0.8s ease-out;
+        }
+
+        .welcome-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 35px -10px rgba(26, 86, 219, 0.4);
+        }
+
+        @keyframes welcomeFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .welcome-content {
@@ -317,7 +398,84 @@
         .bg-danger-soft { background-color: #fef2f2; color: #dc2626; }
         .bg-warning-soft { background-color: #fffbeb; color: #d97706; }
         .bg-info-soft { background-color: #f0f9ff; color: #0284c7; }
+        .border-dashed { border-style: dashed !important; }
         .bg-primary-soft { background-color: #eff6ff; color: #2563eb; }
+
+        /* Homework List Styling */
+        .homework-list-item {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 12px;
+        }
+
+        .homework-list-item:hover {
+            transform: translateX(5px);
+            border-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .homework-list-item .subject-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .status-pill {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-transform: uppercase;
+        }
+
+        .filter-tabs {
+            background: #f1f5f9;
+            padding: 5px;
+            border-radius: 50px;
+            display: inline-flex;
+            gap: 5px;
+        }
+
+        .filter-tab {
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            background: transparent;
+        }
+
+        .filter-tab.active {
+            background: #fff;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-direct-upload {
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .border-dashed {
+            border: 2px dashed #cbd5e1 !important;
+        }
 
         /* Mobile Responsive */
         @media (max-width: 991px) {
@@ -386,11 +544,28 @@
             <input type="text" placeholder="Search for assignments, events...">
         </div>
         <div class="user-profile">
-            <div class="profile-info">
-                <h6 id="user-display-name">Arjun Mehta</h6>
-                <span id="user-display-role">Class 12-A â€¢ ID: 2024-101</span>
+            <img src="img/testimonial-2.webp" alt="Profile" class="profile-img" id="user-display-img" onclick="toggleProfileDropdown(event)">
+            
+            <!-- Profile Dropdown Card -->
+            <div class="profile-dropdown" id="profileDropdown">
+                <div class="dropdown-header">
+                    <img src="img/testimonial-2.webp" alt="Profile" id="dropdown-user-img">
+                    <h6 class="mb-0" id="dropdown-user-name">Arjun Mehta</h6>
+                    <span class="text-muted small" id="dropdown-user-role">Class 12-A • ID: 2024-101</span>
+                </div>
+                <div class="dropdown-body">
+                    <a href="javascript:void(0)" class="dropdown-link" onclick="showSection('settings', null); switchSettingsTab('profile', $('.settings-tabs a:first-child')); toggleProfileDropdown()">
+                        <i class="fa fa-user-circle"></i> View Profile
+                    </a>
+                    <a href="javascript:void(0)" class="dropdown-link" onclick="showSection('settings', null); toggleProfileDropdown()">
+                        <i class="fa fa-cog"></i> Account Settings
+                    </a>
+                    <hr class="my-2">
+                    <a href="portal-login.html" class="dropdown-link text-danger">
+                        <i class="fa fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
             </div>
-            <img src="img/testimonial-2.webp" alt="Profile" class="profile-img" id="user-display-img">
         </div>
     </div>
 
@@ -401,7 +576,7 @@
             <!-- Welcome Section -->
             <div class="welcome-section">
                 <div class="welcome-content">
-                    <h1 id="greeting">Good Morning, Arjun! ðŸ‘‹</h1>
+                    <h1 id="greeting">Good Morning, Arjun! 👋</h1>
                     <p class="mb-0" id="welcome-message">Welcome back to your dashboard. You have 3 assignments due today and your next class starts in 15 minutes.</p>
                 </div>
                 <i class="fa fa-graduation-cap welcome-img"></i>
@@ -410,7 +585,7 @@
             <!-- Overview Stats -->
             <div class="row g-4 mb-5">
                 <div class="col-xl-3 col-md-6">
-                    <div class="stat-card">
+                    <div class="stat-card h-100">
                         <div class="icon-box icon-blue">
                             <i class="fa fa-user-clock"></i>
                         </div>
@@ -422,7 +597,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="stat-card">
+                    <div class="stat-card h-100">
                         <div class="icon-box icon-green">
                             <i class="fa fa-tasks"></i>
                         </div>
@@ -434,7 +609,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="stat-card">
+                    <div class="stat-card h-100">
                         <div class="icon-box icon-orange">
                             <i class="fa fa-award"></i>
                         </div>
@@ -446,7 +621,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="stat-card">
+                    <div class="stat-card h-100">
                         <div class="icon-box icon-purple">
                             <i class="fa fa-bell"></i>
                         </div>
@@ -517,57 +692,74 @@
                         </div>
                     </div>
 
-                    <div class="stat-card">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h5 class="mb-0">Upcoming Holidays & Vacations</h5>
-                            <a href="#" class="btn btn-link btn-sm p-0 text-decoration-none">Full Academic Calendar</a>
-                        </div>
-                        <div id="holidays-list" class="row g-3">
-                            <!-- Populated by JS as grid items -->
-                        </div>
-                    </div>
                 </div>
+                <!-- Right Side: Analytics Sidebar -->
                 <div class="col-lg-4">
                     <div id="attendance-side-content">
                         <!-- Summary Card (populated by JS) -->
                     </div>
-                    <div class="stat-card mt-4">
-                        <h5>Academic Progress</h5>
-                        <div class="mt-3">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="small text-muted">Classes Attended</span>
-                                <span class="fw-bold" id="classes-attended-val">182/200</span>
-                            </div>
-                            <div class="progress mb-3" style="height: 6px;">
-                                <div class="progress-bar bg-success" id="classes-attended-bar" style="width: 91%"></div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="small text-muted text-danger fw-bold">Classes Left</span>
-                                <span class="badge bg-danger" id="classes-left-val">18 Days</span>
-                            </div>
-                            <small class="text-muted d-block mt-2" style="font-size: 11px;">*Estimated classes until Final Exams (Apr 10)</small>
+                    
+                    <!-- Compact Academic Progress -->
+                    <div class="stat-card mt-3 p-3 border-start border-4 border-primary">
+                        <h6 class="mb-2 text-uppercase text-muted fw-bold" style="font-size:0.7rem; letter-spacing:0.5px;"><i class="fa fa-chart-line me-2"></i>Academic Progress</h6>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="small fw-semibold text-dark" style="font-size: 0.8rem;">Classes Attended</span>
+                            <span class="small fw-bold text-success" id="classes-attended-val" style="font-size: 0.8rem;">182/200</span>
                         </div>
+                        <div class="progress mb-2" style="height: 5px; border-radius: 10px;">
+                            <div class="progress-bar bg-success" id="classes-attended-bar" style="width: 91%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="small fw-semibold text-danger" style="font-size: 0.8rem;">Classes Left</span>
+                            <span class="badge bg-danger-soft text-danger fw-bold" id="classes-left-val" style="font-size: 0.7rem;">18 Days</span>
+                        </div>
+                        <div class="text-muted" style="font-size: 9px; margin-top: 2px;">*Est. until Final Exams (Apr 10)</div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Full Width Holidays Section -->
+            <div class="stat-card mt-4 p-4 border border-light shadow-sm" style="background-color: #fcfdfd;">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0 fw-bold d-flex align-items-center gap-2"><i class="fa fa-calendar-star text-warning"></i> Upcoming Holidays & Vacations</h5>
+                    <a href="#" class="btn btn-primary btn-sm px-3 rounded-pill text-white shadow-sm" style="font-size: 0.8rem;">Full Academic Calendar</a>
+                </div>
+                <div id="holidays-list" class="row g-3">
+                    <!-- Populated by JS as grid items -->
+                </div>
+            </div>
+
+            <!-- Historical Attendance: Previous Years (Full Width) -->
+            <div class="stat-card mt-4" id="attendance-history-card">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h5 class="mb-0">Previous Years' Attendance</h5>
+                        <small class="text-muted">Academic history from all enrolled classes</small>
+                    </div>
+                    <span class="badge bg-primary-soft text-primary rounded-pill px-3">Class 8 – Current</span>
+                </div>
+                <div class="filter-tabs mb-4">
+                    <button class="filter-tab" onclick="window.showHistoricalAttendance(6, this)">Class 6</button>
+                    <button class="filter-tab" onclick="window.showHistoricalAttendance(7, this)">Class 7</button>
+                    <button class="filter-tab" onclick="window.showHistoricalAttendance(8, this)">Class 8</button>
+                </div>
+                <div id="historical-attendance-content"><!-- Populated by JS --></div>
             </div>
         </div>
 
         <!-- Homework Section -->
         <div id="homework-section" class="dashboard-section d-none">
-            <h2 class="mb-4" id="homework-title">Assignments & Homework</h2>
-            <div class="stat-card">
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-light">
-                            <tr id="homework-table-header">
-                                <!-- Populated by JS -->
-                            </tr>
-                        </thead>
-                        <tbody id="homework-table-body">
-                            <!-- Populated by JS -->
-                        </tbody>
-                    </table>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 id="homework-title">Assignments & Homework</h2>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="window.filterHomework('all', this)">All</button>
+                    <button class="filter-tab" onclick="window.filterHomework('pending', this)">Pending</button>
+                    <button class="filter-tab" onclick="window.filterHomework('completed', this)">Completed</button>
                 </div>
+            </div>
+            
+            <div class="row g-4" id="homework-grid">
+                <!-- Populated by JS -->
             </div>
         </div>
 
@@ -581,82 +773,43 @@
 
         <!-- Timetable Section -->
         <div id="timetable-section" class="dashboard-section d-none">
-            <h2 class="mb-4">Weekly Time Table</h2>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+                <h2 class="mb-0">Class Timetable</h2>
+                <div class="d-flex align-items-center gap-2">
+                    <div class="filter-tabs m-0">
+                        <button class="filter-tab active" id="btn-view-weekly" onclick="switchTimetableView('weekly')">Weekly</button>
+                        <button class="filter-tab" id="btn-view-monthly" onclick="switchTimetableView('monthly')">Monthly</button>
+                    </div>
+                </div>
+            </div>
+
             <div class="stat-card">
-                <div class="table-responsive">
-                    <table class="table table-bordered text-center align-middle">
-                        <thead class="bg-primary text-white">
-                            <tr>
-                                <th>Period</th>
-                                <th>Mon</th>
-                                <th>Tue</th>
-                                <th>Wed</th>
-                                <th>Thu</th>
-                                <th>Fri</th>
-                                <th>Sat</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>09:00 - 10:00</td>
-                                <td>Math</td>
-                                <td>English</td>
-                                <td>Physics</td>
-                                <td>Math</td>
-                                <td>Chemistry</td>
-                                <td>PE</td>
-                            </tr>
-                            <tr>
-                                <td>10:00 - 11:00</td>
-                                <td>Physics</td>
-                                <td>Math</td>
-                                <td>English</td>
-                                <td>Chemistry</td>
-                                <td>Math</td>
-                                <td>History</td>
-                            </tr>
-                            <tr>
-                                <td colspan="7" class="bg-light small">Short Break (11:00 - 11:15)</td>
-                            </tr>
-                            <tr>
-                                <td>11:15 - 12:15</td>
-                                <td>Chemistry</td>
-                                <td>Physics</td>
-                                <td>Math</td>
-                                <td>PE</td>
-                                <td>English</td>
-                                <td>Physics</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <!-- Timetable Controls -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3" onclick="changeTimetableDate(-1)">
+                        <i class="fa fa-chevron-left me-2"></i>Previous
+                    </button>
+                    <h5 class="mb-0 fw-bold text-center" id="timetable-date-range">16 Mar - 22 Mar, 2026</h5>
+                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3" onclick="changeTimetableDate(1)">
+                        Next<i class="fa fa-chevron-right ms-2"></i>
+                    </button>
+                </div>
+
+                <!-- Timetable Renders Here -->
+                <div id="timetable-render-container">
+                    <!-- Populated by JS -->
                 </div>
             </div>
         </div>
 
         <div id="settings-section" class="dashboard-section d-none">
-            <h2 class="mb-4">Portal Settings</h2>
-            <div class="row g-4">
-                <div class="col-md-3">
-                    <div class="stat-card p-0 overflow-hidden">
-                        <div class="list-group list-group-flush settings-tabs">
-                            <a href="javascript:void(0)" class="list-group-item list-group-item-action active p-3" onclick="switchSettingsTab('profile', this)">
-                                <i class="fa fa-user me-2"></i> Profile Info
-                            </a>
-                            <a href="javascript:void(0)" class="list-group-item list-group-item-action p-3" onclick="switchSettingsTab('notifications', this)">
-                                <i class="fa fa-bell me-2"></i> Notifications
-                            </a>
-                            <a href="javascript:void(0)" class="list-group-item list-group-item-action p-3" onclick="switchSettingsTab('security', this)">
-                                <i class="fa fa-shield-alt me-2"></i> Security
-                            </a>
-                            <a href="javascript:void(0)" class="list-group-item list-group-item-action p-3" onclick="switchSettingsTab('preferences', this)">
-                                <i class="fa fa-sliders-h me-2"></i> Preferences
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div id="settings-content-container" class="col-md-9">
-                    <!-- Populated by JS -->
-                </div>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">Portal Settings</h2>
+                <button class="btn btn-primary rounded-pill px-4 shadow-sm" onclick="alert('Settings Saved Successfully!')"><i class="fa fa-save me-2"></i>Save Changes</button>
+            </div>
+            
+            <div id="settings-content-container">
+                <!-- Populated by JS -->
             </div>
         </div>
 
@@ -712,18 +865,92 @@
             const targetSection = document.getElementById(`${sectionId}-section`) || document.getElementById('generic-section');
             targetSection.classList.remove('d-none');
 
-            // If using generic section, update title
+             // If using generic section, update title
             if (!document.getElementById(`${sectionId}-section`)) {
                 const title = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
                 targetSection.querySelector('.section-title').innerText = title;
             }
         }
 
+        // Profile Dropdown Toggle
+        function toggleProfileDropdown(e) {
+            if (e) e.stopPropagation();
+            $('#profileDropdown').toggleClass('show');
+        }
+
+        // Close dropdown when clicking outside
+        $(document).click(function(e) {
+            if (!$(e.target).closest('.user-profile').length) {
+                $('#profileDropdown').removeClass('show');
+            }
+        });
+
+        // Leave Application Handler
+        window.handleLeaveModal = function() {
+            $('#modalTitle').text("Apply for Leave");
+            $('#modalIcon').html('<i class="fa fa-envelope-open-text text-primary"></i>');
+            $('#modalMessage').text("Please provide your leave details below.");
+            $('#modalContent').html(`
+                <form id="leaveForm" class="text-start">
+                    <div class="mb-3">
+                        <label class="small text-muted mb-1">Leave Type</label>
+                        <select class="form-select rounded-3">
+                            <option>Sick Leave</option>
+                            <option>Casual Leave</option>
+                            <option>Medical Emergency</option>
+                            <option>Family Event</option>
+                        </select>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <label class="small text-muted mb-1">Start Date</label>
+                            <input type="date" class="form-control rounded-3" value="${new Date().toISOString().split('T')[0]}">
+                        </div>
+                        <div class="col-6">
+                            <label class="small text-muted mb-1">End Date</label>
+                            <input type="date" class="form-control rounded-3" value="${new Date().toISOString().split('T')[0]}">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="small text-muted mb-1">Reason for Leave</label>
+                        <textarea class="form-control rounded-3" rows="3" placeholder="Explain your reason..."></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100 rounded-pill" onclick="submitLeave()">Submit Application</button>
+                </form>
+            `);
+            
+            const modal = new bootstrap.Modal(document.getElementById('actionModal'));
+            modal.show();
+        };
+
+        window.submitLeave = function() {
+            const btn = $('#leaveForm button');
+            btn.html('<i class="fa fa-spinner fa-spin"></i> Submitting...');
+            btn.prop('disabled', true);
+            
+            setTimeout(() => {
+                $('#modalContent').html(`
+                    <div class="text-center py-4">
+                        <div class="icon-box icon-green mx-auto mb-3" style="width: 80px; height: 80px; font-size: 2.5rem;">
+                            <i class="fa fa-check-circle"></i>
+                        </div>
+                        <h5>Application Submitted!</h5>
+                        <p class="text-muted small">Your leave request has been sent to your class teacher for approval.</p>
+                        <div class="alert alert-info py-2 small text-start">
+                            <strong>Reference ID:</strong> LV-2026-4052<br>
+                            <strong>Status:</strong> Pending Approval
+                        </div>
+                    </div>
+                `);
+                $('#modalMessage').text("");
+            }, 1500);
+        };
+
         // Data for dynamic population
         const dashboardData = {
             student: {
                 name: "Arjun Mehta",
-                role: "Class 12-A â€¢ ID: 2024-101",
+                role: "Class 12-A • ID: 2024-101",
                 img: "img/testimonial-2.webp",
                 greetingName: "Arjun",
                 message: "You have 3 assignments due today and your next class starts in 15 minutes.",
@@ -731,7 +958,7 @@
                 stats: { attendance: "Total Attendance", homework: "Assignments Done", grade: "Overall Score" },
                 actions: [
                     { icon: "fa-chart-line", color: "text-primary", label: "View My Grades" },
-                    { icon: "fa-upload", color: "text-success", label: "Submit Work" },
+                    { icon: "fa-upload", color: "text-success", label: "Active Assignments" },
                     { icon: "fa-download", color: "text-info", label: "Download Notes" },
                     { icon: "fa-envelope", color: "text-warning", label: "Contact Teacher" },
                     { icon: "fa-calendar-alt", color: "text-danger", label: "Event Schedule" },
@@ -739,7 +966,7 @@
                 ],
                 attendance: {
                     title: "Attendance Overview",
-                    actions: `<button class="btn btn-primary btn-sm rounded-pill"><i class="fa fa-envelope me-2"></i>Request Leave</button>`,
+                    actions: `<button class="btn btn-primary btn-sm rounded-pill" onclick="handleLeaveModal()"><i class="fa fa-envelope me-2"></i>Apply for Leave</button>`,
                     currentMonth: 2, // March (0-indexed for simplicity with an array of 12 months starting Apr)
                     academicYear: [
                         { name: "April 2025", days: 30, present: 22, absent: 0, late: 0, holidays: [14], startDay: 1 }, // TueClass 12-A
@@ -787,30 +1014,103 @@
                     `
                 },
                 homework: {
-                    header: `<th>Subject</th><th>Assignment</th><th>Due Date</th><th>Action</th>`,
                     body: [
-                        { sub: "Math", task: "Calculus Excercise 4.2", due: "16 Mar", action: `<button class="btn btn-sm btn-primary">Submit</button>` },
-                        { sub: "Physics", task: "Optics Lab Report", due: "18 Mar", action: `<button class="btn btn-sm btn-outline-primary">Open</button>` },
-                        { sub: "English", task: "Essay: Modern Poetry", due: "20 Mar", action: `<button class="btn btn-sm btn-outline-secondary" disabled>Done</button>` }
+                        { id: 0, sub: "Math", task: "Calculus Excercise 4.2", due: "16 Mar", status: "pending" },
+                        { id: 1, sub: "Physics", task: "Optics Lab Report", due: "18 Mar", status: "pending" },
+                        { id: 2, sub: "English", task: "Essay: Modern Poetry", due: "20 Mar", status: "completed" }
                     ]
                 },
                 fees: `
-                    <div class="row g-4">
-                        <div class="col-md-4">
-                            <div class="stat-card border-top border-primary border-4">
-                                <h6 class="text-muted small">Outstanding Balance</h6>
-                                <h3 class="text-primary">â‚¹0.00</h3>
-                                <p class="text-success small mb-0"><i class="fa fa-check-circle me-1"></i>All clear!</p>
+                    <!-- Current Payment Status -->
+                    <div class="stat-card border-top border-primary border-4 mb-4">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <div>
+                                <h6 class="text-muted small text-uppercase fw-bold mb-1">Current Billing Status</h6>
+                                <h3 class="text-primary mb-0">₹0.00</h3>
+                                <div class="text-success small mt-1 fw-bold align-items-center d-flex gap-1"><i class="fa fa-check-circle"></i>All Dues Cleared</div>
+                            </div>
+                            <div class="text-end">
+                                <button class="btn btn-outline-primary btn-sm rounded-pill px-4 shadow-sm fw-bold d-flex align-items-center gap-2"><i class="fa fa-download"></i> Download NOC</button>
                             </div>
                         </div>
-                        <div class="col-md-8">
-                            <div class="stat-card">
-                                <h5>Recent Payments</h5>
-                                <div class="list-group list-group-flush">
-                                    <div class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                        <div><h6>March Quarter Fees</h6><small class="text-muted">10 Mar 2026</small></div>
-                                        <div class="text-end"><h6>â‚¹12,450</h6><span class="badge bg-success">Paid</span></div>
+                    </div>
+
+                    <!-- Fee History Details -->
+                    <div class="stat-card mb-4" style="background-color: #f8fafc;">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+                            <h5 class="mb-0 fw-bold d-flex align-items-center gap-2"><i class="fa fa-history text-primary"></i>Fee Payment History</h5>
+                            <span class="badge bg-primary-soft text-primary rounded-pill px-3 shadow-sm">Academic Year 2025–2026</span>
+                        </div>
+
+                        <!-- Yearly Summary -->
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+                                    <span class="small text-muted fw-bold text-uppercase d-block mb-1">Total Annual Fee</span>
+                                    <h4 class="mb-0 text-dark">₹49,800</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+                                    <span class="small text-muted fw-bold text-uppercase d-block mb-1">Total Amount Paid</span>
+                                    <h4 class="mb-0 text-success">₹49,800</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quarterly Breakdown -->
+                        <h6 class="mb-3 fw-bold text-dark text-uppercase" style="font-size: 0.8rem; letter-spacing: 0.5px;">Quarterly Breakdown</h6>
+                        <div class="list-group list-group-flush border rounded-3 bg-white overflow-hidden shadow-sm">
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3 transition-hover">
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Q4 (Jan – Mar 2026)</h6>
+                                    <small class="text-muted"><i class="fa fa-calendar-check me-1"></i>Paid on 10 Mar 2026</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="text-end">
+                                        <h6 class="mb-1">₹12,450</h6>
+                                        <span class="badge bg-success-soft text-success rounded-pill px-2">Paid</span>
                                     </div>
+                                    <button class="btn btn-sm btn-light text-primary rounded-circle border transition-hover" title="Download Receipt" style="width:35px;height:35px;"><i class="fa fa-download"></i></button>
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3 transition-hover">
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Q3 (Oct – Dec 2025)</h6>
+                                    <small class="text-muted"><i class="fa fa-calendar-check me-1"></i>Paid on 05 Oct 2025</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="text-end">
+                                        <h6 class="mb-1">₹12,450</h6>
+                                        <span class="badge bg-success-soft text-success rounded-pill px-2">Paid</span>
+                                    </div>
+                                    <button class="btn btn-sm btn-light text-primary rounded-circle border transition-hover" title="Download Receipt" style="width:35px;height:35px;"><i class="fa fa-download"></i></button>
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3 transition-hover">
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Q2 (Jul – Sep 2025)</h6>
+                                    <small class="text-muted"><i class="fa fa-calendar-check me-1"></i>Paid on 12 Jul 2025</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="text-end">
+                                        <h6 class="mb-1">₹12,450</h6>
+                                        <span class="badge bg-success-soft text-success rounded-pill px-2">Paid</span>
+                                    </div>
+                                    <button class="btn btn-sm btn-light text-primary rounded-circle border transition-hover" title="Download Receipt" style="width:35px;height:35px;"><i class="fa fa-download"></i></button>
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3 transition-hover">
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Q1 (Apr – Jun 2025)</h6>
+                                    <small class="text-muted"><i class="fa fa-calendar-check me-1"></i>Paid on 08 Apr 2025</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="text-end">
+                                        <h6 class="mb-1">₹12,450</h6>
+                                        <span class="badge bg-success-soft text-success rounded-pill px-2">Paid</span>
+                                    </div>
+                                    <button class="btn btn-sm btn-light text-primary rounded-circle border transition-hover" title="Download Receipt" style="width:35px;height:35px;"><i class="fa fa-download"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -823,82 +1123,61 @@
                 ],
                 settings: {
                     profile: `
-                        <div class="stat-card">
-                            <h5 class="mb-4">Profile Information</h5>
-                            <form>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label small text-muted">Full Name</label>
-                                        <input type="text" class="form-control" value="Arjun Mehta">
+                        <div class="row g-4 mb-4">
+                            <!-- Left: Profile & Preferences -->
+                            <div class="col-lg-6">
+                                <div class="stat-card h-100 shadow-sm border-0">
+                                    <h5 class="mb-4 fw-bold"><i class="fa fa-user-circle me-2 text-primary"></i>Personal Profile</h5>
+                                    <div class="mb-3">
+                                        <label class="form-label small text-muted fw-bold">Full Name</label>
+                                        <input type="text" class="form-control bg-light text-dark fw-medium" value="Arjun Mehta">
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label small text-muted">Roll Number</label>
-                                        <input type="text" class="form-control" value="2024-101" readonly>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label small text-muted fw-bold">Roll Number</label>
+                                            <input type="text" class="form-control bg-light text-dark fw-medium" value="2024-101" readonly>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label small text-muted fw-bold">Phone</label>
+                                            <input type="text" class="form-control bg-light text-dark fw-medium" value="+971 2 123 4567">
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label small text-muted">Email Address</label>
-                                        <input type="email" class="form-control" value="arjun.mehta@example.com">
+                                    <hr class="my-4 text-muted opacity-25">
+                                    <h6 class="fw-bold mb-3 d-flex align-items-center"><i class="fa fa-sliders-h me-2 text-info"></i>App Preferences</h6>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label small text-muted">Language</label>
+                                            <select class="form-select bg-light text-dark"><option selected>English</option><option>Hindi</option></select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label small text-muted">Time-Zone</label>
+                                            <select class="form-select bg-light text-dark"><option selected>(UTC+05:30) India</option><option>Gulf Time</option></select>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label small text-muted">Phone Number</label>
-                                        <input type="text" class="form-control" value="+971 2 123 4567">
-                                    </div>
-                                    <div class="col-12 mt-4">
-                                        <button type="submit" class="btn btn-primary px-4">Update Profile</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    `,
-                    notifications: `
-                        <div class="stat-card">
-                            <h5 class="mb-4">Notification Preferences</h5>
-                            <div class="list-group list-group-flush">
-                                <div class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                    <div><h6>Push Notifications</h6><small class="text-muted">Receive alerts on your mobile device</small></div>
-                                    <div class="form-check form-switch"><input class="form-check-switch" type="checkbox" checked></div>
-                                </div>
-                                <div class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                    <div><h6>Email Alerts</h6><small class="text-muted">Receive weekly progress reports</small></div>
-                                    <div class="form-check form-switch"><input class="form-check-switch" type="checkbox" checked></div>
-                                </div>
-                                <div class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                    <div><h6>SMS Notifications</h6><small class="text-muted">Urgent school announcements</small></div>
-                                    <div class="form-check form-switch"><input class="form-check-switch" type="checkbox"></div>
                                 </div>
                             </div>
-                        </div>
-                    `,
-                    security: `
-                        <div class="stat-card">
-                            <h5 class="mb-4">Change Password</h5>
-                            <form>
-                                <div class="mb-3">
-                                    <label class="form-label small text-muted">Current Password</label>
-                                    <input type="password" class="form-control">
+                            
+                            <!-- Right: Notifications & Security -->
+                            <div class="col-lg-6">
+                                <div class="stat-card mb-4 shadow-sm border-0" style="background-color: #f8fafc;">
+                                    <h5 class="mb-4 fw-bold"><i class="fa fa-bell me-2 text-warning"></i>Notifications</h5>
+                                    <div class="d-flex justify-content-between align-items-center mb-3 p-3 bg-white rounded border border-light shadow-sm transition-hover">
+                                        <div><h6 class="mb-0 fw-bold">Push Notifications</h6><small class="text-muted d-block mt-1">Mobile app alerts</small></div>
+                                        <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width:40px;height:20px;cursor:pointer;"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center p-3 bg-white rounded border border-light shadow-sm transition-hover">
+                                        <div><h6 class="mb-0 fw-bold">Email Digest</h6><small class="text-muted d-block mt-1">Weekly updates</small></div>
+                                        <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width:40px;height:20px;cursor:pointer;"></div>
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label small text-muted">New Password</label>
-                                    <input type="password" class="form-control">
+                                <div class="stat-card shadow-sm border border-danger border-opacity-10" style="background-color: #fffafb;">
+                                    <h5 class="mb-4 fw-bold text-danger"><i class="fa fa-shield-alt me-2"></i>Security</h5>
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control bg-white mb-2 shadow-sm text-dark" placeholder="Current Password">
+                                        <input type="password" class="form-control bg-white shadow-sm text-dark" placeholder="New Password">
+                                    </div>
+                                    <button class="btn btn-outline-danger w-100 fw-bold rounded-pill">Update Password</button>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label small text-muted">Confirm New Password</label>
-                                    <input type="password" class="form-control">
-                                </div>
-                                <button type="submit" class="btn btn-primary mt-3">Reset Password</button>
-                            </form>
-                        </div>
-                    `,
-                    preferences: `
-                        <div class="stat-card">
-                            <h5 class="mb-4">App Preferences</h5>
-                            <div class="mb-4">
-                                <label class="form-label small text-muted">Display Language</label>
-                                <select class="form-select">
-                                    <option selected>English (US)</option>
-                                    <option>Hindi</option>
-                                    <option>Spanish</option>
-                                </select>
                             </div>
                         </div>
                     `
@@ -990,26 +1269,98 @@
                     ]
                 },
                 fees: `
-                    <div class="stat-card border-top border-danger border-4 mb-4">
-                        <div class="d-flex justify-content-between align-items-center">
+                    <!-- Current Payment Status -->
+                    <div class="stat-card border-top border-danger border-4 mb-4" style="background-color: #fffafb;">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
                             <div>
-                                <h6 class="text-muted small">Pending Payments</h6>
-                                <h3 class="text-danger">â‚¹4,200.00</h3>
-                                <p class="text-muted small mb-0">Due Date: 20 March 2026</p>
+                                <h6 class="text-muted small text-uppercase fw-bold mb-1">Current Billing Status</h6>
+                                <h3 class="text-danger mb-0">₹12,450</h3>
+                                <div class="text-danger small mt-1 fw-bold d-flex align-items-center gap-1"><i class="fa fa-exclamation-circle"></i> Due: 20 March 2026</div>
                             </div>
-                            <button class="btn btn-danger px-4">Pay Now <i class="fa fa-arrow-right ms-2"></i></button>
+                            <div class="text-end">
+                                <button class="btn btn-danger btn-sm rounded-pill px-4 fw-bold shadow-sm d-flex align-items-center gap-2"><i class="fa fa-credit-card"></i> Pay Now</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <h5>Payment History</h5>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Status</th><th>Receipt</th></tr></thead>
-                                <tbody>
-                                    <tr><td>10 Jan 2026</td><td>Uniform & Books</td><td>â‚¹8,500</td><td><span class="badge bg-success">Paid</span></td><td><a href="#"><i class="fa fa-download"></i></a></td></tr>
-                                    <tr><td>05 Jan 2026</td><td>Admission Fee</td><td>â‚¹25,000</td><td><span class="badge bg-success">Paid</span></td><td><a href="#"><i class="fa fa-download"></i></a></td></tr>
-                                </tbody>
-                            </table>
+
+                    <!-- Fee History Details -->
+                    <div class="stat-card mb-4" style="background-color: #f8fafc;">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+                            <h5 class="mb-0 fw-bold d-flex align-items-center gap-2"><i class="fa fa-history text-primary"></i>Fee Payment History</h5>
+                            <span class="badge bg-primary-soft text-primary rounded-pill px-3 shadow-sm">Academic Year 2025–2026</span>
+                        </div>
+
+                        <!-- Yearly Summary -->
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+                                    <span class="small text-muted fw-bold text-uppercase d-block mb-1">Total Annual Fee</span>
+                                    <h4 class="mb-0 text-dark">₹49,800</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 bg-white rounded-3 border shadow-sm h-100">
+                                    <span class="small text-muted fw-bold text-uppercase d-block mb-1">Total Amount Paid</span>
+                                    <h4 class="mb-0 text-success">₹37,350</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quarterly Breakdown -->
+                        <h6 class="mb-3 fw-bold text-dark text-uppercase" style="font-size: 0.8rem; letter-spacing: 0.5px;">Quarterly Breakdown</h6>
+                        <div class="list-group list-group-flush border rounded-3 bg-white overflow-hidden shadow-sm">
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3" style="background-color: #fffafb;">
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Q4 (Jan – Mar 2026)</h6>
+                                    <small class="text-danger fw-bold"><i class="fa fa-exclamation-circle me-1"></i>Due 20 Mar 2026</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="text-end">
+                                        <h6 class="mb-1 text-danger">₹12,450</h6>
+                                        <span class="badge bg-danger-soft text-danger rounded-pill px-2">Pending</span>
+                                    </div>
+                                    <button class="btn btn-sm btn-danger rounded-circle shadow-sm" title="Pay Now" style="width:35px;height:35px;"><i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3 transition-hover">
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Q3 (Oct – Dec 2025)</h6>
+                                    <small class="text-muted"><i class="fa fa-calendar-check me-1"></i>Paid on 05 Oct 2025</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="text-end">
+                                        <h6 class="mb-1">₹12,450</h6>
+                                        <span class="badge bg-success-soft text-success rounded-pill px-2">Paid</span>
+                                    </div>
+                                    <button class="btn btn-sm btn-light text-primary rounded-circle border transition-hover" title="Download Receipt" style="width:35px;height:35px;"><i class="fa fa-download"></i></button>
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3 transition-hover">
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Q2 (Jul – Sep 2025)</h6>
+                                    <small class="text-muted"><i class="fa fa-calendar-check me-1"></i>Paid on 12 Jul 2025</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="text-end">
+                                        <h6 class="mb-1">₹12,450</h6>
+                                        <span class="badge bg-success-soft text-success rounded-pill px-2">Paid</span>
+                                    </div>
+                                    <button class="btn btn-sm btn-light text-primary rounded-circle border transition-hover" title="Download Receipt" style="width:35px;height:35px;"><i class="fa fa-download"></i></button>
+                                </div>
+                            </div>
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3 transition-hover">
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Q1 (Apr – Jun 2025)</h6>
+                                    <small class="text-muted"><i class="fa fa-calendar-check me-1"></i>Paid on 08 Apr 2025</small>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="text-end">
+                                        <h6 class="mb-1">₹12,450</h6>
+                                        <span class="badge bg-success-soft text-success rounded-pill px-2">Paid</span>
+                                    </div>
+                                    <button class="btn btn-sm btn-light text-primary rounded-circle border transition-hover" title="Download Receipt" style="width:35px;height:35px;"><i class="fa fa-download"></i></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 `,
@@ -1020,74 +1371,55 @@
                 ],
                 settings: {
                     profile: `
-                        <div class="stat-card">
-                            <h5 class="mb-4">Parent Profile</h5>
-                            <form>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label small text-muted">Father's Name</label>
-                                        <input type="text" class="form-control" value="Rajesh Mehta">
+                        <div class="row g-4 mb-4">
+                            <!-- Left: Profile & Preferences -->
+                            <div class="col-lg-6">
+                                <div class="stat-card h-100 shadow-sm border-0">
+                                    <h5 class="mb-4 fw-bold"><i class="fa fa-users me-2 text-primary"></i>Guardian Profile</h5>
+                                    <div class="mb-3">
+                                        <label class="form-label small text-muted fw-bold">Father's Name</label>
+                                        <input type="text" class="form-control bg-light text-dark fw-medium" value="Rajesh Mehta">
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label small text-muted">Occupation</label>
-                                        <input type="text" class="form-control" value="Business Consultant">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label small text-muted fw-bold">Occupation</label>
+                                            <input type="text" class="form-control bg-light text-dark fw-medium" value="Business Consultant">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label small text-muted fw-bold">Phone</label>
+                                            <input type="text" class="form-control bg-light text-dark fw-medium" value="+91 99999 12345">
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label small text-muted">Email</label>
-                                        <input type="email" class="form-control" value="rajesh.mehta@example.com">
+                                    <hr class="my-4 text-muted opacity-25">
+                                    <h6 class="fw-bold mb-3 d-flex align-items-center"><i class="fa fa-mobile-alt me-2 text-info"></i>Communication Preferences</h6>
+                                    <div class="mb-3">
+                                        <label class="form-label small text-muted">Primary Mode</label>
+                                        <select class="form-select bg-light text-dark"><option selected>WhatsApp</option><option>Email</option></select>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label small text-muted">Registered Phone</label>
-                                        <input type="text" class="form-control" value="+91 99999 12345">
-                                    </div>
-                                    <div class="col-12 mt-4">
-                                        <button type="submit" class="btn btn-primary px-4">Save Profile</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    `,
-                    notifications: `
-                        <div class="stat-card">
-                            <h5 class="mb-4">Parental Alerts</h5>
-                            <p>Configure which alerts you receive about Arjun's progress.</p>
-                            <div class="list-group list-group-flush">
-                                <div class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                    <div><h6>Attendance Alerts</h6><small class="text-muted">SMS if Arjun is absent/late</small></div>
-                                    <div class="form-check form-switch"><input class="form-check-switch" type="checkbox" checked></div>
-                                </div>
-                                <div class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                    <div><h6>Grade Releases</h6><small class="text-muted">Instant alert when report card is out</small></div>
-                                    <div class="form-check form-switch"><input class="form-check-switch" type="checkbox" checked></div>
-                                </div>
-                                <div class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                    <div><h6>Fee Reminders</h6><small class="text-muted">7 days before due date</small></div>
-                                    <div class="form-check form-switch"><input class="form-check-switch" type="checkbox" checked></div>
                                 </div>
                             </div>
-                        </div>
-                    `,
-                    security: `
-                        <div class="stat-card">
-                            <h5 class="mb-4">Security Settings</h5>
-                            <div class="mb-3">
-                                <label class="form-label small text-muted">Login PIN</label>
-                                <input type="password" class="form-control" placeholder="****">
-                                <small class="text-info mt-1 d-block"><i class="fa fa-info-circle me-1"></i>Used for fee payments and sensitive docs.</small>
-                            </div>
-                            <button class="btn btn-outline-primary mt-3">Reset Parent PIN</button>
-                        </div>
-                    `,
-                    preferences: `
-                        <div class="stat-card">
-                            <h5 class="mb-4">Interface Preferences</h5>
-                            <div class="mb-4">
-                                <label class="form-label small text-muted">Primary Contact Mode</label>
-                                <select class="form-select">
-                                    <option selected>WhatsApp</option>
-                                    <option>Email</option>
-                                    <option>SMS</option>
-                                </select>
+                            
+                            <!-- Right: Notifications & Security -->
+                            <div class="col-lg-6">
+                                <div class="stat-card mb-4 shadow-sm border-0" style="background-color: #f8fafc;">
+                                    <h5 class="mb-4 fw-bold"><i class="fa fa-exclamation-circle me-2 text-warning"></i>Parental Alerts</h5>
+                                    <div class="d-flex justify-content-between align-items-center mb-3 p-3 bg-white rounded border border-light shadow-sm transition-hover">
+                                        <div><h6 class="mb-0 fw-bold">Attendance Alerts</h6><small class="text-muted d-block mt-1">SMS if absent/late</small></div>
+                                        <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width:40px;height:20px;cursor:pointer;"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center p-3 bg-white rounded border border-light shadow-sm transition-hover">
+                                        <div><h6 class="mb-0 fw-bold">Fee Reminders</h6><small class="text-muted d-block mt-1">7 days before due date</small></div>
+                                        <div class="form-check form-switch m-0"><input class="form-check-input" type="checkbox" checked style="width:40px;height:20px;cursor:pointer;"></div>
+                                    </div>
+                                </div>
+                                <div class="stat-card shadow-sm border border-danger border-opacity-10" style="background-color: #fffafb;">
+                                    <h5 class="mb-4 fw-bold text-danger"><i class="fa fa-shield-alt me-2"></i>Security Settings</h5>
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control bg-white mb-2 shadow-sm text-dark" placeholder="Current PIN">
+                                        <input type="password" class="form-control bg-white shadow-sm text-dark" placeholder="New Profile PIN">
+                                    </div>
+                                    <button class="btn btn-outline-danger w-100 fw-bold rounded-pill">Reset Parent PIN</button>
+                                </div>
                             </div>
                         </div>
                     `
@@ -1102,14 +1434,14 @@
             const data = dashboardData[userType] || dashboardData.student;
 
             // ... (previous static updates) ...
-            $('#user-display-name').text(data.name);
-            $('#user-display-role').text(data.role);
-            $('#user-display-img').attr('src', data.img);
+            $('#user-display-name, #dropdown-user-name').text(data.name);
+            $('#user-display-role, #dropdown-user-role').text(data.role);
+            $('#user-display-img, #dropdown-user-img').attr('src', data.img);
             const hour = new Date().getHours();
             let greetText = "Good Morning";
             if (hour>= 12 && hour < 17) greetText = "Good Afternoon";
             else if (hour>= 17) greetText = "Good Evening";
-            $('#greeting').html(`${greetText}, ${data.greetingName}! ðŸ‘‹`);
+            $('#greeting').html(`${greetText}, ${data.greetingName}! 👋`);
             $('#welcome-message').text(data.message);
             $('.sidebar-label-attendance').text(data.sidebar.attendance);
             $('.sidebar-label-homework').text(data.sidebar.homework);
@@ -1175,13 +1507,13 @@
                 
                 // Holidays List
                 const holidaysHtml = data.attendance.holidaysList.map(h => `
-                    <div class="col-md-6 col-lg-4">
-                        <div class="p-3 border rounded-3 h-100 ${h.color || 'bg-light'}">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="p-3 border rounded-3 h-100 ${h.color || 'bg-light'} shadow-sm transition-hover">
                             <div class="d-flex justify-content-between align-items-start mb-2">
                                 <span class="badge bg-white text-dark border-0 shadow-sm small">${h.date}</span>
                                 <small class="text-muted" style="font-size: 10px;">${h.type}</small>
                             </div>
-                            <h6 class="mb-0 fw-bold">${h.name}</h6>
+                            <h6 class="mb-0 fw-bold" style="font-size: 0.95rem;">${h.name}</h6>
                         </div>
                     </div>
                 `).join('');
@@ -1204,15 +1536,250 @@
             // Default settings tab
             $('#settings-content-container').html(data.settings.profile);
 
-            $('#homework-table-header').html(data.homework.header);
-            const homeworkHtml = data.homework.body.map(item => `
-                <tr>
-                    ${Object.values(item).map(val => `<td>${val}</td>`).join('')}
-                </tr>
-            `).join('');
-            $('#homework-table-body').html(homeworkHtml);
+            const subjectIcons = {
+                'Math': { icon: 'fa-square-root-alt', color: 'bg-primary-soft text-primary' },
+                'Physics': { icon: 'fa-atom', color: 'bg-info-soft text-info' },
+                'English': { icon: 'fa-pen-nib', color: 'bg-warning-soft text-warning' },
+                'Science': { icon: 'fa-flask', color: 'bg-success-soft text-success' }
+            };
+
+            // Initialize Assignments List with Filtering & Sorting
+            window.renderHomework = function(filter = 'all') {
+                const statusPriority = { 'Overdue': 0, 'Pending': 1, 'Completed': 2 };
+                
+                let filteredData = data.homework.body.map(item => {
+                    const isOverdue = item.due.includes('Mar') && parseInt(item.due) < 20 && item.status !== 'completed';
+                    const displayStatus = item.status === 'completed' ? 'Completed' : (isOverdue ? 'Overdue' : 'Pending');
+                    return { ...item, displayStatus };
+                }).filter(item => {
+                    if (filter === 'all') return true;
+                    return item.status === filter;
+                });
+
+                // Sort by priority
+                filteredData.sort((a, b) => statusPriority[a.displayStatus] - statusPriority[b.displayStatus]);
+
+                const homeworkHtml = filteredData.map((item, idx) => {
+                    const subInfo = subjectIcons[item.sub] || { icon: 'fa-book', color: 'bg-light text-muted' };
+                    const statusClass = item.displayStatus === 'Completed' ? 'bg-success-soft text-success' : (item.displayStatus === 'Overdue' ? 'bg-danger-soft text-danger' : 'bg-warning-soft text-warning');
+                    
+                    return `
+                        <div class="homework-list-item animate__animated animate__fadeInUp" id="hw-item-${item.id}" style="animation-delay: ${idx * 0.05}s">
+                            <div class="subject-icon ${subInfo.color} flex-shrink-0">
+                                <i class="fa ${subInfo.icon}"></i>
+                            </div>
+                            <div class="flex-grow-1 d-flex align-items-center overflow-hidden">
+                                <div class="me-3" style="min-width: 250px;">
+                                    <h6 class="mb-0 fw-bold text-truncate">${item.task}</h6>
+                                </div>
+                                <div class="d-flex align-items-center text-muted small me-auto">
+                                    <span class="me-3 d-flex align-items-center"><i class="fa fa-book-open me-1 opacity-50"></i> ${item.sub}</span>
+                                    <span class="d-flex align-items-center"><i class="fa fa-calendar-alt me-1 opacity-50"></i> ${item.due}</span>
+                                </div>
+                                <div class="px-3">
+                                    <span class="status-pill ${statusClass}">${item.displayStatus}</span>
+                                </div>
+                            </div>
+                            <div class="action-zone flex-shrink-0 text-end d-flex align-items-center justify-content-end" style="min-width: 160px; height: 38px;">
+                                ${item.status === 'completed' ? 
+                                    `<div class="badge bg-success-soft text-success rounded-pill px-3 py-2 fw-bold border-0" style="font-size: 0.75rem; letter-spacing: 0.5px;"><i class="fa fa-check-circle me-1"></i> Submitted</div>` : 
+                                    `
+                                    <div class="d-flex align-items-center justify-content-end gap-2">
+                                        <input type="file" class="d-none" id="hw-file-${item.id}" onchange="window.homeworkFileSelect(this, ${item.id})">
+                                        <label for="hw-file-${item.id}" class="btn btn-sm btn-outline-primary rounded-pill mb-0 d-flex align-items-center gap-1" style="cursor: pointer; height: 32px; font-weight: 600;">
+                                            <i class="fa fa-paperclip small"></i> <span id="file-label-${item.id}" class="small">Attach</span>
+                                        </label>
+                                        <button class="btn btn-sm btn-primary rounded-pill px-3 d-none shadow-sm animate__animated animate__fadeInUp" id="hw-submit-${item.id}" onclick="window.submitHomeworkDirect(${item.id})" style="height: 32px; font-weight: 600;">
+                                            Submit
+                                        </button>
+                                    </div>
+                                    `
+                                }
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+                $('#homework-grid').html(homeworkHtml || '<div class="text-center py-5 text-muted">No assignments found in this category.</div>');
+            };
+
+            window.filterHomework = function(type, btn) {
+                $('.filter-tab').removeClass('active');
+                $(btn).addClass('active');
+                window.renderHomework(type);
+            };
+
+            // Initial render
+            window.renderHomework('all');
 
             $('#fees-container').html(data.fees);
+
+            // Historical Attendance Data (with monthly breakdown)
+            const historicalAttendance = {
+                6: { year: '2022–2023', classTeacher: 'Mrs. Seema Gupta', totalDays: 214, present: 196, absent: 10, late: 5, leavesTaken: 8, leavesAllowed: 15, percentage: 91.6, remark: 'Excellent',
+                    months: [
+                        { m: 'Apr', days: 24, p: 22, a: 1, l: 1 }, { m: 'May', days: 22, p: 20, a: 1, l: 1 },
+                        { m: 'Jun', days: 0,  p: 0,  a: 0, l: 0, holiday: true }, { m: 'Jul', days: 26, p: 25, a: 1, l: 0 },
+                        { m: 'Aug', days: 24, p: 22, a: 1, l: 1 }, { m: 'Sep', days: 25, p: 23, a: 1, l: 1 },
+                        { m: 'Oct', days: 23, p: 21, a: 1, l: 1 }, { m: 'Nov', days: 24, p: 23, a: 1, l: 0 },
+                        { m: 'Dec', days: 20, p: 18, a: 1, l: 1, holiday: false }, { m: 'Jan', days: 25, p: 24, a: 1, l: 0 },
+                        { m: 'Feb', days: 24, p: 22, a: 1, l: 1 }, { m: 'Mar', days: 23, p: 22, a: 1, l: 0 }
+                    ],
+                    subjects: [ { name: 'Mathematics', present: 38, total: 40 }, { name: 'Science', present: 37, total: 40 }, { name: 'English', present: 39, total: 40 }, { name: 'Social Studies', present: 36, total: 40 }, { name: 'Hindi', present: 35, total: 40 } ] },
+                7: { year: '2023–2024', classTeacher: 'Mr. Rajiv Nair', totalDays: 220, present: 203, absent: 12, late: 4, leavesTaken: 10, leavesAllowed: 15, percentage: 92.3, remark: 'Excellent',
+                    months: [
+                        { m: 'Apr', days: 24, p: 22, a: 1, l: 1 }, { m: 'May', days: 23, p: 21, a: 2, l: 0 },
+                        { m: 'Jun', days: 0,  p: 0,  a: 0, l: 0, holiday: true }, { m: 'Jul', days: 27, p: 25, a: 1, l: 1 },
+                        { m: 'Aug', days: 25, p: 23, a: 2, l: 0 }, { m: 'Sep', days: 26, p: 24, a: 1, l: 1 },
+                        { m: 'Oct', days: 24, p: 22, a: 1, l: 1 }, { m: 'Nov', days: 25, p: 24, a: 1, l: 0 },
+                        { m: 'Dec', days: 21, p: 19, a: 1, l: 1 }, { m: 'Jan', days: 26, p: 25, a: 1, l: 0 },
+                        { m: 'Feb', days: 24, p: 22, a: 1, l: 1 }, { m: 'Mar', days: 25, p: 24, a: 0, l: 1 }
+                    ],
+                    subjects: [ { name: 'Mathematics', present: 40, total: 42 }, { name: 'Physics', present: 39, total: 42 }, { name: 'English', present: 41, total: 42 }, { name: 'History', present: 38, total: 42 }, { name: 'Hindi', present: 36, total: 42 } ] },
+                8: { year: '2024–2025 (Ongoing)', classTeacher: 'Dr. Priya Sen', totalDays: 180, present: 168, absent: 7, late: 3, leavesTaken: 5, leavesAllowed: 15, percentage: 93.3, remark: 'Outstanding',
+                    months: [
+                        { m: 'Apr', days: 24, p: 23, a: 1, l: 0 }, { m: 'May', days: 22, p: 21, a: 1, l: 0 },
+                        { m: 'Jun', days: 0,  p: 0,  a: 0, l: 0, holiday: true }, { m: 'Jul', days: 26, p: 25, a: 1, l: 0 },
+                        { m: 'Aug', days: 25, p: 24, a: 1, l: 0 }, { m: 'Sep', days: 26, p: 24, a: 1, l: 1 },
+                        { m: 'Oct', days: 23, p: 22, a: 1, l: 0 }, { m: 'Nov', days: 0,  p: 0,  a: 0, l: 0, upcoming: true },
+                        { m: 'Dec', days: 0,  p: 0,  a: 0, l: 0, upcoming: true }, { m: 'Jan', days: 0,  p: 0,  a: 0, l: 0, upcoming: true },
+                        { m: 'Feb', days: 0,  p: 0,  a: 0, l: 0, upcoming: true }, { m: 'Mar', days: 0,  p: 0,  a: 0, l: 0, upcoming: true }
+                    ],
+                    subjects: [ { name: 'Mathematics', present: 36, total: 38 }, { name: 'Physics', present: 37, total: 38 }, { name: 'Chemistry', present: 35, total: 38 }, { name: 'English', present: 37, total: 38 }, { name: 'Hindi', present: 34, total: 38 } ] }
+            };
+
+            window.showHistoricalAttendance = function(cls, btn) {
+                $('#attendance-history-card .filter-tab').removeClass('active');
+                $(btn).addClass('active');
+
+                const d = historicalAttendance[cls];
+                if (!d) return;
+
+                const remarkColor = d.remark === 'Outstanding' ? 'success' : (d.remark === 'Excellent' ? 'primary' : 'warning');
+                const pctColor = d.percentage >= 90 ? '#22c55e' : (d.percentage >= 75 ? '#f97316' : '#ef4444');
+
+                // Generate subject rows (full-width)
+                const subjectRows = d.subjects.map(s => {
+                    const pct = Math.round((s.present / s.total) * 100);
+                    const barColor = pct >= 90 ? 'bg-success' : (pct >= 75 ? 'bg-warning' : 'bg-danger');
+                    return `
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span class="small fw-semibold">${s.name}</span>
+                                <span class="small text-muted">${s.present}/${s.total} &nbsp;<b>${pct}%</b></span>
+                            </div>
+                            <div class="progress" style="height: 6px; border-radius: 10px;">
+                                <div class="${barColor} progress-bar" style="width: ${pct}%;"></div>
+                            </div>
+                        </div>`;
+                }).join('');
+
+                // Generate month grid
+                const monthRows = d.months.map(m => {
+                    if (m.holiday) return `<tr style="background:#f8fafc;"><td class="small fw-semibold ps-3">${m.m}</td><td colspan="4" class="small text-center text-muted fst-italic">Summer Break</td></tr>`;
+                    if (m.upcoming) return `<tr><td class="small fw-semibold ps-3">${m.m}</td><td colspan="4" class="small text-center text-muted fst-italic">Upcoming</td></tr>`;
+                    
+                    const pct = m.days > 0 ? Math.round((m.p / m.days) * 100) : 0;
+                    const c = pct >= 90 ? 'text-success' : (pct >= 75 ? 'text-warning' : 'text-danger');
+                    
+                    return `<tr>
+                        <td class="small fw-semibold ps-3">${m.m}</td>
+                        <td class="small text-center text-muted">${m.days}</td>
+                        <td class="small text-center fw-bold text-success">${m.p}</td>
+                        <td class="small text-center fw-bold text-danger">${m.a}</td>
+                        <td class="small text-center fw-bold ${c}">${pct}%</td>
+                    </tr>`;
+                }).join('');
+
+                const html = `
+                    <div class="row g-3 mb-4">
+                        <div class="col-6 col-md-3">
+                            <div class="p-3 rounded-3 bg-success-soft text-center" style="border: 1px solid rgba(34, 197, 94, 0.2);">
+                                <div class="fw-bold fs-3 text-success">${d.present}</div>
+                                <div class="small fw-semibold text-muted text-uppercase" style="letter-spacing: 0.5px;">Present</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="p-3 rounded-3 bg-danger-soft text-center" style="border: 1px solid rgba(239, 68, 68, 0.2);">
+                                <div class="fw-bold fs-3 text-danger">${d.absent}</div>
+                                <div class="small fw-semibold text-muted text-uppercase" style="letter-spacing: 0.5px;">Absent</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="p-3 rounded-3 bg-warning-soft text-center" style="border: 1px solid rgba(245, 158, 11, 0.2);">
+                                <div class="fw-bold fs-3 text-warning">${d.late}</div>
+                                <div class="small fw-semibold text-muted text-uppercase" style="letter-spacing: 0.5px;">Late</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="p-3 rounded-3 bg-info-soft text-center" style="border: 1px solid rgba(14, 165, 233, 0.2);">
+                                <div class="fw-bold fs-3 text-info">${d.leavesTaken}/${d.leavesAllowed}</div>
+                                <div class="small fw-semibold text-muted text-uppercase" style="letter-spacing: 0.5px;">Leaves Used</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-4 mb-4 p-4 rounded-3 border" style="background: #f8fafc;">
+                        <div class="text-center" style="min-width:100px; border-right: 1px solid #e2e8f0; padding-right: 1rem;">
+                            <div class="fw-bold" style="font-size: 2.5rem; color: ${pctColor}; line-height: 1;">${d.percentage}%</div>
+                            <div class="small text-muted mt-1 fw-semibold text-uppercase" style="letter-spacing: 0.5px;">Overall</div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="fw-bold text-dark">Academic Year ${d.year}</span>
+                                <span class="badge bg-${remarkColor}-soft text-${remarkColor} px-3 py-1 rounded-pill">${d.remark}</span>
+                            </div>
+                            <div class="progress mb-2" style="height: 10px; border-radius: 10px;">
+                                <div class="progress-bar" style="width: ${d.percentage}%; background: ${pctColor};"></div>
+                            </div>
+                            <div class="d-flex justify-content-between mt-1">
+                                <span class="small text-muted"><i class="fa fa-chalkboard-teacher me-1"></i>Class Teacher: <b>${d.classTeacher}</b></span>
+                                <span class="small text-muted">Out of ${d.totalDays} working days</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-4 mt-2">
+                        <!-- Left Block: Monthly Grid -->
+                        <div class="col-md-5">
+                            <h6 class="mb-3 text-muted fw-bold" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">
+                                <i class="fa fa-calendar-alt me-2"></i>Monthly Breakdown
+                            </h6>
+                            <div class="rounded-3 overflow-hidden border">
+                                <table class="table table-sm table-hover mb-0">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th class="small text-muted fw-bold ps-3">Month</th>
+                                            <th class="small text-muted fw-bold text-center">Work</th>
+                                            <th class="small text-muted fw-bold text-center text-success">Pres</th>
+                                            <th class="small text-muted fw-bold text-center text-danger">Abs</th>
+                                            <th class="small text-muted fw-bold text-center">%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${monthRows}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Right Block: Subjects (Full Width within column) -->
+                        <div class="col-md-7">
+                            <h6 class="mb-3 text-muted fw-bold" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">
+                                <i class="fa fa-book me-2"></i>Subject-wise Attendance
+                            </h6>
+                            <div class="p-3 rounded-3 border" style="background: white;">
+                                ${subjectRows}
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                $('#historical-attendance-content').html(html);
+            };
+
+            // Load current class (Class 8) by default
+            window.showHistoricalAttendance(8, $('#attendance-history-card .filter-tab').last()[0]);
 
             // Shared Quick Action Handler Config
             const studentActionConfigs = {
@@ -1231,26 +1798,32 @@
                         <button class="btn btn-primary w-100 rounded-pill mt-3" onclick="alert('Downloading PDF...')">Download Full Progress Report</button>
                     `
                 },
-                'Submit Work': {
+                'Active Assignments': {
                     title: "Active Assignments",
                     icon: '<i class="fa fa-upload text-success"></i>',
                     message: "Submit your work for verification.",
-                    content: `
-                        <div class="text-start mb-3">
-                            <label class="small text-muted mb-1">Select Assignment</label>
-                            <select class="form-select rounded-3">
-                                <option>Calculus Exercise 4.2</option>
-                                <option>Optics Lab Report</option>
-                                <option>Modern Poetry Essay</option>
-                            </select>
-                        </div>
-                        <div class="border-dashed p-4 rounded-3 text-center bg-light mb-3" style="border: 2px dashed #cbd5e1;">
-                            <i class="fa fa-cloud-upload-alt text-muted mb-2" style="font-size: 2rem;"></i>
-                            <p class="small mb-0">Drag and drop files or <b>click to browse</b></p>
-                            <input type="file" class="d-none" id="fileUpload">
-                        </div>
-                        <button class="btn btn-success w-100 rounded-pill" onclick="this.innerHTML='<i class=\'fa fa-spinner fa-spin\'></i> Uploading...'; setTimeout(()=>alert('Assignment submitted successfully!'), 1500)">Submit Assignment</button>
-                    `
+                    content: function() {
+                        const options = data.homework.body.filter(h => h.status !== 'completed').map(h => 
+                            `<option value="${h.id}">${h.task}</option>`
+                        ).join('');
+                        
+                        if (!options) return `<div class="alert alert-info py-2 small mb-0">No pending assignments to submit!</div>`;
+                        
+                        return `
+                            <div class="text-start mb-3">
+                                <label class="small text-muted mb-1">Select Assignment</label>
+                                <select class="form-select rounded-3" id="modalHwSelect">
+                                    ${options}
+                                </select>
+                            </div>
+                            <label for="fileUpload" class="upload-area border-dashed p-4 rounded-3 text-center bg-light mb-3 d-block w-100" style="border: 2px dashed #cbd5e1; cursor: pointer;">
+                                <i class="fa fa-cloud-upload-alt text-muted mb-2" style="font-size: 2rem;"></i>
+                                <p class="small mb-0" id="uploadText">Drag and drop files or <b>click to browse</b></p>
+                                <input type="file" class="d-none" id="fileUpload" onchange="window.handleFileSelect(this)">
+                            </label>
+                            <button class="btn btn-success w-100 rounded-pill" onclick="window.processUpload(this)">Submit Assignment</button>
+                        `;
+                    }
                 },
                 'Download Notes': {
                     title: "Resource Library",
@@ -1259,11 +1832,11 @@
                     content: `
                         <div class="list-group list-group-flush text-start mb-3">
                             <div class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                <div><h6 class="mb-0 small">Physics Notes - Optics</h6><small class="text-muted">PDF â€¢ 2.4 MB</small></div>
+                                <div><h6 class="mb-0 small">Physics Notes - Optics</h6><small class="text-muted">PDF • 2.4 MB</small></div>
                                 <button class="btn btn-sm btn-info-soft"><i class="fa fa-download"></i></button>
                             </div>
                             <div class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                <div><h6 class="mb-0 small">Math Cheat Sheet</h6><small class="text-muted">PDF â€¢ 1.1 MB</small></div>
+                                <div><h6 class="mb-0 small">Math Cheat Sheet</h6><small class="text-muted">PDF • 1.1 MB</small></div>
                                 <button class="btn btn-sm btn-info-soft"><i class="fa fa-download"></i></button>
                             </div>
                         </div>
@@ -1296,13 +1869,13 @@
                             <div class="d-flex mb-2 align-items-center p-2 border-start border-4 border-danger rounded bg-light">
                                 <div class="ms-1">
                                     <h6 class="mb-0 small">Annual Sports Meet</h6>
-                                    <small class="text-muted">25-27 March â€¢ Main Ground</small>
+                                    <small class="text-muted">25-27 March • Main Ground</small>
                                 </div>
                             </div>
                             <div class="d-flex mb-2 align-items-center p-2 border-start border-4 border-primary rounded bg-light">
                                 <div class="ms-1">
                                     <h6 class="mb-0 small">Science Exhibition</h6>
-                                    <small class="text-muted">05 April â€¢ Auditorium</small>
+                                    <small class="text-muted">05 April • Auditorium</small>
                                 </div>
                             </div>
                         </div>
@@ -1330,6 +1903,102 @@
                 }
             };
 
+            window.homeworkFileSelect = function(input, id) {
+                if (input.files && input.files[0]) {
+                    $(`#file-label-${id}`).text(input.files[0].name);
+                    $(`#hw-submit-${id}`).removeClass('d-none');
+                }
+            };
+
+            window.submitHomeworkDirect = function(id) {
+                const btn = $(`#hw-submit-${id}`);
+                const file = document.getElementById(`hw-file-${id}`).files[0];
+                
+                btn.html('<i class="fa fa-spinner fa-spin"></i> Submitting...').prop('disabled', true);
+                
+                setTimeout(() => {
+                    // Update data status
+                    const item = data.homework.body.find(i => i.id === id);
+                    if (item) item.status = 'completed';
+                    
+                    // Animate the row out or just re-render with a "swappy" feel
+                    $(`#hw-item-${id}`).addClass('animate__animated animate__fadeOutRight');
+                    
+                    setTimeout(() => {
+                        renderHomework($('.filter-tab.active').text().toLowerCase());
+                        
+                        // Add to timeline
+                        const time = "Just Now";
+                        const content = `Successfully submitted assignment file: **${file.name}**`;
+                        $('#activity-timeline').prepend(`
+                            <div class="timeline-item animate__animated animate__fadeInLeft">
+                                <div class="timeline-time">${time}</div>
+                                <div class="timeline-content">${content}</div>
+                            </div>
+                        `);
+                    }, 500);
+                }, 1500);
+            };
+
+            window.handleFileSelect = function(input) {
+                if (input.files && input.files[0]) {
+                    $('#uploadText').html(`Selected: <b>${input.files[0].name}</b>`);
+                    $('.upload-area').addClass('bg-success-soft').css('border-color', '#22c55e');
+                }
+            };
+
+            window.processUpload = function(btn) {
+                const fileInput = document.getElementById('fileUpload');
+                const hwSelect = document.getElementById('modalHwSelect');
+                const file = fileInput ? fileInput.files[0] : null;
+                
+                if (!file) {
+                    alert("Please select a file first");
+                    return;
+                }
+                
+                $(btn).html('<i class="fa fa-spinner fa-spin"></i> Uploading...').prop('disabled', true);
+                
+                setTimeout(() => {
+                    // Update the actual homework status
+                    if (hwSelect) {
+                        const hwId = parseInt(hwSelect.value);
+                        const item = data.homework.body.find(i => i.id === hwId);
+                        if (item) item.status = 'completed';
+                        
+                        // Re-render homework list if it exists in the DOM
+                        if (typeof window.renderHomework === 'function') {
+                            window.renderHomework($('.filter-tab.active').text().toLowerCase() || 'all');
+                        }
+                    }
+
+                    $('#modalContent').html(`
+                        <div class="text-center py-4">
+                            <div class="icon-box icon-green mx-auto mb-3" style="width: 80px; height: 80px; font-size: 2.5rem;">
+                                <i class="fa fa-check-circle"></i>
+                            </div>
+                            <h5>Assignment Submitted!</h5>
+                            <p class="text-muted small">Your file <b>${file.name}</b> has been uploaded successfully.</p>
+                            <button class="btn btn-outline-primary rounded-pill px-4 mt-2" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    `);
+                    $('#modalMessage').text("");
+
+                    // Add to timeline
+                    const time = "Just Now";
+                    const content = `Submitted assignment through Quick Actions: **${file.name}**`;
+                    
+                    data.timeline.unshift({ time, content }); // Persist in data
+                    
+                    $('#activity-timeline').prepend(`
+                        <div class="timeline-item animate__animated animate__fadeInLeft">
+                            <div class="timeline-time">${time}</div>
+                            <div class="timeline-content">${content}</div>
+                        </div>
+                    `);
+                }, 2000);
+            };
+
             window.handleQuickAction = function(label) {
                 const config = studentActionConfigs[label];
                 if (!config) return;
@@ -1337,16 +2006,22 @@
                 $('#modalTitle').text(config.title);
                 $('#modalIcon').html(config.icon);
                 $('#modalMessage').text(config.message);
-                $('#modalContent').html(config.content);
                 
-                const modal = new bootstrap.Modal(document.getElementById('actionModal'));
+                const content = typeof config.content === 'function' ? config.content() : config.content;
+                $('#modalContent').html(content);
+                
+                const modalEl = document.getElementById('actionModal');
+                let modal = bootstrap.Modal.getInstance(modalEl);
+                if (!modal) {
+                    modal = new bootstrap.Modal(modalEl);
+                }
                 modal.show();
             };
 
             // Populate Shared Components
             const actionsHtml = data.actions.map(action => `
                 <div class="col-sm-4 col-6">
-                    <div class="action-btn" onclick="handleQuickAction('${action.label}')">
+                    <div class="action-btn" onclick="window.handleQuickAction('${action.label}')">
                         <i class="fa ${action.icon} ${action.color}"></i>
                         <span class="small font-weight-bold">${action.label}</span>
                     </div>
@@ -1370,7 +2045,7 @@
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0">Mathematics</h6>
-                        <small class="text-muted">Room 204 â€¢ Dr. RK Sharma</small>
+                        <small class="text-muted">Room 204 • Dr. RK Sharma</small>
                     </div>
                 </div>
                 <div class="d-flex align-items-center mb-3">
@@ -1379,7 +2054,7 @@
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0">English Literature</h6>
-                        <small class="text-muted">Room 102 â€¢ Ms. Priya Nair</small>
+                        <small class="text-muted">Room 102 • Ms. Priya Nair</small>
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
@@ -1388,7 +2063,7 @@
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0">Physics Lab</h6>
-                        <small class="text-muted">Lab 02 â€¢ Mr. Desai</small>
+                        <small class="text-muted">Lab 02 • Mr. Desai</small>
                     </div>
                 </div>
             `;
@@ -1407,6 +2082,140 @@
                 </div>
             `;
             $('#events-container').html(eventsHtml);
+
+            // --- Timetable Logic ---
+            let currentTimetableView = 'weekly';
+            let currentTimetableOffset = 0; // 0 = current, -1 = previous, etc.
+
+            // Mock Data for Timetable
+            const weeklyTimetableMock = {
+                periods: [
+                    { time: "09:00 - 10:00", days: ["Math", "English", "Physics", "Math", "Chemistry", "PE"] },
+                    { time: "10:00 - 11:00", days: ["Physics", "Math", "English", "Chemistry", "Math", "History"] },
+                    { type: "break", time: "Short Break (11:00 - 11:15)" },
+                    { time: "11:15 - 12:15", days: ["Chemistry", "Physics", "Math", "PE", "English", "Physics"] },
+                    { time: "12:15 - 13:00", days: ["History", "Geography", "Biology", "English", "Math", "Art"] },
+                    { type: "break", time: "Lunch Break (13:00 - 13:45)" },
+                    { time: "13:45 - 14:45", days: ["Biology", "Computer", "Geography", "Physics", "History", "-"] },
+                ]
+            };
+
+            window.renderTimetable = function() {
+                const container = $('#timetable-render-container');
+                const label = $('#timetable-date-range');
+                
+                // Calculate date string based on offset
+                const today = new Date('2026-03-20'); // Mocking today's date for consistency
+                
+                if (currentTimetableView === 'weekly') {
+                    // Weekly Math
+                    const targetDate = new Date(today);
+                    targetDate.setDate(today.getDate() + (currentTimetableOffset * 7));
+                    
+                    const startOfWeek = new Date(targetDate);
+                    startOfWeek.setDate(targetDate.getDate() - targetDate.getDay() + 1); // Monday
+                    const endOfWeek = new Date(startOfWeek);
+                    endOfWeek.setDate(startOfWeek.getDate() + 5); // Saturday
+                    
+                    const formatDate = (date) => date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+                    label.text(`${formatDate(startOfWeek)} - ${formatDate(endOfWeek)}, ${endOfWeek.getFullYear()}`);
+                    
+                    // Render Weekly Table
+                    let tableHtml = `
+                        <div class="table-responsive animate__animated animate__fadeIn">
+                            <table class="table table-bordered text-center align-middle mb-0">
+                                <thead class="bg-primary text-white">
+                                    <tr>
+                                        <th style="min-width: 140px;">Period</th>
+                                        <th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                    `;
+                    
+                    weeklyTimetableMock.periods.forEach(p => {
+                        if (p.type === 'break') {
+                            tableHtml += `<tr><td colspan="7" class="bg-light small fw-bold text-muted py-3">${p.time}</td></tr>`;
+                        } else {
+                            tableHtml += `<tr><td class="fw-bold text-muted small">${p.time}</td>`;
+                            // Slightly shuffle subjects if it's a previous week to look dynamic
+                            const shuffleShift = Math.abs(currentTimetableOffset) % 3;
+                            p.days.forEach((sub, i) => {
+                                let shiftedSub = p.days[(i + shuffleShift) % p.days.length];
+                                if (shiftedSub === '-') shiftedSub = '<span class="text-muted">-</span>';
+                                tableHtml += `<td>${shiftedSub}</td>`;
+                            });
+                            tableHtml += `</tr>`;
+                        }
+                    });
+                    
+                    tableHtml += `</tbody></table></div>`;
+                    container.html(tableHtml);
+
+                } else if (currentTimetableView === 'monthly') {
+                    // Monthly Math
+                    const targetDate = new Date(today.getFullYear(), today.getMonth() + currentTimetableOffset, 1);
+                    const monthName = targetDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+                    label.text(monthName);
+                    
+                    // Render Monthly View (A simplified calendar/agenda summarizing the month)
+                    container.html(`
+                        <div class="animate__animated animate__fadeIn">
+                            <div class="alert alert-info border-0 rounded-3 small">
+                                <i class="fa fa-info-circle me-2"></i> This monthly view outlines the core timetable cycles and any scheduled disruptions.
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="card bg-light border-0 h-100">
+                                        <div class="card-body">
+                                            <h6 class="fw-bold text-primary mb-3">Regular Schedule Cycles</h6>
+                                            <ul class="list-unstyled small mb-0">
+                                                <li class="mb-2"><i class="fa fa-sync-alt text-muted me-2"></i> <strong>Week 1 & 3:</strong> Standard Core Curriculum</li>
+                                                <li class="mb-2"><i class="fa fa-sync-alt text-muted me-2"></i> <strong>Week 2 & 4:</strong> Extra Lab Sessions (Physics/Chem)</li>
+                                                <li><i class="fa fa-sync-alt text-muted me-2"></i> <strong>Saturdays:</strong> Half-day with Co-curriculars</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card bg-white border h-100">
+                                        <div class="card-body">
+                                            <h6 class="fw-bold text-danger mb-3">Notable Changes & Events</h6>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="badge bg-warning text-dark me-2" style="width: 50px;">Day 12</div>
+                                                <small class="text-muted">Special Guest Lecture (Science replacing English)</small>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge bg-danger text-white me-2" style="width: 50px;">Day ${targetDate.getMonth() === 2 ? '24' : '15'}</div>
+                                                <small class="text-muted">Holiday - No Classes</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <button class="btn btn-outline-primary btn-sm rounded-pill"><i class="fa fa-download me-2"></i> Download Full ${monthName} Planner (PDF)</button>
+                            </div>
+                        </div>
+                    `);
+                }
+            };
+
+            window.switchTimetableView = function(view) {
+                currentTimetableView = view;
+                currentTimetableOffset = 0; // Reset offset when switching views
+                $('.filter-tab').removeClass('active');
+                $(`#btn-view-${view}`).addClass('active');
+                renderTimetable();
+            };
+
+            window.changeTimetableDate = function(dir) {
+                currentTimetableOffset += dir;
+                renderTimetable();
+            };
+
+            // Initial render
+            renderTimetable();
         });
     </script>
 </body>
