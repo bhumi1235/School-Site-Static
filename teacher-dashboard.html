@@ -5,14 +5,16 @@
     <meta charset="utf-8">
     <title>Teacher Dashboard - Global School</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    
+
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -27,7 +29,7 @@
     <style>
         :root {
             --sidebar-width: 280px;
-            --topbar-height: 80px;
+            --topbar-height: 60px;
             --dashboard-bg: #f8fafc;
             --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             --sidebar-bg: #0f172a;
@@ -55,7 +57,7 @@
         }
 
         .sidebar-header {
-            padding: 30px;
+            padding: 15px 20px;
             text-align: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -88,7 +90,8 @@
             gap: 15px;
         }
 
-        .nav-link-dash:hover, .nav-link-dash.active {
+        .nav-link-dash:hover,
+        .nav-link-dash.active {
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
         }
@@ -123,7 +126,7 @@
             z-index: 999;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-end;
             padding: 0 30px;
             box-shadow: 0 1px 0 var(--border);
             transition: all 0.3s ease;
@@ -185,10 +188,25 @@
             margin-bottom: 20px;
         }
 
-        .icon-blue { background: #eff6ff; color: #3b82f6; }
-        .icon-green { background: #f0fdf4; color: #22c55e; }
-        .icon-orange { background: #fff7ed; color: #f97316; }
-        .icon-purple { background: #faf5ff; color: #a855f7; }
+        .icon-blue {
+            background: #eff6ff;
+            color: #3b82f6;
+        }
+
+        .icon-green {
+            background: #f0fdf4;
+            color: #22c55e;
+        }
+
+        .icon-orange {
+            background: #fff7ed;
+            color: #f97316;
+        }
+
+        .icon-purple {
+            background: #faf5ff;
+            color: #a855f7;
+        }
 
         .welcome-section {
             background: linear-gradient(135deg, var(--teacher-accent) 0%, #f59e0b 100%);
@@ -336,23 +354,45 @@
             color: var(--secondary);
         }
 
-        .bg-success-soft { background-color: #f0fdf4; color: #16a34a; }
-        .bg-danger-soft { background-color: #fef2f2; color: #dc2626; }
-        .bg-warning-soft { background-color: #fffbeb; color: #d97706; }
-        .bg-info-soft { background-color: #f0f9ff; color: #0284c7; }
-        .bg-primary-soft { background-color: #eff6ff; color: #2563eb; }
+        .bg-success-soft {
+            background-color: #f0fdf4;
+            color: #16a34a;
+        }
+
+        .bg-danger-soft {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
+
+        .bg-warning-soft {
+            background-color: #fffbeb;
+            color: #d97706;
+        }
+
+        .bg-info-soft {
+            background-color: #f0f9ff;
+            color: #0284c7;
+        }
+
+        .bg-primary-soft {
+            background-color: #eff6ff;
+            color: #2563eb;
+        }
 
         /* Mobile Responsive */
         @media (max-width: 991px) {
             .sidebar {
                 left: -var(--sidebar-width);
             }
+
             .sidebar.active {
                 left: 0;
             }
+
             .main-content {
                 margin-left: 0;
             }
+
             .top-navbar {
                 left: 0;
             }
@@ -415,7 +455,8 @@
             <div class="welcome-section">
                 <div class="welcome-content">
                     <h1 id="greeting">Good Morning, Dr. Sharma! ðŸ‘‹</h1>
-                    <p class="mb-0" id="welcome-message">You have 4 classes today. The first one starts with Class 12-A in 10 minutes.</p>
+                    <p class="mb-0" id="welcome-message">You have 4 classes today. The first one starts with Class 12-A
+                        in 10 minutes.</p>
                 </div>
                 <i class="fa fa-chalkboard-teacher welcome-img"></i>
             </div>
@@ -471,21 +512,24 @@
                                     <h6>Mark Attendance - Class 12-A</h6>
                                     <span class="text-danger small"><i class="fa fa-clock me-1"></i>Due now</span>
                                 </div>
-                                <button class="btn btn-sm btn-primary-soft" onclick="handleQuickAction('markAttendance')">Mark</button>
+                                <button class="btn btn-sm btn-primary-soft"
+                                    onclick="handleQuickAction('markAttendance')">Mark</button>
                             </div>
                             <div class="task-item">
                                 <div class="task-info">
                                     <h6>Grade "Quantum Physics" Submissions</h6>
                                     <span class="text-muted small">15 pending submissions</span>
                                 </div>
-                                <button class="btn btn-sm btn-primary-soft" onclick="handleQuickAction('gradeAssignments')">Open</button>
+                                <button class="btn btn-sm btn-primary-soft"
+                                    onclick="handleQuickAction('gradeAssignments')">Open</button>
                             </div>
                             <div class="task-item border-0">
                                 <div class="task-info">
                                     <h6>Update Lesson Plan for Next Week</h6>
                                     <span class="text-muted small">Due by Friday</span>
                                 </div>
-                                <button class="btn btn-sm btn-primary-soft" onclick="handleQuickAction('lessonPlan')">Update</button>
+                                <button class="btn btn-sm btn-primary-soft"
+                                    onclick="handleQuickAction('lessonPlan')">Update</button>
                             </div>
                         </div>
                     </div>
@@ -503,7 +547,8 @@
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-time">Yesterday</div>
-                                <div class="timeline-content">New circular from Admin regarding Winter Vacation dates</div>
+                                <div class="timeline-content">New circular from Admin regarding Winter Vacation dates
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -572,9 +617,12 @@
                 <h2 class="mb-0">My Assigned Classes</h2>
                 <div class="btn-group btn-group-sm p-1 bg-white border rounded-pill shadow-sm">
                     <button class="btn btn-primary rounded-pill px-3" onclick="filterClasses('all', this)">All</button>
-                    <button class="btn btn-outline-primary border-0 rounded-pill px-3" onclick="filterClasses('active', this)">Active</button>
-                    <button class="btn btn-outline-primary border-0 rounded-pill px-3" onclick="filterClasses('upcoming', this)">Upcoming</button>
-                    <button class="btn btn-outline-primary border-0 rounded-pill px-3" onclick="filterClasses('completed', this)">Completed</button>
+                    <button class="btn btn-outline-primary border-0 rounded-pill px-3"
+                        onclick="filterClasses('active', this)">Active</button>
+                    <button class="btn btn-outline-primary border-0 rounded-pill px-3"
+                        onclick="filterClasses('upcoming', this)">Upcoming</button>
+                    <button class="btn btn-outline-primary border-0 rounded-pill px-3"
+                        onclick="filterClasses('completed', this)">Completed</button>
                 </div>
             </div>
             <div class="row g-4" id="classes-grid">
@@ -647,38 +695,58 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><div class="d-flex align-items-center"><img src="img/testimonial-2.webp" class="rounded-circle me-2" style="width:30px"> Arjun Mehta</div></td>
+                                <td>
+                                    <div class="d-flex align-items-center"><img src="img/testimonial-2.webp"
+                                            class="rounded-circle me-2" style="width:30px"> Arjun Mehta</div>
+                                </td>
                                 <td>Class 12-A</td>
                                 <td>24101</td>
-                                <td><span class="badge bg-primary-soft me-2">A+ (9.4)</span> <span class="text-success small fw-bold">94% Attd</span></td>
+                                <td><span class="badge bg-primary-soft me-2">A+ (9.4)</span> <span
+                                        class="text-success small fw-bold">94% Attd</span></td>
                                 <td><button class="btn btn-sm btn-outline-primary">Profile</button></td>
                             </tr>
                             <tr>
-                                <td><div class="d-flex align-items-center"><img src="img/testimonial-1.webp" class="rounded-circle me-2" style="width:30px"> Rekha Kapoor</div></td>
+                                <td>
+                                    <div class="d-flex align-items-center"><img src="img/testimonial-1.webp"
+                                            class="rounded-circle me-2" style="width:30px"> Rekha Kapoor</div>
+                                </td>
                                 <td>Class 12-A</td>
                                 <td>24105</td>
-                                <td><span class="badge bg-primary-soft me-2">A (8.8)</span> <span class="text-warning small fw-bold">88% Attd</span></td>
+                                <td><span class="badge bg-primary-soft me-2">A (8.8)</span> <span
+                                        class="text-warning small fw-bold">88% Attd</span></td>
                                 <td><button class="btn btn-sm btn-outline-primary">Profile</button></td>
                             </tr>
                             <tr>
-                                <td><div class="d-flex align-items-center"><img src="img/team-2.webp" class="rounded-circle me-2" style="width:30px"> Siddharth Roy</div></td>
+                                <td>
+                                    <div class="d-flex align-items-center"><img src="img/team-2.webp"
+                                            class="rounded-circle me-2" style="width:30px"> Siddharth Roy</div>
+                                </td>
                                 <td>Class 12-A</td>
                                 <td>24109</td>
-                                <td><span class="badge bg-info-soft me-2">B (7.5)</span> <span class="text-info small fw-bold">82% Attd</span></td>
+                                <td><span class="badge bg-info-soft me-2">B (7.5)</span> <span
+                                        class="text-info small fw-bold">82% Attd</span></td>
                                 <td><button class="btn btn-sm btn-outline-primary">Profile</button></td>
                             </tr>
                             <tr>
-                                <td><div class="d-flex align-items-center"><img src="img/team-3.webp" class="rounded-circle me-2" style="width:30px"> Priya Singh</div></td>
+                                <td>
+                                    <div class="d-flex align-items-center"><img src="img/team-3.webp"
+                                            class="rounded-circle me-2" style="width:30px"> Priya Singh</div>
+                                </td>
                                 <td>Class 12-A</td>
                                 <td>24112</td>
-                                <td><span class="badge bg-warning-soft me-2">C (6.2)</span> <span class="text-warning small fw-bold">75% Attd</span></td>
+                                <td><span class="badge bg-warning-soft me-2">C (6.2)</span> <span
+                                        class="text-warning small fw-bold">75% Attd</span></td>
                                 <td><button class="btn btn-sm btn-outline-primary">Profile</button></td>
                             </tr>
                             <tr>
-                                <td><div class="d-flex align-items-center"><img src="img/team-4.webp" class="rounded-circle me-2" style="width:30px"> Kabir Malhotra</div></td>
+                                <td>
+                                    <div class="d-flex align-items-center"><img src="img/team-4.webp"
+                                            class="rounded-circle me-2" style="width:30px"> Kabir Malhotra</div>
+                                </td>
                                 <td>Class 12-A</td>
                                 <td>24115</td>
-                                <td><span class="badge bg-danger-soft me-2">D (5.0)</span> <span class="text-danger small fw-bold">68% Attd</span></td>
+                                <td><span class="badge bg-danger-soft me-2">D (5.0)</span> <span
+                                        class="text-danger small fw-bold">68% Attd</span></td>
                                 <td><button class="btn btn-sm btn-outline-primary">Profile</button></td>
                             </tr>
                         </tbody>
@@ -715,7 +783,8 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small text-muted">Department</label>
-                                <input type="text" class="form-control rounded-3" value="Physics & Mathematical Sciences" readonly>
+                                <input type="text" class="form-control rounded-3"
+                                    value="Physics & Mathematical Sciences" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small text-muted">Email Address</label>
@@ -731,10 +800,12 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small text-muted">Specialization</label>
-                                <input type="text" class="form-control rounded-3" value="Quantum Mechanics & Applied Optics" readonly>
+                                <input type="text" class="form-control rounded-3"
+                                    value="Quantum Mechanics & Applied Optics" readonly>
                             </div>
                         </div>
-                        <button class="btn btn-primary mt-4 rounded-pill px-4" onclick="alert('Profile updated successfully!')">Save Changes</button>
+                        <button class="btn btn-primary mt-4 rounded-pill px-4"
+                            onclick="alert('Profile updated successfully!')">Save Changes</button>
                     </div>
                 </div>
             </div>
@@ -755,7 +826,8 @@
                     <div id="modalContent"></div>
                 </div>
                 <div class="modal-footer border-0 pt-0 justify-content-center">
-                    <button type="button" class="btn btn-primary-soft rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary-soft rounded-pill px-4"
+                        data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -764,17 +836,17 @@
     <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
         function showSection(sectionId, element) {
             document.querySelectorAll('.nav-link-dash').forEach(link => link.classList.remove('active'));
             if (element) element.classList.add('active');
-            
+
             document.querySelectorAll('.dashboard-section').forEach(section => section.classList.add('d-none'));
             document.getElementById(`${sectionId}-section`).classList.remove('d-none');
         }
 
-        window.filterClasses = function(filter, element) {
+        window.filterClasses = function (filter, element) {
             // Update button styles
             const btnGroup = element.parentElement;
             btnGroup.querySelectorAll('button').forEach(btn => {
@@ -979,7 +1051,7 @@
             }
         };
 
-        window.handleQuickAction = function(type) {
+        window.handleQuickAction = function (type) {
             const config = actionConfigs[type];
             if (!config) return;
 
@@ -987,23 +1059,20 @@
             $('#modalIcon').html(config.icon);
             $('#modalMessage').text(config.message);
             $('#modalContent').html(config.content);
-            
+
             const modal = new bootstrap.Modal(document.getElementById('actionModal'));
             modal.show();
         };
 
         // Handle URL Params for initial load
-        $(document).ready(function() {
+        $(document).ready(function () {
             const hour = new Date().getHours();
             let greeting = "Good Morning";
-            if (hour>= 12 && hour < 17) greeting = "Good Afternoon";
-            else if (hour>= 17) greeting = "Good Evening";
+            if (hour >= 12 && hour < 17) greeting = "Good Afternoon";
+            else if (hour >= 17) greeting = "Good Evening";
             $('#greeting').html(`${greeting}, Dr. Sharma! ðŸ‘‹`);
         });
     </script>
 </body>
 
 </html>
-
-
-

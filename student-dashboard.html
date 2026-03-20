@@ -5,14 +5,16 @@
     <meta charset="utf-8">
     <title>Student Dashboard - Global School</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    
+
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -27,7 +29,7 @@
     <style>
         :root {
             --sidebar-width: 280px;
-            --topbar-height: 80px;
+            --topbar-height: 60px;
             --dashboard-bg: #f8fafc;
             --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             --sidebar-bg: #0f172a;
@@ -54,7 +56,7 @@
         }
 
         .sidebar-header {
-            padding: 30px;
+            padding: 15px 20px;
             text-align: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -87,7 +89,8 @@
             gap: 15px;
         }
 
-        .nav-link-dash:hover, .nav-link-dash.active {
+        .nav-link-dash:hover,
+        .nav-link-dash.active {
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
         }
@@ -122,7 +125,7 @@
             z-index: 999;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-end;
             padding: 0 30px;
             box-shadow: 0 1px 0 var(--border);
             transition: all 0.3s ease;
@@ -173,17 +176,24 @@
             width: 280px;
             background: #fff;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             padding: 20px;
             display: none;
             z-index: 1001;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             animation: slideDown 0.3s ease;
         }
 
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .profile-dropdown.show {
@@ -245,10 +255,25 @@
             margin-bottom: 20px;
         }
 
-        .icon-blue { background: #eff6ff; color: #3b82f6; }
-        .icon-green { background: #f0fdf4; color: #22c55e; }
-        .icon-orange { background: #fff7ed; color: #f97316; }
-        .icon-purple { background: #faf5ff; color: #a855f7; }
+        .icon-blue {
+            background: #eff6ff;
+            color: #3b82f6;
+        }
+
+        .icon-green {
+            background: #f0fdf4;
+            color: #22c55e;
+        }
+
+        .icon-orange {
+            background: #fff7ed;
+            color: #f97316;
+        }
+
+        .icon-purple {
+            background: #faf5ff;
+            color: #a855f7;
+        }
 
         .welcome-section {
             background: linear-gradient(135deg, var(--primary) 0%, #06b6d4 100%);
@@ -269,8 +294,15 @@
         }
 
         @keyframes welcomeFadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .welcome-content {
@@ -361,24 +393,46 @@
         }
 
         /* Custom Grid for Calendar */
-        .row-cols-7> * {
+        .row-cols-7>* {
             flex: 0 0 14.285714%;
             width: 14.285714%;
         }
 
-        .bg-success-soft { background-color: #f0fdf4; color: #16a34a; }
-        .bg-danger-soft { background-color: #fef2f2; color: #dc2626; }
-        .bg-warning-soft { background-color: #fffbeb; color: #d97706; }
-        .bg-info-soft { background-color: #f0f9ff; color: #0284c7; }
-        .border-dashed { border-style: dashed !important; }
-        .bg-primary-soft { background-color: #eff6ff; color: #2563eb; }
+        .bg-success-soft {
+            background-color: #f0fdf4;
+            color: #16a34a;
+        }
+
+        .bg-danger-soft {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
+
+        .bg-warning-soft {
+            background-color: #fffbeb;
+            color: #d97706;
+        }
+
+        .bg-info-soft {
+            background-color: #f0f9ff;
+            color: #0284c7;
+        }
+
+        .border-dashed {
+            border-style: dashed !important;
+        }
+
+        .bg-primary-soft {
+            background-color: #eff6ff;
+            color: #2563eb;
+        }
 
         /* Homework List Styling */
         .homework-list-item {
             background: #fff;
             border-radius: 16px;
             padding: 16px 20px;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
@@ -389,7 +443,7 @@
         .homework-list-item:hover {
             transform: translateX(5px);
             border-color: var(--primary);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
         .homework-list-item .subject-icon {
@@ -434,7 +488,7 @@
         .filter-tab.active {
             background: #fff;
             color: var(--primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .btn-direct-upload {
@@ -454,9 +508,11 @@
             .sidebar {
                 left: -var(--sidebar-width);
             }
+
             .main-content {
                 margin-left: 0;
             }
+
             .top-navbar {
                 left: 0;
             }
@@ -513,8 +569,9 @@
     <div class="top-navbar">
 
         <div class="user-profile">
-            <img src="img/testimonial-2.webp" alt="Profile" class="profile-img" id="user-display-img" onclick="toggleProfileDropdown(event)">
-            
+            <img src="img/testimonial-2.webp" alt="Profile" class="profile-img" id="user-display-img"
+                onclick="toggleProfileDropdown(event)">
+
             <!-- Profile Dropdown Card -->
             <div class="profile-dropdown" id="profileDropdown">
                 <div class="dropdown-header">
@@ -523,10 +580,12 @@
                     <span class="text-muted small" id="dropdown-user-role">Class 12-A • ID: 2024-101</span>
                 </div>
                 <div class="dropdown-body">
-                    <a href="javascript:void(0)" class="dropdown-link" onclick="showSection('settings', null); switchSettingsTab('profile', $('.settings-tabs a:first-child')); toggleProfileDropdown()">
+                    <a href="javascript:void(0)" class="dropdown-link"
+                        onclick="showSection('settings', null); switchSettingsTab('profile', $('.settings-tabs a:first-child')); toggleProfileDropdown()">
                         <i class="fa fa-user-circle"></i> View Profile
                     </a>
-                    <a href="javascript:void(0)" class="dropdown-link" onclick="showSection('settings', null); toggleProfileDropdown()">
+                    <a href="javascript:void(0)" class="dropdown-link"
+                        onclick="showSection('settings', null); toggleProfileDropdown()">
                         <i class="fa fa-cog"></i> Account Settings
                     </a>
                     <hr class="my-2">
@@ -546,7 +605,8 @@
             <div class="welcome-section">
                 <div class="welcome-content">
                     <h1 id="greeting">Good Morning, Arjun! 👋</h1>
-                    <p class="mb-0" id="welcome-message">Welcome back to your dashboard. You have 3 assignments due today and your next class starts in 15 minutes.</p>
+                    <p class="mb-0" id="welcome-message">Welcome back to your dashboard. You have 3 assignments due
+                        today and your next class starts in 15 minutes.</p>
                 </div>
                 <i class="fa fa-graduation-cap welcome-img"></i>
             </div>
@@ -651,8 +711,10 @@
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <h5 class="mb-0" id="current-month-display">March 2026</h5>
                                 <div class="btn-group">
-                                    <button class="btn btn-sm btn-white border" onclick="changeMonth(-1)"><i class="fa fa-chevron-left"></i></button>
-                                    <button class="btn btn-sm btn-white border" onclick="changeMonth(1)"><i class="fa fa-chevron-right"></i></button>
+                                    <button class="btn btn-sm btn-white border" onclick="changeMonth(-1)"><i
+                                            class="fa fa-chevron-left"></i></button>
+                                    <button class="btn btn-sm btn-white border" onclick="changeMonth(1)"><i
+                                            class="fa fa-chevron-right"></i></button>
                                 </div>
                             </div>
                             <div id="calendar-container">
@@ -667,22 +729,27 @@
                     <div id="attendance-side-content">
                         <!-- Summary Card (populated by JS) -->
                     </div>
-                    
+
                     <!-- Compact Academic Progress -->
                     <div class="stat-card mt-3 p-3 border-start border-4 border-primary">
-                        <h6 class="mb-2 text-uppercase text-muted fw-bold" style="font-size:0.7rem; letter-spacing:0.5px;"><i class="fa fa-chart-line me-2"></i>Academic Progress</h6>
+                        <h6 class="mb-2 text-uppercase text-muted fw-bold"
+                            style="font-size:0.7rem; letter-spacing:0.5px;"><i
+                                class="fa fa-chart-line me-2"></i>Academic Progress</h6>
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <span class="small fw-semibold text-dark" style="font-size: 0.8rem;">Classes Attended</span>
-                            <span class="small fw-bold text-success" id="classes-attended-val" style="font-size: 0.8rem;">182/200</span>
+                            <span class="small fw-bold text-success" id="classes-attended-val"
+                                style="font-size: 0.8rem;">182/200</span>
                         </div>
                         <div class="progress mb-2" style="height: 5px; border-radius: 10px;">
                             <div class="progress-bar bg-success" id="classes-attended-bar" style="width: 91%"></div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <span class="small fw-semibold text-danger" style="font-size: 0.8rem;">Classes Left</span>
-                            <span class="badge bg-danger-soft text-danger fw-bold" id="classes-left-val" style="font-size: 0.7rem;">18 Days</span>
+                            <span class="badge bg-danger-soft text-danger fw-bold" id="classes-left-val"
+                                style="font-size: 0.7rem;">18 Days</span>
                         </div>
-                        <div class="text-muted" style="font-size: 9px; margin-top: 2px;">*Est. until Final Exams (Apr 10)</div>
+                        <div class="text-muted" style="font-size: 9px; margin-top: 2px;">*Est. until Final Exams (Apr
+                            10)</div>
                     </div>
                 </div>
             </div>
@@ -690,8 +757,10 @@
             <!-- Full Width Holidays Section -->
             <div class="stat-card mt-4 p-4 border border-light shadow-sm" style="background-color: #fcfdfd;">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="mb-0 fw-bold d-flex align-items-center gap-2"><i class="fa fa-calendar-star text-warning"></i> Upcoming Holidays & Vacations</h5>
-                    <a href="#" class="btn btn-primary btn-sm px-3 rounded-pill text-white shadow-sm" style="font-size: 0.8rem;">Full Academic Calendar</a>
+                    <h5 class="mb-0 fw-bold d-flex align-items-center gap-2"><i
+                            class="fa fa-calendar-star text-warning"></i> Upcoming Holidays & Vacations</h5>
+                    <a href="#" class="btn btn-primary btn-sm px-3 rounded-pill text-white shadow-sm"
+                        style="font-size: 0.8rem;">Full Academic Calendar</a>
                 </div>
                 <div id="holidays-list" class="row g-3">
                     <!-- Populated by JS as grid items -->
@@ -726,7 +795,7 @@
                     <button class="filter-tab" onclick="window.filterHomework('completed', this)">Completed</button>
                 </div>
             </div>
-            
+
             <div class="row g-4" id="homework-grid">
                 <!-- Populated by JS -->
             </div>
@@ -746,8 +815,10 @@
                 <h2 class="mb-0">Class Timetable</h2>
                 <div class="d-flex align-items-center gap-2">
                     <div class="filter-tabs m-0">
-                        <button class="filter-tab active" id="btn-view-weekly" onclick="switchTimetableView('weekly')">Weekly</button>
-                        <button class="filter-tab" id="btn-view-monthly" onclick="switchTimetableView('monthly')">Monthly</button>
+                        <button class="filter-tab active" id="btn-view-weekly"
+                            onclick="switchTimetableView('weekly')">Weekly</button>
+                        <button class="filter-tab" id="btn-view-monthly"
+                            onclick="switchTimetableView('monthly')">Monthly</button>
                     </div>
                 </div>
             </div>
@@ -774,9 +845,10 @@
         <div id="settings-section" class="dashboard-section d-none">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="mb-0">Portal Settings</h2>
-                <button class="btn btn-primary rounded-pill px-4 shadow-sm" onclick="alert('Settings Saved Successfully!')"><i class="fa fa-save me-2"></i>Save Changes</button>
+                <button class="btn btn-primary rounded-pill px-4 shadow-sm"
+                    onclick="alert('Settings Saved Successfully!')"><i class="fa fa-save me-2"></i>Save Changes</button>
             </div>
-            
+
             <div id="settings-content-container">
                 <!-- Populated by JS -->
             </div>
@@ -796,7 +868,8 @@
                         <div id="modalContent"></div>
                     </div>
                     <div class="modal-footer border-0 pt-0 justify-content-center">
-                        <button type="button" class="btn btn-primary-soft rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary-soft rounded-pill px-4"
+                            data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -814,7 +887,7 @@
     <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
         // Section Switching Logic
         function showSection(sectionId, element) {
@@ -829,12 +902,12 @@
 
             // Hide all sections
             document.querySelectorAll('.dashboard-section').forEach(section => section.classList.add('d-none'));
-            
+
             // Show target section
             const targetSection = document.getElementById(`${sectionId}-section`) || document.getElementById('generic-section');
             targetSection.classList.remove('d-none');
 
-             // If using generic section, update title
+            // If using generic section, update title
             if (!document.getElementById(`${sectionId}-section`)) {
                 const title = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
                 targetSection.querySelector('.section-title').innerText = title;
@@ -848,14 +921,14 @@
         }
 
         // Close dropdown when clicking outside
-        $(document).click(function(e) {
+        $(document).click(function (e) {
             if (!$(e.target).closest('.user-profile').length) {
                 $('#profileDropdown').removeClass('show');
             }
         });
 
         // Leave Application Handler
-        window.handleLeaveModal = function() {
+        window.handleLeaveModal = function () {
             $('#modalTitle').text("Apply for Leave");
             $('#modalIcon').html('<i class="fa fa-envelope-open-text text-primary"></i>');
             $('#modalMessage').text("Please provide your leave details below.");
@@ -887,16 +960,16 @@
                     <button type="button" class="btn btn-primary w-100 rounded-pill" onclick="submitLeave()">Submit Application</button>
                 </form>
             `);
-            
+
             const modal = new bootstrap.Modal(document.getElementById('actionModal'));
             modal.show();
         };
 
-        window.submitLeave = function() {
+        window.submitLeave = function () {
             const btn = $('#leaveForm button');
             btn.html('<i class="fa fa-spinner fa-spin"></i> Submitting...');
             btn.prop('disabled', true);
-            
+
             setTimeout(() => {
                 $('#modalContent').html(`
                     <div class="text-center py-4">
@@ -940,7 +1013,7 @@
                     academicYear: [
                         { name: "April 2025", days: 30, present: 22, absent: 0, late: 0, holidays: [14], startDay: 1 }, // TueClass 12-A
                         { name: "May 2025", days: 31, present: 15, absent: 0, late: 2, holidays: [1, 2, 3], startDay: 3 }, // Thu
-                        { name: "June 2025", days: 30, present: 0, absent: 0, late: 0, holidays: Array.from({length: 30}, (_, i) => i + 1), startDay: 6 }, // Sun
+                        { name: "June 2025", days: 30, present: 0, absent: 0, late: 0, holidays: Array.from({ length: 30 }, (_, i) => i + 1), startDay: 6 }, // Sun
                         { name: "July 2025", days: 31, present: 24, absent: 1, late: 1, holidays: [], startDay: 1 }, // Tue
                         { name: "August 2025", days: 31, present: 21, absent: 2, late: 0, holidays: [15], startDay: 4 }, // Fri
                         { name: "September 2025", days: 30, present: 23, absent: 0, late: 1, holidays: [5, 19], startDay: 0 }, // Mon
@@ -1175,7 +1248,7 @@
                     academicYear: [
                         { name: "April 2025", days: 30, present: 22, absent: 0, late: 0, holidays: [14], startDay: 1 },
                         { name: "May 2025", days: 31, present: 15, absent: 0, late: 2, holidays: [1, 2, 3], startDay: 3 },
-                        { name: "June 2025", days: 30, present: 0, absent: 0, late: 0, holidays: Array.from({length: 30}, (_, i) => i + 1), startDay: 6 },
+                        { name: "June 2025", days: 30, present: 0, absent: 0, late: 0, holidays: Array.from({ length: 30 }, (_, i) => i + 1), startDay: 6 },
                         { name: "July 2025", days: 31, present: 24, absent: 1, late: 1, holidays: [], startDay: 1 },
                         { name: "August 2025", days: 31, present: 21, absent: 2, late: 0, holidays: [15], startDay: 4 },
                         { name: "September 2025", days: 30, present: 23, absent: 0, late: 1, holidays: [5, 19], startDay: 0 },
@@ -1397,7 +1470,7 @@
         };
 
         // Initialize Dashboard
-        $(document).ready(function() {
+        $(document).ready(function () {
             const urlParams = new URLSearchParams(window.location.search);
             const userType = urlParams.get('user') || 'student';
             const data = dashboardData[userType] || dashboardData.student;
@@ -1408,8 +1481,8 @@
             $('#user-display-img, #dropdown-user-img').attr('src', data.img);
             const hour = new Date().getHours();
             let greetText = "Good Morning";
-            if (hour>= 12 && hour < 17) greetText = "Good Afternoon";
-            else if (hour>= 17) greetText = "Good Evening";
+            if (hour >= 12 && hour < 17) greetText = "Good Afternoon";
+            else if (hour >= 17) greetText = "Good Evening";
             $('#greeting').html(`${greetText}, ${data.greetingName}! 👋`);
             $('#welcome-message').text(data.message);
             $('.sidebar-label-attendance').text(data.sidebar.attendance);
@@ -1423,57 +1496,57 @@
             $('#attendance-title').text(data.attendance.title);
             $('#attendance-actions').html(data.attendance.actions || '');
             $('#attendance-side-content').html(data.attendance.side || '');
-            
+
             // Attendance Specific Logic
             // Calculate academic month index (0 = April, 11 = March)
             const today = new Date();
             let activeIdx = (today.getMonth() - 3 + 12) % 12;
-            
+
             // Limit to academic year scope if necessary, but here we just use the calculated index
-            if (activeIdx < 0 || activeIdx> 11) activeIdx = 11; // Fallback to March
-            
-            window.renderAttendanceCalendar = function(idx) {
+            if (activeIdx < 0 || activeIdx > 11) activeIdx = 11; // Fallback to March
+
+            window.renderAttendanceCalendar = function (idx) {
                 const month = data.attendance.academicYear[idx];
                 $('#current-month-display').text(month.name);
-                
+
                 let calendarHtml = `
                     <div class="row row-cols-7 g-1 text-center small fw-bold text-muted mb-3">
                         <div class="col">MON</div><div class="col">TUE</div><div class="col">WED</div><div class="col">THU</div><div class="col">FRI</div><div class="col">SAT</div><div class="col">SUN</div>
                     </div>
                     <div class="row row-cols-7 g-1 text-center">
                 `;
-                
+
                 // Add empty slots for month start alignment
                 for (let s = 0; s < month.startDay; s++) {
                     calendarHtml += `<div class="col p-3 border-0 bg-transparent" style="visibility: hidden;">&nbsp;</div>`;
                 }
-                
+
                 for (let i = 1; i <= month.days; i++) {
                     let statusClass = 'bg-white';
                     if (month.holidays.includes(i)) statusClass = 'bg-light text-muted';
                     else if (i <= (idx === activeIdx ? today.getDate() : month.days)) {
                         // Randomly assign present/absent for mock feel, except today
                         if (idx === activeIdx && i === today.getDate()) statusClass = 'bg-primary text-white shadow-sm';
-                        else statusClass = Math.random()> 0.1 ? 'bg-success-soft text-success' : 'bg-danger-soft text-danger';
+                        else statusClass = Math.random() > 0.1 ? 'bg-success-soft text-success' : 'bg-danger-soft text-danger';
                     }
-                    
+
                     calendarHtml += `<div class="col p-3 border-0 rounded-3 ${statusClass}">${i}</div>`;
                 }
                 calendarHtml += `</div>`;
                 $('#calendar-container').html(calendarHtml);
             };
 
-            window.changeMonth = function(dir) {
+            window.changeMonth = function (dir) {
                 activeIdx += dir;
                 if (activeIdx < 0) activeIdx = 0;
-                if (activeIdx> 11) activeIdx = 11;
+                if (activeIdx > 11) activeIdx = 11;
                 renderAttendanceCalendar(activeIdx);
             };
 
             // Initialize Attendance
             if (data.attendance.academicYear) {
                 renderAttendanceCalendar(activeIdx);
-                
+
                 // Holidays List
                 const holidaysHtml = data.attendance.holidaysList.map(h => `
                     <div class="col-md-6 col-lg-3">
@@ -1496,7 +1569,7 @@
             }
 
             // Settings Helper
-            window.switchSettingsTab = function(tabId, element) {
+            window.switchSettingsTab = function (tabId, element) {
                 $('.settings-tabs a').removeClass('active');
                 $(element).addClass('active');
                 $('#settings-content-container').html(data.settings[tabId]);
@@ -1513,9 +1586,9 @@
             };
 
             // Initialize Assignments List with Filtering & Sorting
-            window.renderHomework = function(filter = 'all') {
+            window.renderHomework = function (filter = 'all') {
                 const statusPriority = { 'Overdue': 0, 'Pending': 1, 'Completed': 2 };
-                
+
                 let filteredData = data.homework.body.map(item => {
                     const isOverdue = item.due.includes('Mar') && parseInt(item.due) < 20 && item.status !== 'completed';
                     const displayStatus = item.status === 'completed' ? 'Completed' : (isOverdue ? 'Overdue' : 'Pending');
@@ -1531,7 +1604,7 @@
                 const homeworkHtml = filteredData.map((item, idx) => {
                     const subInfo = subjectIcons[item.sub] || { icon: 'fa-book', color: 'bg-light text-muted' };
                     const statusClass = item.displayStatus === 'Completed' ? 'bg-success-soft text-success' : (item.displayStatus === 'Overdue' ? 'bg-danger-soft text-danger' : 'bg-warning-soft text-warning');
-                    
+
                     return `
                         <div class="homework-list-item animate__animated animate__fadeInUp" id="hw-item-${item.id}" style="animation-delay: ${idx * 0.05}s">
                             <div class="subject-icon ${subInfo.color} flex-shrink-0">
@@ -1550,9 +1623,9 @@
                                 </div>
                             </div>
                             <div class="action-zone flex-shrink-0 text-end d-flex align-items-center justify-content-end" style="min-width: 160px; height: 38px;">
-                                ${item.status === 'completed' ? 
-                                    `<div class="badge bg-success-soft text-success rounded-pill px-3 py-2 fw-bold border-0" style="font-size: 0.75rem; letter-spacing: 0.5px;"><i class="fa fa-check-circle me-1"></i> Submitted</div>` : 
-                                    `
+                                ${item.status === 'completed' ?
+                            `<div class="badge bg-success-soft text-success rounded-pill px-3 py-2 fw-bold border-0" style="font-size: 0.75rem; letter-spacing: 0.5px;"><i class="fa fa-check-circle me-1"></i> Submitted</div>` :
+                            `
                                     <div class="d-flex align-items-center justify-content-end gap-2">
                                         <input type="file" class="d-none" id="hw-file-${item.id}" onchange="window.homeworkFileSelect(this, ${item.id})">
                                         <label for="hw-file-${item.id}" class="btn btn-sm btn-outline-primary rounded-pill mb-0 d-flex align-items-center gap-1" style="cursor: pointer; height: 32px; font-weight: 600;">
@@ -1563,16 +1636,16 @@
                                         </button>
                                     </div>
                                     `
-                                }
+                        }
                             </div>
                         </div>
                     `;
                 }).join('');
-                
+
                 $('#homework-grid').html(homeworkHtml || '<div class="text-center py-5 text-muted">No assignments found in this category.</div>');
             };
 
-            window.filterHomework = function(type, btn) {
+            window.filterHomework = function (type, btn) {
                 $('.filter-tab').removeClass('active');
                 $(btn).addClass('active');
                 window.renderHomework(type);
@@ -1585,39 +1658,45 @@
 
             // Historical Attendance Data (with monthly breakdown)
             const historicalAttendance = {
-                6: { year: '2022–2023', classTeacher: 'Mrs. Seema Gupta', totalDays: 214, present: 196, absent: 10, late: 5, leavesTaken: 8, leavesAllowed: 15, percentage: 91.6, remark: 'Excellent',
+                6: {
+                    year: '2022–2023', classTeacher: 'Mrs. Seema Gupta', totalDays: 214, present: 196, absent: 10, late: 5, leavesTaken: 8, leavesAllowed: 15, percentage: 91.6, remark: 'Excellent',
                     months: [
                         { m: 'Apr', days: 24, p: 22, a: 1, l: 1 }, { m: 'May', days: 22, p: 20, a: 1, l: 1 },
-                        { m: 'Jun', days: 0,  p: 0,  a: 0, l: 0, holiday: true }, { m: 'Jul', days: 26, p: 25, a: 1, l: 0 },
+                        { m: 'Jun', days: 0, p: 0, a: 0, l: 0, holiday: true }, { m: 'Jul', days: 26, p: 25, a: 1, l: 0 },
                         { m: 'Aug', days: 24, p: 22, a: 1, l: 1 }, { m: 'Sep', days: 25, p: 23, a: 1, l: 1 },
                         { m: 'Oct', days: 23, p: 21, a: 1, l: 1 }, { m: 'Nov', days: 24, p: 23, a: 1, l: 0 },
                         { m: 'Dec', days: 20, p: 18, a: 1, l: 1, holiday: false }, { m: 'Jan', days: 25, p: 24, a: 1, l: 0 },
                         { m: 'Feb', days: 24, p: 22, a: 1, l: 1 }, { m: 'Mar', days: 23, p: 22, a: 1, l: 0 }
                     ],
-                    subjects: [ { name: 'Mathematics', present: 38, total: 40 }, { name: 'Science', present: 37, total: 40 }, { name: 'English', present: 39, total: 40 }, { name: 'Social Studies', present: 36, total: 40 }, { name: 'Hindi', present: 35, total: 40 } ] },
-                7: { year: '2023–2024', classTeacher: 'Mr. Rajiv Nair', totalDays: 220, present: 203, absent: 12, late: 4, leavesTaken: 10, leavesAllowed: 15, percentage: 92.3, remark: 'Excellent',
+                    subjects: [{ name: 'Mathematics', present: 38, total: 40 }, { name: 'Science', present: 37, total: 40 }, { name: 'English', present: 39, total: 40 }, { name: 'Social Studies', present: 36, total: 40 }, { name: 'Hindi', present: 35, total: 40 }]
+                },
+                7: {
+                    year: '2023–2024', classTeacher: 'Mr. Rajiv Nair', totalDays: 220, present: 203, absent: 12, late: 4, leavesTaken: 10, leavesAllowed: 15, percentage: 92.3, remark: 'Excellent',
                     months: [
                         { m: 'Apr', days: 24, p: 22, a: 1, l: 1 }, { m: 'May', days: 23, p: 21, a: 2, l: 0 },
-                        { m: 'Jun', days: 0,  p: 0,  a: 0, l: 0, holiday: true }, { m: 'Jul', days: 27, p: 25, a: 1, l: 1 },
+                        { m: 'Jun', days: 0, p: 0, a: 0, l: 0, holiday: true }, { m: 'Jul', days: 27, p: 25, a: 1, l: 1 },
                         { m: 'Aug', days: 25, p: 23, a: 2, l: 0 }, { m: 'Sep', days: 26, p: 24, a: 1, l: 1 },
                         { m: 'Oct', days: 24, p: 22, a: 1, l: 1 }, { m: 'Nov', days: 25, p: 24, a: 1, l: 0 },
                         { m: 'Dec', days: 21, p: 19, a: 1, l: 1 }, { m: 'Jan', days: 26, p: 25, a: 1, l: 0 },
                         { m: 'Feb', days: 24, p: 22, a: 1, l: 1 }, { m: 'Mar', days: 25, p: 24, a: 0, l: 1 }
                     ],
-                    subjects: [ { name: 'Mathematics', present: 40, total: 42 }, { name: 'Physics', present: 39, total: 42 }, { name: 'English', present: 41, total: 42 }, { name: 'History', present: 38, total: 42 }, { name: 'Hindi', present: 36, total: 42 } ] },
-                8: { year: '2024–2025 (Ongoing)', classTeacher: 'Dr. Priya Sen', totalDays: 180, present: 168, absent: 7, late: 3, leavesTaken: 5, leavesAllowed: 15, percentage: 93.3, remark: 'Outstanding',
+                    subjects: [{ name: 'Mathematics', present: 40, total: 42 }, { name: 'Physics', present: 39, total: 42 }, { name: 'English', present: 41, total: 42 }, { name: 'History', present: 38, total: 42 }, { name: 'Hindi', present: 36, total: 42 }]
+                },
+                8: {
+                    year: '2024–2025 (Ongoing)', classTeacher: 'Dr. Priya Sen', totalDays: 180, present: 168, absent: 7, late: 3, leavesTaken: 5, leavesAllowed: 15, percentage: 93.3, remark: 'Outstanding',
                     months: [
                         { m: 'Apr', days: 24, p: 23, a: 1, l: 0 }, { m: 'May', days: 22, p: 21, a: 1, l: 0 },
-                        { m: 'Jun', days: 0,  p: 0,  a: 0, l: 0, holiday: true }, { m: 'Jul', days: 26, p: 25, a: 1, l: 0 },
+                        { m: 'Jun', days: 0, p: 0, a: 0, l: 0, holiday: true }, { m: 'Jul', days: 26, p: 25, a: 1, l: 0 },
                         { m: 'Aug', days: 25, p: 24, a: 1, l: 0 }, { m: 'Sep', days: 26, p: 24, a: 1, l: 1 },
-                        { m: 'Oct', days: 23, p: 22, a: 1, l: 0 }, { m: 'Nov', days: 0,  p: 0,  a: 0, l: 0, upcoming: true },
-                        { m: 'Dec', days: 0,  p: 0,  a: 0, l: 0, upcoming: true }, { m: 'Jan', days: 0,  p: 0,  a: 0, l: 0, upcoming: true },
-                        { m: 'Feb', days: 0,  p: 0,  a: 0, l: 0, upcoming: true }, { m: 'Mar', days: 0,  p: 0,  a: 0, l: 0, upcoming: true }
+                        { m: 'Oct', days: 23, p: 22, a: 1, l: 0 }, { m: 'Nov', days: 0, p: 0, a: 0, l: 0, upcoming: true },
+                        { m: 'Dec', days: 0, p: 0, a: 0, l: 0, upcoming: true }, { m: 'Jan', days: 0, p: 0, a: 0, l: 0, upcoming: true },
+                        { m: 'Feb', days: 0, p: 0, a: 0, l: 0, upcoming: true }, { m: 'Mar', days: 0, p: 0, a: 0, l: 0, upcoming: true }
                     ],
-                    subjects: [ { name: 'Mathematics', present: 36, total: 38 }, { name: 'Physics', present: 37, total: 38 }, { name: 'Chemistry', present: 35, total: 38 }, { name: 'English', present: 37, total: 38 }, { name: 'Hindi', present: 34, total: 38 } ] }
+                    subjects: [{ name: 'Mathematics', present: 36, total: 38 }, { name: 'Physics', present: 37, total: 38 }, { name: 'Chemistry', present: 35, total: 38 }, { name: 'English', present: 37, total: 38 }, { name: 'Hindi', present: 34, total: 38 }]
+                }
             };
 
-            window.showHistoricalAttendance = function(cls, btn) {
+            window.showHistoricalAttendance = function (cls, btn) {
                 $('#attendance-history-card .filter-tab').removeClass('active');
                 $(btn).addClass('active');
 
@@ -1647,10 +1726,10 @@
                 const monthRows = d.months.map(m => {
                     if (m.holiday) return `<tr style="background:#f8fafc;"><td class="small fw-semibold ps-3">${m.m}</td><td colspan="4" class="small text-center text-muted fst-italic">Summer Break</td></tr>`;
                     if (m.upcoming) return `<tr><td class="small fw-semibold ps-3">${m.m}</td><td colspan="4" class="small text-center text-muted fst-italic">Upcoming</td></tr>`;
-                    
+
                     const pct = m.days > 0 ? Math.round((m.p / m.days) * 100) : 0;
                     const c = pct >= 90 ? 'text-success' : (pct >= 75 ? 'text-warning' : 'text-danger');
-                    
+
                     return `<tr>
                         <td class="small fw-semibold ps-3">${m.m}</td>
                         <td class="small text-center text-muted">${m.days}</td>
@@ -1771,13 +1850,13 @@
                     title: "Active Assignments",
                     icon: '<i class="fa fa-upload text-success"></i>',
                     message: "Submit your work for verification.",
-                    content: function() {
-                        const options = data.homework.body.filter(h => h.status !== 'completed').map(h => 
+                    content: function () {
+                        const options = data.homework.body.filter(h => h.status !== 'completed').map(h =>
                             `<option value="${h.id}">${h.task}</option>`
                         ).join('');
-                        
+
                         if (!options) return `<div class="alert alert-info py-2 small mb-0">No pending assignments to submit!</div>`;
-                        
+
                         return `
                             <div class="text-start mb-3">
                                 <label class="small text-muted mb-1">Select Assignment</label>
@@ -1872,30 +1951,30 @@
                 }
             };
 
-            window.homeworkFileSelect = function(input, id) {
+            window.homeworkFileSelect = function (input, id) {
                 if (input.files && input.files[0]) {
                     $(`#file-label-${id}`).text(input.files[0].name);
                     $(`#hw-submit-${id}`).removeClass('d-none');
                 }
             };
 
-            window.submitHomeworkDirect = function(id) {
+            window.submitHomeworkDirect = function (id) {
                 const btn = $(`#hw-submit-${id}`);
                 const file = document.getElementById(`hw-file-${id}`).files[0];
-                
+
                 btn.html('<i class="fa fa-spinner fa-spin"></i> Submitting...').prop('disabled', true);
-                
+
                 setTimeout(() => {
                     // Update data status
                     const item = data.homework.body.find(i => i.id === id);
                     if (item) item.status = 'completed';
-                    
+
                     // Animate the row out or just re-render with a "swappy" feel
                     $(`#hw-item-${id}`).addClass('animate__animated animate__fadeOutRight');
-                    
+
                     setTimeout(() => {
                         renderHomework($('.filter-tab.active').text().toLowerCase());
-                        
+
                         // Add to timeline
                         const time = "Just Now";
                         const content = `Successfully submitted assignment file: **${file.name}**`;
@@ -1909,32 +1988,32 @@
                 }, 1500);
             };
 
-            window.handleFileSelect = function(input) {
+            window.handleFileSelect = function (input) {
                 if (input.files && input.files[0]) {
                     $('#uploadText').html(`Selected: <b>${input.files[0].name}</b>`);
                     $('.upload-area').addClass('bg-success-soft').css('border-color', '#22c55e');
                 }
             };
 
-            window.processUpload = function(btn) {
+            window.processUpload = function (btn) {
                 const fileInput = document.getElementById('fileUpload');
                 const hwSelect = document.getElementById('modalHwSelect');
                 const file = fileInput ? fileInput.files[0] : null;
-                
+
                 if (!file) {
                     alert("Please select a file first");
                     return;
                 }
-                
+
                 $(btn).html('<i class="fa fa-spinner fa-spin"></i> Uploading...').prop('disabled', true);
-                
+
                 setTimeout(() => {
                     // Update the actual homework status
                     if (hwSelect) {
                         const hwId = parseInt(hwSelect.value);
                         const item = data.homework.body.find(i => i.id === hwId);
                         if (item) item.status = 'completed';
-                        
+
                         // Re-render homework list if it exists in the DOM
                         if (typeof window.renderHomework === 'function') {
                             window.renderHomework($('.filter-tab.active').text().toLowerCase() || 'all');
@@ -1956,9 +2035,9 @@
                     // Add to timeline
                     const time = "Just Now";
                     const content = `Submitted assignment through Quick Actions: **${file.name}**`;
-                    
+
                     data.timeline.unshift({ time, content }); // Persist in data
-                    
+
                     $('#activity-timeline').prepend(`
                         <div class="timeline-item animate__animated animate__fadeInLeft">
                             <div class="timeline-time">${time}</div>
@@ -1968,17 +2047,17 @@
                 }, 2000);
             };
 
-            window.handleQuickAction = function(label) {
+            window.handleQuickAction = function (label) {
                 const config = studentActionConfigs[label];
                 if (!config) return;
 
                 $('#modalTitle').text(config.title);
                 $('#modalIcon').html(config.icon);
                 $('#modalMessage').text(config.message);
-                
+
                 const content = typeof config.content === 'function' ? config.content() : config.content;
                 $('#modalContent').html(content);
-                
+
                 const modalEl = document.getElementById('actionModal');
                 let modal = bootstrap.Modal.getInstance(modalEl);
                 if (!modal) {
@@ -2069,26 +2148,26 @@
                 ]
             };
 
-            window.renderTimetable = function() {
+            window.renderTimetable = function () {
                 const container = $('#timetable-render-container');
                 const label = $('#timetable-date-range');
-                
+
                 // Calculate date string based on offset
                 const today = new Date('2026-03-20'); // Mocking today's date for consistency
-                
+
                 if (currentTimetableView === 'weekly') {
                     // Weekly Math
                     const targetDate = new Date(today);
                     targetDate.setDate(today.getDate() + (currentTimetableOffset * 7));
-                    
+
                     const startOfWeek = new Date(targetDate);
                     startOfWeek.setDate(targetDate.getDate() - targetDate.getDay() + 1); // Monday
                     const endOfWeek = new Date(startOfWeek);
                     endOfWeek.setDate(startOfWeek.getDate() + 5); // Saturday
-                    
+
                     const formatDate = (date) => date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
                     label.text(`${formatDate(startOfWeek)} - ${formatDate(endOfWeek)}, ${endOfWeek.getFullYear()}`);
-                    
+
                     // Render Weekly Table
                     let tableHtml = `
                         <div class="table-responsive animate__animated animate__fadeIn">
@@ -2101,7 +2180,7 @@
                                 </thead>
                                 <tbody>
                     `;
-                    
+
                     weeklyTimetableMock.periods.forEach(p => {
                         if (p.type === 'break') {
                             tableHtml += `<tr><td colspan="7" class="bg-light small fw-bold text-muted py-3">${p.time}</td></tr>`;
@@ -2117,7 +2196,7 @@
                             tableHtml += `</tr>`;
                         }
                     });
-                    
+
                     tableHtml += `</tbody></table></div>`;
                     container.html(tableHtml);
 
@@ -2126,7 +2205,7 @@
                     const targetDate = new Date(today.getFullYear(), today.getMonth() + currentTimetableOffset, 1);
                     const monthName = targetDate.toLocaleString('default', { month: 'long', year: 'numeric' });
                     label.text(monthName);
-                    
+
                     // Render Monthly View (A simplified calendar/agenda summarizing the month)
                     container.html(`
                         <div class="animate__animated animate__fadeIn">
@@ -2170,7 +2249,7 @@
                 }
             };
 
-            window.switchTimetableView = function(view) {
+            window.switchTimetableView = function (view) {
                 currentTimetableView = view;
                 currentTimetableOffset = 0; // Reset offset when switching views
                 $('.filter-tab').removeClass('active');
@@ -2178,7 +2257,7 @@
                 renderTimetable();
             };
 
-            window.changeTimetableDate = function(dir) {
+            window.changeTimetableDate = function (dir) {
                 currentTimetableOffset += dir;
                 renderTimetable();
             };
@@ -2190,6 +2269,3 @@
 </body>
 
 </html>
-
-
-
